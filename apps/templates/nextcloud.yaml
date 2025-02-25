@@ -19,7 +19,7 @@ spec:
   source:
     chart: nextcloud
     repoURL: https://nextcloud.github.io/helm/
-    targetRevision: 27.1.4
+    targetRevision: 4.5.8
     helm:
       releaseName: nextcloud
       valuesObject:
@@ -27,6 +27,7 @@ spec:
           enabled: false
         mariadb:
           # TODO Set password for db
+          # TODO Configure storage properly
           enabled: true
   destination:
     server: "https://kubernetes.default.svc"

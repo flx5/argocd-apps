@@ -21,3 +21,12 @@ pihole:
     FTLCONF_LOCAL_IPV4: 192.168.2.92
   admin:
     existingSecret: pihole-password
+  probes:
+    readiness:
+      initialDelaySeconds: 5
+      timeoutSeconds: 1
+      failureThreshold: 2
+    liveness:
+      initialDelaySeconds: 5
+      timeoutSeconds: 1
+      failureThreshold: 2

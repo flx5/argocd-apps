@@ -13,6 +13,10 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
   destination:
     namespace: pihole
     server: {{ .Values.spec.destination.server }}

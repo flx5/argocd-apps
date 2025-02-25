@@ -12,6 +12,10 @@ metadata:
   namespace: argocd
 spec:
   project: default
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
   source:
     chart: sealed-secrets
     repoURL: https://bitnami-labs.github.io/sealed-secrets

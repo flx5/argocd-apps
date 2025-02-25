@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: nextcloud
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nextcloud
+  namespace: argocd
+spec:
+  project: default
+#  syncPolicy:
+#    automated:
+#      selfHeal: true
+#      prune: true
+  source:
+    chart: nextcloud
+    repoURL: https://nextcloud.github.io/helm/
+    targetRevision: 27.1.4
+    helm:
+      releaseName: nextcloud
+      valuesObject:
+        internalDatabase:
+          enabled: false
+        mariadb:
+          # TODO Set password for db
+          enabled: true
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: nextcloud

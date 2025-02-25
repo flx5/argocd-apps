@@ -21,7 +21,7 @@ spec:
     repoURL: https://mojo2600.github.io/pihole-kubernetes/
     targetRevision: 2.27.0
     helm:
-      releaseName: sealed-secrets
+      releaseName: pihole
       valuesObject:
         virtualHost: pihole.home.arpa
         dnsmasq:

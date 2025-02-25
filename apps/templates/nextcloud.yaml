@@ -23,6 +23,10 @@ spec:
     helm:
       releaseName: nextcloud
       valuesObject:
+        ingress:
+          enabled: true
+        nextcloud:
+          host: "cloud.felix-prasse.de"
         internalDatabase:
           enabled: false
         mariadb:

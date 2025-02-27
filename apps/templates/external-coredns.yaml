@@ -24,6 +24,7 @@ spec:
       releaseName: coredns
       valuesObject:
         isClusterService: false
+        serviceType: LoadBalancer
   destination:
     server: "https://kubernetes.default.svc"
     namespace: networking

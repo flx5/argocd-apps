@@ -23,9 +23,6 @@ version: 0.1.0
 appVersion: "1.0"
 
 dependencies:
-  - name: pihole
-    version: 2.27.0
-    repository: https://mojo2600.github.io/pihole-kubernetes/
   - name: coredns
     version: 1.39.1
     repository: https://coredns.github.io/helm

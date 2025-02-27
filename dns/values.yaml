@@ -39,3 +39,6 @@ coredns:
 etcd:
   persistence:
     enabled: false
+  # This job fails if the networking-etcd-jwt-token secret is not there yet?!
+  preUpgradeJob:
+    enabled: false

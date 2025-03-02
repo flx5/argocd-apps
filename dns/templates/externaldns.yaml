@@ -30,7 +30,6 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: external-dns
-  namespace: externaldns
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -58,5 +57,12 @@ spec:
         env:
           - name: ETCD_URLS
             value: http://10.43.142.0:2379
+          - name: ETCD_USERNAME
+            value: root
+          - name: ETCD_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: etcd-root-password
+                name: networking-etcd
       securityContext:
         fsGroup: 65534 # For ExternalDNS to be able to read Kubernetes token files

@@ -1,0 +1,21 @@
+nextcloud:
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      traefik.ingress.kubernetes.io/service.sticky.cookie: "true"
+    tls:
+      - hosts:
+          - cloud.felix-prasse.de
+        secretName: nextcloud-cert # < cert-manager will store the created certificate in this secret.
+  nextcloud:
+    host: "cloud.felix-prasse.de"
+  internalDatabase:
+    enabled: false
+  mariadb:
+    # TODO Set password for db
+    # TODO Configure storage properly
+    enabled: true
+    primary:
+      persistence:
+        storageClass: longhorn-boot

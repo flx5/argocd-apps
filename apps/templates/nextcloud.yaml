@@ -25,6 +25,9 @@ spec:
       valuesObject:
         ingress:
           enabled: true
+          annotations:
+            cert-manager.io/cluster-issuer: letsencrypt-prod
+            traefik.ingress.kubernetes.io/service.sticky.cookie: "true"
         nextcloud:
           host: "cloud.felix-prasse.de"
         internalDatabase:

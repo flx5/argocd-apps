@@ -43,9 +43,8 @@ coredns:
         - name: reload
         - name: loadbalance
         - name: etcd
-          parameters: home.arpa
           configBlock: |-
-            stubzones
+            fallthrough
             path /skydns
             endpoint http://10.43.142.0:2379
             credentials {$ETCD_USERNAME} {$ETCD_PASSWORD}

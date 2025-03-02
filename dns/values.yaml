@@ -11,7 +11,7 @@ coredns:
       valueFrom:
         secretKeyRef:
           key: etcd-root-password
-          name: networking-etcd
+          name: etcd-password
 
   # Default zone is what Kubernetes recommends:
   # https://kubernetes.io/docs/tasks/administer-cluster/dns-custom-nameservers/#coredns-configmap-options
@@ -54,6 +54,10 @@ etcd:
   # This job fails if the networking-etcd-jwt-token secret is not there yet?!
   preUpgradeJob:
     enabled: false
+
+  auth:
+    rbac:
+      existingSecret: etcd-password
 
   service:
     clusterIP: 10.43.142.0

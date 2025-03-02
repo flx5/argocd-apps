@@ -64,6 +64,6 @@ spec:
             valueFrom:
               secretKeyRef:
                 key: etcd-root-password
-                name: networking-etcd
+                name: etcd-password
       securityContext:
         fsGroup: 65534 # For ExternalDNS to be able to read Kubernetes token files

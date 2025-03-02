@@ -18,4 +18,5 @@ nextcloud:
     enabled: true
     primary:
       persistence:
+        enabled: true
         storageClass: longhorn-boot

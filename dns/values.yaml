@@ -55,6 +55,7 @@ coredns:
             stubzones
             path /skydns
             endpoint http://10.43.142.0:2379
+            credentials {$ETCD_USERNAME} {$ETCD_PASSWORD}
 etcd:
   persistence:
     enabled: false

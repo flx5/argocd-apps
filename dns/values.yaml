@@ -3,17 +3,6 @@ coredns:
   serviceType: LoadBalancer
   service:
     loadBalancerIP: 192.168.2.92
-
-etcd:
-  persistence:
-    enabled: false
-  # This job fails if the networking-etcd-jwt-token secret is not there yet?!
-  preUpgradeJob:
-    enabled: false
-
-  service:
-    clusterIP: 10.43.142.0
-
   # Default zone is what Kubernetes recommends:
   # https://kubernetes.io/docs/tasks/administer-cluster/dns-custom-nameservers/#coredns-configmap-options
   servers:
@@ -56,3 +45,13 @@ etcd:
             stubzones
             path /skydns
             endpoint http://10.43.142.0:2379
+etcd:
+  persistence:
+    enabled: false
+  # This job fails if the networking-etcd-jwt-token secret is not there yet?!
+  preUpgradeJob:
+    enabled: false
+
+  service:
+    clusterIP: 10.43.142.0
+

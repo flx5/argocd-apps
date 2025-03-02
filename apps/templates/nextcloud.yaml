@@ -40,6 +40,9 @@ spec:
           # TODO Set password for db
           # TODO Configure storage properly
           enabled: true
+          primary:
+            persistence:
+              storageClass: longhorn-boot
   destination:
     server: "https://kubernetes.default.svc"
     namespace: nextcloud

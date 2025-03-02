@@ -18,6 +18,3 @@ spec:
             apiTokenSecretRef:
               name: cloudflare-api-token-secret
               key: api-token
-        selector:
-          dnsNames:
-            - '*.felix-prasse.de'

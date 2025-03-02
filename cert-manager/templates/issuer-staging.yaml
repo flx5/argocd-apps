@@ -15,10 +15,9 @@ spec:
     solvers:
       - dns01:
           cloudflare:
-            email: user@example.com
-            apiKeySecretRef:
-              name: cloudflare-apikey-secret
-              key: apikey
+            apiTokenSecretRef:
+              name: cloudflare-api-token-secret
+              key: api-token
         selector:
           dnsNames:
             - '*.felix-prasse.de'

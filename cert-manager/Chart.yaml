@@ -1,5 +1,5 @@
 apiVersion: v2
-name: dns-wrapper
+name: cert-manager-wrapper
 description: Applications
 
 # A chart can be either an 'application' or a 'library' chart.
@@ -23,9 +23,6 @@ version: 0.1.0
 appVersion: "1.0"
 
 dependencies:
-  - name: coredns
-    version: 1.39.1
-    repository: https://coredns.github.io/helm
-  - name: etcd
-    version: 11.1.0
-    repository: https://charts.bitnami.com/bitnami
+  - name: cert-manager
+    version: v1.17.0
+    repository: https://charts.jetstack.io

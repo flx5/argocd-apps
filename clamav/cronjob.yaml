@@ -3,6 +3,9 @@ kind: CronJob
 metadata:
   name: freshclam
 spec:
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
   jobTemplate:
     metadata:
       name: freshclam
@@ -18,13 +21,16 @@ spec:
               resources: {}
               volumeMounts:
                 - mountPath: /var/lib/clamav
-                  name: clam_db
+                  name: clam-db
               securityContext:
                 runAsUser: 100
                 allowPrivilegeEscalation: false
                 capabilities:
                   drop:
                     - "ALL"
-
+          volumes:
+            - name: clam-db
+              persistentVolumeClaim:
+                claimName: clamdb-pvc
           restartPolicy: OnFailure
   schedule: '40 8 * * *'

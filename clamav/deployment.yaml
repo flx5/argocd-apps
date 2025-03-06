@@ -55,8 +55,8 @@ spec:
             - containerPort: 3310
           volumeMounts:
             - mountPath: /var/lib/clamav
-              name: clam_db
+              name: clam-db
       volumes:
-        - name: clam_db
+        - name: clam-db
           persistentVolumeClaim:
             claimName: clamdb-pvc

@@ -1,0 +1,150 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: monitoring
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: grafana
+  namespace: monitoring
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  encryptedData:
+    token: AgBLEOAmy4EIF4MVn2HeuYaC7bGHCIh/d/IyNyZIEckArSbTiMolzppeaDK7ZU80e78hFv34dvEnJ8FDiDXcjrVK0JfDK/w+nAqMFsbW3X13wHCgjCPUswXJ5MKtj9OyAPvf0HvhfLrLQA6g7BCXhC/9SFntj8pVz+Tmi0R6AlVsYBEfsYb6MwAkokSkoNG1+CiXm3gFueDuKbrOc8unFighcdnjUS1AsaaqgXzDZnLx9yqfy9f76xGDOVl0D4cKFNYyyRhsel5MzjuMVce/rMuQGkdPB4WN8o71xGZhMFAh5Ty0ZAWFuvqC7+xnNgr6dZUk/+whImhcZ3igpYEN6U0xC1wljRajAhzPSZF+gxk1HKvYGJbWB+CdmxuymEldkbDrYxDuXScsq6t/yBMOgqcQlbtQsBANBkgKPjBV3VTewgVXP5xL274PJdFmVTb4/teT7K6pbNot6robZv7PlNA/2j9hBoDPUhIzVbWOaJF0Q5ve2OV0lECL3LX28qvSFy60l2YU9cFpMBbiX99GYGQ1dZ4LyHZ/d8WR4oMzLOevS36T5ee9ad2NnlxOXKK+Ftr9vHc/Sw+wigYew5cYK1rQzj56dz/tpbe2eMPr67RCZePMB6RuT2MDTShaVaxD2q2M1adb/rxMyJcYSOO9Pm8cj6Fg1w7ofgO6ZqnqrnRYSjNJeabLBpHkIbEy1Dk32L6MU64/x0XPWk64SI2/Yo6so/tgN77CENrwNwk05CDRkLzJn9oDvx85xdCQ/kdycZ6NX8yKbrBRSfni1GYen2yXXh3QzKmHXarDzy2mANJBR8kJptDGR8lPTMYCZI02JtXphKgb9RbMfucCVPE6uOYgGN0njDpSnCJvFHxZNP8ZtG+hvlGNWiHn6dnaUDve3zZy9jldBVJ7bOdqXU0=
+  template:
+    metadata:
+      creationTimestamp: null
+      name: grafana
+      namespace: monitoring
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana-k8s-monitoring
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  project: default
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+  source:
+    chart: k8s-monitoring
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 2.0.16
+    # Kubeseal expects the chart under the name sealed-secrets-controller and in namespace kube-system
+    helm:
+      releaseName: grafana-k8s-monitoring
+      valuesObject:
+        cluster:
+          name: k3s-nue
+        destinations:
+          - name: grafana-cloud-metrics
+            type: prometheus
+            url: https://prometheus-prod-24-prod-eu-west-2.grafana.net/api/prom/push
+            auth:
+              type: basic
+              username: "2244401"
+              passwordFrom: grafana
+              passwordKey: token
+          - name: grafana-cloud-logs
+            type: loki
+            url: https://logs-prod-012.grafana.net/loki/api/v1/push
+            auth:
+              type: basic
+              username: "1117878"
+              passwordFrom: grafana
+              passwordKey: token
+          - name: grafana-cloud-traces
+            type: otlp
+            url: https://tempo-prod-10-prod-eu-west-2.grafana.net:443
+            protocol: grpc
+            auth:
+              type: basic
+              username: "1112193"
+              passwordFrom: grafana
+              passwordKey: token
+            metrics:
+              enabled: false
+            logs:
+              enabled: false
+            traces:
+              enabled: true
+        clusterMetrics:
+          enabled: true
+          opencost:
+            enabled: true
+            metricsSource: grafana-cloud-metrics
+            opencost:
+              exporter:
+                defaultClusterId: k3s-nue
+              prometheus:
+                existingSecretName: grafana-cloud-metrics-grafana-k8s-monitoring
+                external:
+                  url: https://prometheus-prod-24-prod-eu-west-2.grafana.net/api/prom
+          kepler:
+            enabled: true
+        prometheusOperatorObjects:
+          enabled: true
+        clusterEvents:
+          enabled: true
+        nodeLogs:
+          enabled: true
+        podLogs:
+          enabled: true
+        applicationObservability:
+          enabled: true
+          receivers:
+            otlp:
+              grpc:
+                enabled: true
+                port: 4317
+              http:
+                enabled: true
+                port: 4318
+            zipkin:
+              enabled: true
+              port: 9411
+        autoInstrumentation:
+          enabled: true
+        integrations:
+          alloy:
+            instances:
+              - name: alloy
+                labelSelectors:
+                  app.kubernetes.io/name:
+                    - alloy-metrics
+                    - alloy-singleton
+                    - alloy-logs
+                    - alloy-receiver
+        alloy-metrics:
+          enabled: true
+        alloy-singleton:
+          enabled: true
+        alloy-logs:
+          enabled: true
+        alloy-receiver:
+          enabled: true
+          alloy:
+            extraPorts:
+              - name: otlp-grpc
+                port: 4317
+                targetPort: 4317
+                protocol: TCP
+              - name: otlp-http
+                port: 4318
+                targetPort: 4318
+                protocol: TCP
+              - name: zipkin
+                port: 9411
+                targetPort: 9411
+                protocol: TCP
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: monitoring

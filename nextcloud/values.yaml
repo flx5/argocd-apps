@@ -1,22 +1,114 @@
 nextcloud:
+  image:
+    tag: 30.0.6-apache
   ingress:
     enabled: true
+    className: public-nginx
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
-      traefik.ingress.kubernetes.io/service.sticky.cookie: "true"
+      nginx.ingress.kubernetes.io/affinity: cookie
+      nginx.ingress.kubernetes.io/enable-cors: "true"
+      nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
     tls:
       - hosts:
           - cloud.felix-prasse.de
         secretName: nextcloud-cert # < cert-manager will store the created certificate in this secret.
+  # TODO Run this as init container: NEXTCLOUD_UPDATE=1 /entrypoint.sh /bin/sh -c 'exit 0'
+  # See also: https://github.com/nextcloud/helm/pull/344...
+  # TODO Maybe add some argo hooks to backup / snapshot /  migrate the database?
+  # TODO https://www.allerstorfer.at/nextcloud-install-preview-generator/
+
+  # TODO Run occ maintenance:repair --include-expensive after upgrade:
+  # One or more mimetype migrations are available.
+  # Occasionally new mimetypes are added to better handle certain file types.
+  # Migrating the mimetypes take a long time on larger instances so this is not done automatically during upgrades.
+  # Use the command `occ maintenance:repair --include-expensive` to perform the migrations.
+
+  # TODO Run occ db:add-missing-indices after upgrade
+
+  livenessProbe:
+    # TODO Disabled because at startup nextcloud copies its files to the pv. This would kill the container too early...
+    enabled: false
+  readinessProbe:
+    enabled: false
+  phpClientHttpsFix:
+    enabled: true
+    protocol: https
   nextcloud:
     host: "cloud.felix-prasse.de"
+    extraEnv:
+      - name: PHP_MEMORY_LIMIT
+        value: 1G
+    extraVolumeMounts:
+      - name: cron-config
+        mountPath: /var/spool/cron/crontabs/www-data
+        subPath: crontab
+    extraVolumes:
+      - name: cron-config
+        configMap:
+          name: cron-config
+    defaultConfigs:
+      imaginary.config.php: true
+    configs:
+      proxy.config.php: |-
+        <?php
+        $CONFIG = array (
+          'trusted_proxies' => array(
+            0 => '127.0.0.1',
+            1 => '10.0.0.0/8',
+          ),
+          'forwarded_for_headers' => array('HTTP_X_FORWARDED_FOR'),
+        );
+      phone.config.php: |-
+        <?php
+        $CONFIG = array (
+          'default_phone_region' => 'DE',
+        );
+      # https://docs.nextcloud.com/server/28/admin_manual/configuration_server/background_jobs_configuration.html#maintenance-window-start
+      maintenance_window.config.php: |-
+        <?php
+        $CONFIG = array (
+          'maintenance_window_start' => 1,
+        );
+      logging.config.php: |-
+        <?php
+        $CONFIG = array (
+          "log_type" => "errorlog",
+        );
   internalDatabase:
     enabled: false
-  mariadb:
-    # TODO Set password for db
-    # TODO Configure storage properly
+  redis:
     enabled: true
+    master:
+      persistence:
+        enabled: false
+    auth:
+      enabled: false
+    replica:
+      replicaCount: 0
+  cronjob:
+    enabled: true
+  persistence:
+    enabled: true
+    existingClaim: nextcloud-nextcloud
+    nextcloudData:
+      enabled: true
+      existingClaim: nextcloud-nextcloud-data
+  externalDatabase:
+    existingSecret:
+      enabled: true
+      secretName: mariadb-secret
+      passwordKey: mariadb-password
+      usernameKey: nextcloud-user
+
+  mariadb:
+    enabled: true
+    auth:
+      existingSecret: mariadb-secret
     primary:
       persistence:
         enabled: true
-        storageClass: longhorn-boot
+        existingClaim: data-nextcloud-mariadb-0
+
+  imaginary:
+    enabled: true

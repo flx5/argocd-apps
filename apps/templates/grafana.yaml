@@ -85,6 +85,7 @@ spec:
               exporter:
                 defaultClusterId: k3s-nue
               prometheus:
+                password_key: token
                 existingSecretName: grafana-cloud-metrics-grafana-k8s-monitoring
                 external:
                   url: https://prometheus-prod-24-prod-eu-west-2.grafana.net/api/prom

@@ -57,9 +57,13 @@ etcd:
   preUpgradeJob:
     enabled: false
 
+  replicaCount: 3
+
   auth:
     rbac:
       existingSecret: etcd-password
+    token:
+      enabled: false
 
   service:
     clusterIP: 10.43.142.0

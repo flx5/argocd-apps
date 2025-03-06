@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: clamav
   labels:
-    app: clamav
+    app.kubernetes.io/name: clamav
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: clamav
+      app.kubernetes.io/name: clamav
   template:
     metadata:
       labels:
-        app: clamav
+        app.kubernetes.io/name: clamav
     spec:
       containers:
         - name: clamav

@@ -62,7 +62,7 @@ etcd:
   auth:
     rbac:
       existingSecret: etcd-password
-      existingSecretPasswordKey: etcd-password
+      existingSecretPasswordKey: etcd-root-password
     token:
       enabled: false
 

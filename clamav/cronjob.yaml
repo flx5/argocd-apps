@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: freshclam
+spec:
+  jobTemplate:
+    metadata:
+      name: freshclam
+    spec:
+      template:
+        spec:
+          containers:
+            - image: clamav/clamav:1.4.2_base
+              name: freshclam
+              env:
+                - name: CLAMAV_NO_CLAMD
+                  value: "true"
+              resources: {}
+              volumeMounts:
+                - mountPath: /var/lib/clamav
+                  name: clam_db
+              securityContext:
+                runAsUser: 100
+                allowPrivilegeEscalation: false
+                capabilities:
+                  drop:
+                    - "ALL"
+
+          restartPolicy: OnFailure
+  schedule: '40 8 * * *'

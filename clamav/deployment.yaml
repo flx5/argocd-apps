@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clamav
+  labels:
+    app: clamav
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clamav
+  template:
+    metadata:
+      labels:
+        app: clamav
+    spec:
+      containers:
+        - name: clamav
+          image: clamav/clamav:1.4.2_base
+          securityContext:
+            runAsUser: 100
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - "ALL"
+          command:
+            - /init-unprivileged
+          env:
+            - name: CLAMAV_NO_FRESHCLAMD
+              value: "true"
+          livenessProbe:
+            exec:
+              command:
+                - /bin/bash
+                - -c
+                - |
+                  echo 'PING' | nc 127.0.0.1 3310 | grep -i PONG
+          readinessProbe:
+            exec:
+              command:
+                - /bin/bash
+                - -c
+                - |
+                  echo 'PING' | nc 127.0.0.1 3310 | grep -i PONG
+          startupProbe:
+            failureThreshold: 30
+            periodSeconds: 10
+            exec:
+              command:
+                - /bin/bash
+                - -c
+                - |
+                  echo 'PING' | nc 127.0.0.1 3310 | grep -i PONG
+          ports:
+            - containerPort: 3310
+          volumeMounts:
+            - mountPath: /var/lib/clamav
+              name: clam_db
+      volumes:
+        - name: clam_db
+          persistentVolumeClaim:
+            claimName: clamdb-pvc

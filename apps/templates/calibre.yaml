@@ -24,6 +24,17 @@ spec:
     helm:
       releaseName: calibre
       valuesObject:
+        image:
+          tag: 0.6.24
+        ingress:
+          main:
+            enabled: true
+            ingressClassName: public-nginx
+            hosts:
+                host: books.felix-prasse.de
+                paths:
+                    path: /
+                    pathType: Prefix
         persistence:
           config:
             enabled: true

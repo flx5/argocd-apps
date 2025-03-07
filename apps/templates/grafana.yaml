@@ -32,10 +32,10 @@ metadata:
     argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
-  syncPolicy:
-    automated:
-      selfHeal: true
-      prune: true
+#  syncPolicy:
+#    automated:
+#      selfHeal: true
+#      prune: true
   source:
     chart: k8s-monitoring
     repoURL: https://grafana.github.io/helm-charts

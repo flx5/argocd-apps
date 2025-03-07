@@ -47,6 +47,7 @@ spec:
               kube-vip.io/loadbalancerIPs: 192.168.2.92
             type: LoadBalancer
             externalTrafficPolicy: Local
+            clusterIP: nil
         gitea:
           config:
             database:

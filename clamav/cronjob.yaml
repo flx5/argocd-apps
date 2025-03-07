@@ -15,9 +15,9 @@ spec:
           containers:
             - image: clamav/clamav:1.4.2_base
               name: freshclam
-              env:
-                - name: CLAMAV_NO_CLAMD
-                  value: "true"
+              command:
+                - freshclam
+                - --on-update-execute=EXIT_0
               resources:
                 requests:
                   memory: 2G

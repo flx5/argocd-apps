@@ -97,7 +97,7 @@ spec:
               exporter:
                 defaultClusterId: k3s-nue
               prometheus:
-                usernameKey: prometheus_user
+                username_key: prometheus_user
                 password_key: token
                 existingSecretName: grafana
                 external:

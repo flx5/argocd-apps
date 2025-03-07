@@ -30,6 +30,8 @@ spec:
           main:
             enabled: true
             ingressClassName: public-nginx
+            annotations:
+              cert-manager.io/cluster-issuer: letsencrypt-prod
             hosts:
             - host: "books.felix-prasse.de"
               paths:

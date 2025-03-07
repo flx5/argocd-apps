@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: calibre
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: calibre
+  namespace: argocd
+spec:
+  project: default
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+  source:
+    chart: calibre-web
+    repoURL: https://k8s-home-lab.github.io/helm-charts/
+    targetRevision: 9.0.2
+    # Kubeseal expects the chart under the name sealed-secrets-controller and in namespace kube-system
+    helm:
+      releaseName: calibre
+      valuesObject:
+        persistence:
+          config:
+            enabled: true
+            existingClaim: calibre-config
+          books:
+            enabled: true
+            existingClaim: books
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: calibre

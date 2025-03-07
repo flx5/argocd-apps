@@ -63,7 +63,6 @@ spec:
             url: https://logs-prod-012.grafana.net/loki/api/v1/push
             auth:
               type: basic
-              username: "1117878"
               usernameKey: loki_user
               passwordKey: token
             secret:

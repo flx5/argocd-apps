@@ -51,16 +51,22 @@ spec:
             auth:
               type: basic
               username: "2244401"
-              passwordFrom: grafana
               passwordKey: token
+            secret:
+              create: false
+              name: grafana
+              namespace: monitoring
           - name: grafana-cloud-logs
             type: loki
             url: https://logs-prod-012.grafana.net/loki/api/v1/push
             auth:
               type: basic
               username: "1117878"
-              passwordFrom: grafana
               passwordKey: token
+            secret:
+              create: false
+              name: grafana
+              namespace: monitoring
           - name: grafana-cloud-traces
             type: otlp
             url: https://tempo-prod-10-prod-eu-west-2.grafana.net:443
@@ -68,8 +74,11 @@ spec:
             auth:
               type: basic
               username: "1112193"
-              passwordFrom: grafana
               passwordKey: token
+            secret:
+              create: false
+              name: grafana
+              namespace: monitoring
             metrics:
               enabled: false
             logs:

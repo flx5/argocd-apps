@@ -31,10 +31,14 @@ spec:
             enabled: true
             ingressClassName: public-nginx
             hosts:
-                host: books.felix-prasse.de
+                host: "books.felix-prasse.de"
                 paths:
                     path: /
                     pathType: Prefix
+            tls:
+              - hosts:
+                  - "books.felix-prasse.de"
+                secretName: calibre-cert # < cert-manager will store the created certificate in this secret.
         persistence:
           config:
             enabled: true

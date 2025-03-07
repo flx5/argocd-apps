@@ -23,6 +23,9 @@ spec:
             capabilities:
               drop:
                 - "ALL"
+          resources:
+            requests:
+              memory: 2G
           command:
             - /init-unprivileged
           env:

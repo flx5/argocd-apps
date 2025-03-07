@@ -18,7 +18,9 @@ spec:
               env:
                 - name: CLAMAV_NO_CLAMD
                   value: "true"
-              resources: {}
+              resources:
+                requests:
+                  memory: 2G
               volumeMounts:
                 - mountPath: /var/lib/clamav
                   name: clam-db

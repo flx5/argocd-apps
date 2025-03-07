@@ -36,6 +36,11 @@ nextcloud:
     protocol: https
   nextcloud:
     host: "cloud.felix-prasse.de"
+    securityContext:
+      # See
+      # https://kubernetes.io/blog/2020/12/14/kubernetes-release-1.20-fsgroupchangepolicy-fsgrouppolicy/
+      # https://github.com/kubernetes/kubernetes/issues/69699
+      fsGroupChangePolicy: "OnRootMismatch"
     extraEnv:
       - name: PHP_MEMORY_LIMIT
         value: 1G

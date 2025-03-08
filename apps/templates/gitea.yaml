@@ -45,6 +45,8 @@ spec:
           ssh:
             type: LoadBalancer
             externalTrafficPolicy: Local
+            annotations:
+              external-dns.alpha.kubernetes.io/hostname: ssh.git.felix-prasse.de
         gitea:
           config:
             database:
@@ -52,6 +54,8 @@ spec:
             indexer:
               ISSUE_INDEXER_TYPE: bleve
               REPO_INDEXER_ENABLED: true
+            server:
+              SSH_DOMAIN: ssh.git.felix-prasse.de
 
         ingress:
           enabled: true

@@ -44,8 +44,7 @@ spec:
         service:
           ssh:
             type: LoadBalancer
-            # Muss nicht unbedingt auf dem gleichem Node sein wie er zugehörige Ingress...
-            externalTrafficPolicy: Cluster
+            externalTrafficPolicy: Local
         gitea:
           config:
             database:

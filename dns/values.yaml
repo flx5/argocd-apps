@@ -2,7 +2,13 @@ coredns:
   isClusterService: false
   serviceType: LoadBalancer
   service:
-    loadBalancerIP: 192.168.2.92
+    annotations:
+      # Kann nicht auf selbe IP wie Ingress assigned werden von Kube-VIP.
+      # Wenn hier die gleiche IP angegeben wird passiert folgendes:
+      # Ein Node bekommt das Lease im namespace ingress-nginx/kubevip-ingress-public-ingress-nginx-controller
+      # aber ein anderer Node bekommt das Lease networking/kubevip-networking-coredns
+      # und wieder ein anderer bekommt das Lease gitea/kubevip-gitea-ssh
+      kube-vip.io/loadbalancerIPs: 192.168.2.92
 
   env:
     - name: ETCD_USERNAME

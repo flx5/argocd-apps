@@ -28,6 +28,8 @@ kind: Application
 metadata:
   name: grafana-k8s-monitoring
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:

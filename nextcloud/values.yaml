@@ -9,6 +9,7 @@ nextcloud:
       nginx.ingress.kubernetes.io/affinity: cookie
       nginx.ingress.kubernetes.io/enable-cors: "true"
       nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
+      nginx.ingress.kubernetes.io/proxy-body-size: "4096m"
     tls:
       - hosts:
           - cloud.felix-prasse.de

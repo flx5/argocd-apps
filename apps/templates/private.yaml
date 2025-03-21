@@ -5,6 +5,8 @@ metadata:
   creationTimestamp: null
   name: private-repo
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
 spec:
   encryptedData:
     password: AgCw7nNWXOWBcX+kjzWy/Cwte2+EVjxNaxCpcb//8Oemzn4Tt5m3j28PI8aqk2wZuiXWGmH+UQ+T9mSxAnpRC3E7GMlIGbBbF2C8fKUDsZVLuyydL7yoZjE5WvvcgQndY67hHra7Le0BvIrnPK4uJVLMk10xU44QQ26/tepfR9onIPCoZmg0H5gwNRX4nyUgvl/R023ywUIodGdk1zl3Rayxc9+R1MnubhR+vB1nwR3D9wgnmgZR48jNiGJCLdDbv+mLEhd9SE6usZYZNjZJHZmiwHQGs4BkQyrH5TnVSYR3N3w3r5RHFVmxR+5++CdGM8OIeBaWLHlgd9CdzxA/RVztDXt3n31hFkbSCvWpUm5cb7Q31IxC5bnQqedO3j/YPfldFiELT+Q4Codqo8EFqm8QpXtynDhBuJ687MkIHjSvOZthll1vRrllPq1vpzRN/4N2lRlZvQGHVnH3KMwu192+zazlJsHrgjMShH3E5L5ZTcXcyE432c3q/VTMll1ZYuOunyD2VTBJkRC7jYCJnII8kVcH/WjiGl+RWr/USfk9Mdn8lPKgc+Vd25lAFlNEk/6mel4rdQHkZRSjHItWw1Khakfg8smC+LtDnhj+8dR/T51yJUAxW1KWTPejVAlHIsYnuKTIVW1+3NrLvAldRCXmSPRGu1yvwn22C8mHCCVPp3YMBcTamzylxejsbm+q4yJ9VIeKDpkdNVBrX1iHOL463P8CtJNojwFiTow0u1A0Ie+IjcYPTTT7AQZtwHjLEXJ4Nzy/NPZAIDV5inH/+zPp8TU/thlHFYjt2bo2awg37HI+B39C8qX6vZ11TyU=

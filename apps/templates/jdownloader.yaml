@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: jdownloader
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jdownloader
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+  source:
+    chart: jdownloader2
+    repoURL: https://pmoscode-helm.github.io/jdownloader2/
+    targetRevision: 1.2.1
+    # Kubeseal expects the chart under the name sealed-secrets-controller and in namespace kube-system
+    helm:
+      releaseName: jdownloader
+      valuesObject:
+        persistence:
+          enabled: true
+          storageClass: longhorn-ssd
+          size: 20Gi
+        ingress:
+          enabled: true
+          className: internal-nginx
+          hosts:
+            - host: "downloader.home.arpa"
+              paths:
+                - path: /
+                  pathType: Prefix
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: jdownloader

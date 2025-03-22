@@ -1,6 +1,4 @@
 nextcloud:
-  image:
-    tag: 30.0.6-apache
   ingress:
     enabled: true
     className: public-nginx

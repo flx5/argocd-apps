@@ -14,7 +14,7 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  syncPolicy:
+  syncPolicy: {}
 {{/*    automated:*/}}
 {{/*      selfHeal: true*/}}
 {{/*      prune: true*/}}

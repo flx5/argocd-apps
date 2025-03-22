@@ -47,6 +47,13 @@ spec:
           enabled: true
           storageClass: longhorn-ssd
           size: 20Gi
+        additionalVolumes:
+          - name: downloads
+            persistentVolumeClaim:
+              claimName: downloads
+        additionalVolumeMounts:
+          - mountPath: /downloads
+            name: downloads
         ingress:
           enabled: true
           className: internal-nginx

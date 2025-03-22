@@ -15,9 +15,9 @@ metadata:
 spec:
   project: default
   syncPolicy:
-    automated:
-      selfHeal: true
-      prune: true
+{{/*    automated:*/}}
+{{/*      selfHeal: true*/}}
+{{/*      prune: true*/}}
   source:
     chart: jdownloader2
     repoURL: https://pmoscode-helm.github.io/jdownloader2/

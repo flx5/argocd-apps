@@ -20,7 +20,6 @@ spec:
       storage: 20Gi
   storageClassName: longhorn-ssd
   volumeMode: Filesystem
-  volumeName: jdownloader-downloads
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application

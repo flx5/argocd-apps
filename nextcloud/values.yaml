@@ -8,6 +8,8 @@ nextcloud:
       nginx.ingress.kubernetes.io/enable-cors: "true"
       nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
       nginx.ingress.kubernetes.io/proxy-body-size: "4096m"
+      nginx.ingress.kubernetes.io/modsecurity-snippet: |
+        Include /etc/nginx/owasp-modsecurity-crs/plugins/nextcloud-rule-exclusions-before.conf
     tls:
       - hosts:
           - cloud.felix-prasse.de

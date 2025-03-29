@@ -47,6 +47,16 @@ nextcloud:
       seccompProfile:
         type: RuntimeDefault
 
+    # Workaround https://github.com/nextcloud/docker/issues/763#issuecomment-2752172569
+    extraInitContainers:
+      # create empty redis file for nextcloud entrypoint to override it
+      - name: init-redis-session-ini
+        image: busybox
+        command: [ 'touch', '/usr/local/etc/php/conf.d/redis-session.ini' ]
+        volumeMounts:
+          - name: nextcloud-redis-session-ini
+            mountPath: "/usr/local/etc/php/conf.d"
+
     # Set securityContext parameters for the nextcloud CONTAINER only (will not affect nginx container).
     securityContext:
       allowPrivilegeEscalation: false
@@ -60,10 +70,15 @@ nextcloud:
       - name: cron-config
         mountPath: /var/spool/cron/crontabs/www-data
         subPath: crontab
+      - name: nextcloud-redis-session-ini
+        mountPath: "/usr/local/etc/php/conf.d/redis-session.ini" # fix permission denied error
+        subPath: redis-session.ini
     extraVolumes:
       - name: cron-config
         configMap:
           name: cron-config
+      - name: nextcloud-redis-session-ini
+        emptyDir: {}
     defaultConfigs:
       imaginary.config.php: true
     configs:
@@ -141,3 +156,10 @@ nextcloud:
 
   imaginary:
     enabled: true
+    securityContext:
+      runAsUser: 1000
+      runAsNonRoot: true
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+         - ALL

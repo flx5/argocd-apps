@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: omada-controller
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: omada-controller
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+  source:
+    path: omada-controller
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: omada-controller

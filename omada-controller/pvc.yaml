@@ -3,6 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: omada-data-pvc
 spec:
+  storageClassName: longhorn-ssd
   accessModes:
     - ReadWriteOnce
   resources:
@@ -14,6 +15,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: omada-logs-pvc
 spec:
+  storageClassName: longhorn-ssd
   accessModes:
     - ReadWriteOnce
   resources:

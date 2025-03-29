@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: omada-svc
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: omada.home.arpa
 spec:
   type: LoadBalancer
   selector:

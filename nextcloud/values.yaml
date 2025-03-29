@@ -41,6 +41,18 @@ nextcloud:
       # https://github.com/kubernetes/kubernetes/issues/69699
       # https://longhorn.io/docs/1.8.1/nodes-and-volumes/volumes/pvc-ownership-and-permission/#longhorn-pvc-with-block-volume-mode
       fsGroupChangePolicy: "OnRootMismatch"
+      runAsNonRoot: true
+      runAsUser: 33
+      runAsGroup: 33
+      seccompProfile:
+        type: RuntimeDefault
+
+    # Set securityContext parameters for the nextcloud CONTAINER only (will not affect nginx container).
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - ALL
     extraEnv:
       - name: PHP_MEMORY_LIMIT
         value: 1G

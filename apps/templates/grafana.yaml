@@ -41,7 +41,7 @@ spec:
   source:
     chart: k8s-monitoring
     repoURL: https://grafana.github.io/helm-charts
-    targetRevision: 2.0.16
+    targetRevision: 2.0.23
     # Kubeseal expects the chart under the name sealed-secrets-controller and in namespace kube-system
     helm:
       releaseName: grafana-k8s-monitoring

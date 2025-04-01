@@ -27,6 +27,9 @@ spec:
       targetRevision: v8.2.0
       kustomize:
         namespace: external-snapshotter
+    - path: external-snapshotter
+      repoURL: {{ .Values.spec.source.repoURL }}
+      targetRevision: {{ .Values.spec.source.targetRevision }}
   destination:
     server: "https://kubernetes.default.svc"
     namespace: external-snapshotter

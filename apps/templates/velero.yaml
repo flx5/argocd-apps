@@ -28,6 +28,9 @@ spec:
         deployNodeAgent: true
         configuration:
           features: EnableCSI
+          # TODO
+          backupStorageLocation: []
+          volumeSnapshotLocation: []
 
   destination:
     server: "https://kubernetes.default.svc"

@@ -52,12 +52,12 @@ spec:
                 s3ForcePathStyle: true
                 s3Url: https://myminio-hl.minio-tenant.svc:9000
           volumeSnapshotLocation: []
-          initContainers:
-            - name: velero-plugin-for-aws
-              image: velero/velero-plugin-for-aws:v1.11.1
-              volumeMounts:
-                - mountPath: /target
-                  name: plugins
+        initContainers:
+          - name: velero-plugin-for-aws
+            image: velero/velero-plugin-for-aws:v1.11.1
+            volumeMounts:
+              - mountPath: /target
+                name: plugins
 
   destination:
     server: "https://kubernetes.default.svc"

@@ -108,3 +108,21 @@ spec:
   subPath: ""
   users:
     - name: velero-user
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minio-console
+  namespace: minio-tenant
+spec:
+  rules:
+    - host: minio.home.arpa
+      http:
+        paths:
+          - backend:
+              service:
+                name: myminio-console
+                port:
+                  number: 9443
+            path: /
+            pathType: Prefix

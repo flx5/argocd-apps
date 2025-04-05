@@ -5,18 +5,33 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 ---
+{{/*apiVersion: bitnami.com/v1alpha1*/}}
+{{/*kind: SealedSecret*/}}
+{{/*metadata:*/}}
+{{/*  name: credentials-velero*/}}
+{{/*  namespace: velero*/}}
+{{/*spec:*/}}
+{{/*  encryptedData:*/}}
+{{/*    cloud: AgBi83ELjaPPI0bADqtEdod22P37GVlqs4eViWMZIrUISE7lE0RzDtqcQEO48V+PNWJTSx3PgKvPRXMpYgEJQbA/9OLZQ+PzcxsLzp5XKjecr2Mgio1FtehP9IbDjits3j/ZzHZ8Bzm7/TtkK3wqZ91bvjnaLuYmmneq8jDl7hp6/vC7aroqcqtZ4COSpwRpL7oPBCOYH+Ishe/BRiSeuSgxbuX+jK6Touoen04KksdR9HQkpyEF/sFrNN7QkNOGqb8tr34aIKkoMxGK2nroCt8g674YZrKSC4+GcHhNdjqu6GStlq6NeAufN1pPgGfcHzgiy2IJiVmf9/TWOt9BA2QU0ZfMNvz1ge/ziTypkRK5iwC1WNduOdvi35g3NulYE+WCpYNyx0mYWUJmQfFSWCb6nidLPZJwmfvAesi8dRq6tFFs6lnNoom7hrexvlf9r92bfQCMLncEFXj4SnMlnlaUOKJamcztZwW3rTZn8DLy2yDWd88NC8V+IEQGOjTDSIqEfZzi2hFtBtKKEUeOryJ4TpqkDmMBxQTk17KUWK2VnCECFLSRH0dcAu7ewIwT+y+y9GqFjL2Msk8uKw/tighaMKOOROmZWFxPHa0qRh55dCKfuhBLnTpOxIJ/v4f68KnWP/l37eXztgC6T06uqffxiw+GDGxEPQTE8Zw8u5GRDdiss7+fbZercq7EJ3fsIYWrworNfiCABzX8Ejd2WdaZiBoNlyxVPb64iwV8xuGmAF4zR1FSQnSRHxpdgRhJ4U8IN5bMg3J9/MkWrazVokePD28j3P/aztJhBbRTm5FP0/AodrkB*/}}
+{{/*  template:*/}}
+{{/*    metadata:*/}}
+{{/*      name: credentials-velero*/}}
+{{/*      namespace: velero*/}}
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
 metadata:
+  creationTimestamp: null
   name: credentials-velero
   namespace: velero
 spec:
   encryptedData:
-    cloud: AgBi83ELjaPPI0bADqtEdod22P37GVlqs4eViWMZIrUISE7lE0RzDtqcQEO48V+PNWJTSx3PgKvPRXMpYgEJQbA/9OLZQ+PzcxsLzp5XKjecr2Mgio1FtehP9IbDjits3j/ZzHZ8Bzm7/TtkK3wqZ91bvjnaLuYmmneq8jDl7hp6/vC7aroqcqtZ4COSpwRpL7oPBCOYH+Ishe/BRiSeuSgxbuX+jK6Touoen04KksdR9HQkpyEF/sFrNN7QkNOGqb8tr34aIKkoMxGK2nroCt8g674YZrKSC4+GcHhNdjqu6GStlq6NeAufN1pPgGfcHzgiy2IJiVmf9/TWOt9BA2QU0ZfMNvz1ge/ziTypkRK5iwC1WNduOdvi35g3NulYE+WCpYNyx0mYWUJmQfFSWCb6nidLPZJwmfvAesi8dRq6tFFs6lnNoom7hrexvlf9r92bfQCMLncEFXj4SnMlnlaUOKJamcztZwW3rTZn8DLy2yDWd88NC8V+IEQGOjTDSIqEfZzi2hFtBtKKEUeOryJ4TpqkDmMBxQTk17KUWK2VnCECFLSRH0dcAu7ewIwT+y+y9GqFjL2Msk8uKw/tighaMKOOROmZWFxPHa0qRh55dCKfuhBLnTpOxIJ/v4f68KnWP/l37eXztgC6T06uqffxiw+GDGxEPQTE8Zw8u5GRDdiss7+fbZercq7EJ3fsIYWrworNfiCABzX8Ejd2WdaZiBoNlyxVPb64iwV8xuGmAF4zR1FSQnSRHxpdgRhJ4U8IN5bMg3J9/MkWrazVokePD28j3P/aztJhBbRTm5FP0/AodrkB
+    cloud: AgAGCLrvFwQY8pjEAz7a9fY4+t8YOwfbSBJpZDlM4OcxbtlfQm20xuXmY/sctPN5rRgxja+lbBJtLXAP1PmljZSt7d+ZTozvkH+Izfz8XCZ9LXSItVgtNUIXXFaFladDS/g0tKwQ8pZG4Q1Gu67Gjw7D+b0g5OTLIGe51X//YGDmHjqMeoNpYbv8zJyFO/vcdwf92S8FkjwgUISpdJyBSmh79Z7ZfdarYPfI6bW/AI5EqiFdCzFgW3cTmgp5qjL+6eMtks8X2DQA05Y1NfG5ZQZ4oPKbUcfHs7XV8bZHkZkK454mrrgicy926bCoqHrkgfTHJBsRzGuXsSkAP7HmaWO5RDB4qqOjYcrAcmIM+AbEv5jKIqMc5X2i0K2strmksquj0zTlJ2/slKQyq6m4kZ3I+fF5a82EHEubwSIB18tSaXQSh9tWmgiGxB4z8vy2ip+RrYfxcYIFfkZX99OTvtvJY2C5+ufxmeAUSioS0NCPGO27b490soWJQlkDxzxMvTN7bujM4nZRLRS4QCJaCgGcxu3lAEyJtNePB7OHTTbdWEPS8k8U8RSMAfBGf99skkPwHUcAZBLwH3hVedAmt3p5/bkSfW9rltZFTuswoM5ncxzY86CNgwq+QRwnikhq0HcEBw0ASGVkjgZ2OJhUFwblk/3HJ/hw2hx4CEjSpPcm+nmEmzoQpGDmfxyQSYjNkhHJhdHeNTFUR72uv882H2immr8JlgP9eTKs0kESH6v6Ey8v8IQ/zhg0C0xxTckwm+UyuGtGr/nqqXNIYqTpqaU9ZLswEdM=
   template:
     metadata:
+      creationTimestamp: null
       name: credentials-velero
       namespace: velero
+
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application

@@ -118,14 +118,18 @@ metadata:
     ## Remove if using CA signed certificate
     nginx.ingress.kubernetes.io/proxy-ssl-verify: "off"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-    #nginx.ingress.kubernetes.io/rewrite-target: /
-    #nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
     #nginx.ingress.kubernetes.io/server-snippet: |
     #  client_max_body_size 0;
     #nginx.ingress.kubernetes.io/configuration-snippet: |
     #  chunked_transfer_encoding off;
+    cert-manager.io/cluster-issuer: selfsigned-root
 spec:
   ingressClassName: internal-nginx
+  tls:
+    - hosts:
+        - console.minio.home.arpa
   rules:
     - host: console.minio.home.arpa
       http:

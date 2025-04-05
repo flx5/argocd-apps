@@ -1,3 +1,5 @@
+# TODO https://github.com/minio/operator/blob/master/docs/cert-manager.md#create-operator-ca-tls-tenant-1-secret
+# Idea is to use https://cert-manager.io/docs/trust/trust-manager/
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

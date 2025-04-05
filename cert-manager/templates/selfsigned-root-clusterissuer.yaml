@@ -12,7 +12,7 @@ metadata:
   namespace: cert-manager
 spec:
   isCA: true
-  subject: NUE-ROOT-CA
+  subject: "NUE-ROOT-CA"
   commonName: my-selfsigned-ca
   secretName: root-secret
   privateKey:

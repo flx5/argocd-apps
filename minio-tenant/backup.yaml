@@ -42,6 +42,7 @@ spec:
   secretName: myminio-tls
   issuerRef:
     name: my-ca-issuer
+    kind: ClusterIssuer
 ---
 apiVersion: minio.min.io/v2
 kind: Tenant

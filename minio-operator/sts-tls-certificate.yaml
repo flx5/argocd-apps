@@ -11,3 +11,4 @@ spec:
   secretName: sts-tls
   issuerRef:
     name: my-ca-issuer
+    kind: ClusterIssuer

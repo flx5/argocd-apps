@@ -36,6 +36,19 @@ spec:
                             value: "off"
                           - name: OPERATOR_STS_ENABLED
                             value: "on"
+                        volumeMounts:
+                          - mountPath: /tmp/certs
+                            name: tls-certificates
+                    volumes:
+                      - name: tls-certificates
+                        projected:
+                          defaultMode: 420
+                          sources:
+                            - configMap:
+                                items:
+                                  - key: root-certs.pem
+                                    path: CAs/custom-public.pem
+                                name: internal-ca
     - path: minio-operator
       repoURL: {{ .Values.spec.source.repoURL }}
       targetRevision: {{ .Values.spec.source.targetRevision }}

@@ -115,6 +115,7 @@ metadata:
   name: minio-console
   namespace: minio-tenant
 spec:
+  ingressClassName: internal-nginx
   rules:
     - host: minio.home.arpa
       http:

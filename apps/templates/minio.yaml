@@ -13,6 +13,7 @@ spec:
       prune: true
   sources:
     - repoURL: https://github.com/minio/operator
+      path: .
       targetRevision: v7.0.1
       kustomize:
         namespace: minio-operator

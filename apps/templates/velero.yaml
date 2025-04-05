@@ -46,9 +46,11 @@ spec:
           # TODO
           backupStorageLocation:
             - name: minio
+              default: true
               provider: aws
               bucket: velero
               config:
+                region: minio
                 s3ForcePathStyle: true
                 s3Url: https://myminio-hl.minio-tenant.svc:9000
           volumeSnapshotLocation: []

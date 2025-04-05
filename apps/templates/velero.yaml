@@ -54,9 +54,14 @@ spec:
                 region: minio
                 s3ForcePathStyle: true
                 s3Url: https://minio.minio-tenant.svc
-                # TODO Fix
-                # insecureSkipTLSVerify: true
-          volumeSnapshotLocation: []
+          volumeSnapshotLocation:
+            - name: minio
+              provider: aws
+              bucket: velero
+              config:
+                region: minio
+                s3ForcePathStyle: true
+                s3Url: https://minio.minio-tenant.svc
           extraEnvVars:
             AWS_CA_BUNDLE: /certs/root-certs.pem
         extraVolumes:

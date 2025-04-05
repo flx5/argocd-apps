@@ -57,6 +57,16 @@ spec:
                 # TODO Fix
                 # insecureSkipTLSVerify: true
           volumeSnapshotLocation: []
+          extraEnvVars:
+            AWS_CA_BUNDLE: /certs/root-certs.pem
+        extraVolumes:
+        - name: certs
+          configMap:
+            name: internal-ca
+        extraVolumeMounts:
+          - name: certs
+            mountPath: /certs/root-certs.pem
+            subPath: root-certs.pem
         initContainers:
           - name: velero-plugin-for-aws
             image: velero/velero-plugin-for-aws:v1.2.1

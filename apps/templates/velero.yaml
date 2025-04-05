@@ -5,33 +5,33 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 ---
-{{/*apiVersion: bitnami.com/v1alpha1*/}}
-{{/*kind: SealedSecret*/}}
-{{/*metadata:*/}}
-{{/*  name: credentials-velero*/}}
-{{/*  namespace: velero*/}}
-{{/*spec:*/}}
-{{/*  encryptedData:*/}}
-{{/*    cloud: AgBi83ELjaPPI0bADqtEdod22P37GVlqs4eViWMZIrUISE7lE0RzDtqcQEO48V+PNWJTSx3PgKvPRXMpYgEJQbA/9OLZQ+PzcxsLzp5XKjecr2Mgio1FtehP9IbDjits3j/ZzHZ8Bzm7/TtkK3wqZ91bvjnaLuYmmneq8jDl7hp6/vC7aroqcqtZ4COSpwRpL7oPBCOYH+Ishe/BRiSeuSgxbuX+jK6Touoen04KksdR9HQkpyEF/sFrNN7QkNOGqb8tr34aIKkoMxGK2nroCt8g674YZrKSC4+GcHhNdjqu6GStlq6NeAufN1pPgGfcHzgiy2IJiVmf9/TWOt9BA2QU0ZfMNvz1ge/ziTypkRK5iwC1WNduOdvi35g3NulYE+WCpYNyx0mYWUJmQfFSWCb6nidLPZJwmfvAesi8dRq6tFFs6lnNoom7hrexvlf9r92bfQCMLncEFXj4SnMlnlaUOKJamcztZwW3rTZn8DLy2yDWd88NC8V+IEQGOjTDSIqEfZzi2hFtBtKKEUeOryJ4TpqkDmMBxQTk17KUWK2VnCECFLSRH0dcAu7ewIwT+y+y9GqFjL2Msk8uKw/tighaMKOOROmZWFxPHa0qRh55dCKfuhBLnTpOxIJ/v4f68KnWP/l37eXztgC6T06uqffxiw+GDGxEPQTE8Zw8u5GRDdiss7+fbZercq7EJ3fsIYWrworNfiCABzX8Ejd2WdaZiBoNlyxVPb64iwV8xuGmAF4zR1FSQnSRHxpdgRhJ4U8IN5bMg3J9/MkWrazVokePD28j3P/aztJhBbRTm5FP0/AodrkB*/}}
-{{/*  template:*/}}
-{{/*    metadata:*/}}
-{{/*      name: credentials-velero*/}}
-{{/*      namespace: velero*/}}
----
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
 metadata:
-  creationTimestamp: null
   name: credentials-velero
   namespace: velero
 spec:
   encryptedData:
-    cloud: AgA1eEhGbeCQAR0DKwVgPFjUQvNYWbLX6JXBB9dolPUgdZ78gQzQlpyYQlyfoMDSNxxIf206cqiqOl6kpxlLbTJI6SNFelYqXgNTdSziFgCjA4gc3lxdC6Y0Pb1QR0+N8QFtqNbHR6ByxqC7It2qY4fJkP+B1rDwQrzmbyr8ugTNYK7kLNla7I+KsLYcasILNusavz3PYC3l2jP7L13Nq3KF2Gd2W0hBjM8CVDu5PagIaNlfqZ0zbF/G9HUPqch0DXAQfEWyp8Jod41ebmP/cKGSg5X3MYtzm5FSpots09OhEkbhhsguzlZUlGI0Ti5kd3hyI9Q5XUIbKqFkMCAN9UEoiqnPTXSq5559+vLPyQCSGaeqqZV6k4yL7SFSxLedPynza1tYVlekHGiry1LEtWXlCnExuOJYUUnYK63knAaEfY1Wu6jXWFt08+eFBlDGcyCjw5/EfaOjC3ZlKSF2LLN9JFx9OOnm405R0JehA1XCW7/015zshcbtwWE8IwDwdXF4DyNbR3THiyp0GA66ac2Cj+yLBhicLXEuL6VC2md5N9Y6JpjG11MgTtXhfI3XAdHErKNdniE2qymjgXTtRiEk/0fjcxp6t7XkCPXEL5oDYGYXJfSdNIUtcAdPIZelHmNF5YWCgTf5we4WRXUbuwGLDXfXEayyYKJeNmtnI9E9rYMEsu6Vw6pQLdGf14ZDN4q6Hbf2CQAqhiiVvULr0gpchs3FkQprzNCLGYVJvuDEnFB9Neqfr/lKloM5YHM+9EbhX/58GNQh7BZt8P+B8xUnpA==
+    cloud: AgBi83ELjaPPI0bADqtEdod22P37GVlqs4eViWMZIrUISE7lE0RzDtqcQEO48V+PNWJTSx3PgKvPRXMpYgEJQbA/9OLZQ+PzcxsLzp5XKjecr2Mgio1FtehP9IbDjits3j/ZzHZ8Bzm7/TtkK3wqZ91bvjnaLuYmmneq8jDl7hp6/vC7aroqcqtZ4COSpwRpL7oPBCOYH+Ishe/BRiSeuSgxbuX+jK6Touoen04KksdR9HQkpyEF/sFrNN7QkNOGqb8tr34aIKkoMxGK2nroCt8g674YZrKSC4+GcHhNdjqu6GStlq6NeAufN1pPgGfcHzgiy2IJiVmf9/TWOt9BA2QU0ZfMNvz1ge/ziTypkRK5iwC1WNduOdvi35g3NulYE+WCpYNyx0mYWUJmQfFSWCb6nidLPZJwmfvAesi8dRq6tFFs6lnNoom7hrexvlf9r92bfQCMLncEFXj4SnMlnlaUOKJamcztZwW3rTZn8DLy2yDWd88NC8V+IEQGOjTDSIqEfZzi2hFtBtKKEUeOryJ4TpqkDmMBxQTk17KUWK2VnCECFLSRH0dcAu7ewIwT+y+y9GqFjL2Msk8uKw/tighaMKOOROmZWFxPHa0qRh55dCKfuhBLnTpOxIJ/v4f68KnWP/l37eXztgC6T06uqffxiw+GDGxEPQTE8Zw8u5GRDdiss7+fbZercq7EJ3fsIYWrworNfiCABzX8Ejd2WdaZiBoNlyxVPb64iwV8xuGmAF4zR1FSQnSRHxpdgRhJ4U8IN5bMg3J9/MkWrazVokePD28j3P/aztJhBbRTm5FP0/AodrkB
   template:
     metadata:
-      creationTimestamp: null
       name: credentials-velero
       namespace: velero
+---
+{{/*apiVersion: bitnami.com/v1alpha1*/}}
+{{/*kind: SealedSecret*/}}
+{{/*metadata:*/}}
+{{/*  creationTimestamp: null*/}}
+{{/*  name: credentials-velero*/}}
+{{/*  namespace: velero*/}}
+{{/*spec:*/}}
+{{/*  encryptedData:*/}}
+{{/*    cloud: AgA1eEhGbeCQAR0DKwVgPFjUQvNYWbLX6JXBB9dolPUgdZ78gQzQlpyYQlyfoMDSNxxIf206cqiqOl6kpxlLbTJI6SNFelYqXgNTdSziFgCjA4gc3lxdC6Y0Pb1QR0+N8QFtqNbHR6ByxqC7It2qY4fJkP+B1rDwQrzmbyr8ugTNYK7kLNla7I+KsLYcasILNusavz3PYC3l2jP7L13Nq3KF2Gd2W0hBjM8CVDu5PagIaNlfqZ0zbF/G9HUPqch0DXAQfEWyp8Jod41ebmP/cKGSg5X3MYtzm5FSpots09OhEkbhhsguzlZUlGI0Ti5kd3hyI9Q5XUIbKqFkMCAN9UEoiqnPTXSq5559+vLPyQCSGaeqqZV6k4yL7SFSxLedPynza1tYVlekHGiry1LEtWXlCnExuOJYUUnYK63knAaEfY1Wu6jXWFt08+eFBlDGcyCjw5/EfaOjC3ZlKSF2LLN9JFx9OOnm405R0JehA1XCW7/015zshcbtwWE8IwDwdXF4DyNbR3THiyp0GA66ac2Cj+yLBhicLXEuL6VC2md5N9Y6JpjG11MgTtXhfI3XAdHErKNdniE2qymjgXTtRiEk/0fjcxp6t7XkCPXEL5oDYGYXJfSdNIUtcAdPIZelHmNF5YWCgTf5we4WRXUbuwGLDXfXEayyYKJeNmtnI9E9rYMEsu6Vw6pQLdGf14ZDN4q6Hbf2CQAqhiiVvULr0gpchs3FkQprzNCLGYVJvuDEnFB9Neqfr/lKloM5YHM+9EbhX/58GNQh7BZt8P+B8xUnpA==*/}}
+{{/*  template:*/}}
+{{/*    metadata:*/}}
+{{/*      creationTimestamp: null*/}}
+{{/*      name: credentials-velero*/}}
+{{/*      namespace: velero*/}}
 
 ---
 apiVersion: argoproj.io/v1alpha1

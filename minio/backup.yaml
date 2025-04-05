@@ -127,7 +127,7 @@ metadata:
 spec:
   ingressClassName: internal-nginx
   rules:
-    - host: console.minio.example.com
+    - host: console.minio.home.arpa
       http:
         paths:
           - path: /

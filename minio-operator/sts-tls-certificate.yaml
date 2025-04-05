@@ -10,4 +10,4 @@ spec:
     - sts.minio-operator.svc.cluster.local
   secretName: sts-tls
   issuerRef:
-    name: minio-operator-ca-issuer
+    name: my-ca-issuer

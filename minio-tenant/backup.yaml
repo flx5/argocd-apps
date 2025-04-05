@@ -26,6 +26,23 @@ spec:
       name: velero-user
       namespace: minio-tenant
 ---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tenant-certmanager-cert
+  namespace: minio-tenant
+spec:
+  dnsNames:
+    - "minio.minio-tenant"
+    - "minio.minio-tenant.svc"
+    - 'minio.minio-tenant.svc.cluster.local'
+    - '*.minio.minio-tenant.svc.cluster.local'
+    - '*.myminio-hl.minio-tenant.svc.cluster.local'
+    - '*.myminio.minio.minio-tenant.svc.cluster.local'
+  secretName: myminio-tls
+  issuerRef:
+    name: my-ca-issuer
+---
 apiVersion: minio.min.io/v2
 kind: Tenant
 metadata:
@@ -43,7 +60,9 @@ spec:
     name: storage-configuration
   env: []
   externalCaCertSecret: []
-  externalCertSecret: []
+  externalCertSecret:
+    - name: myminio-tls
+      type: cert-manager.io/v1
   externalClientCertSecrets: []
   features:
     bucketDNS: false
@@ -95,7 +114,7 @@ spec:
         status: {}
       volumesPerServer: 1
   priorityClassName: ""
-  requestAutoCert: true
+  requestAutoCert: false
   serviceAccountName: ""
   serviceMetadata:
     consoleServiceAnnotations: {}

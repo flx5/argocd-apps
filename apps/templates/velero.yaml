@@ -55,10 +55,10 @@ spec:
       namespace: velero
       valuesObject:
         deployNodeAgent: true
-        configuration:
-          features: EnableCSI
         credentials:
           existingSecret: credentials-velero
+        configuration:
+          features: EnableCSI
           # TODO
           backupStorageLocation:
             - name: minio

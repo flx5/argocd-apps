@@ -18,22 +18,6 @@ spec:
       name: credentials-velero
       namespace: velero
 ---
-{{/*apiVersion: bitnami.com/v1alpha1*/}}
-{{/*kind: SealedSecret*/}}
-{{/*metadata:*/}}
-{{/*  creationTimestamp: null*/}}
-{{/*  name: credentials-velero*/}}
-{{/*  namespace: velero*/}}
-{{/*spec:*/}}
-{{/*  encryptedData:*/}}
-{{/*    cloud: AgA1eEhGbeCQAR0DKwVgPFjUQvNYWbLX6JXBB9dolPUgdZ78gQzQlpyYQlyfoMDSNxxIf206cqiqOl6kpxlLbTJI6SNFelYqXgNTdSziFgCjA4gc3lxdC6Y0Pb1QR0+N8QFtqNbHR6ByxqC7It2qY4fJkP+B1rDwQrzmbyr8ugTNYK7kLNla7I+KsLYcasILNusavz3PYC3l2jP7L13Nq3KF2Gd2W0hBjM8CVDu5PagIaNlfqZ0zbF/G9HUPqch0DXAQfEWyp8Jod41ebmP/cKGSg5X3MYtzm5FSpots09OhEkbhhsguzlZUlGI0Ti5kd3hyI9Q5XUIbKqFkMCAN9UEoiqnPTXSq5559+vLPyQCSGaeqqZV6k4yL7SFSxLedPynza1tYVlekHGiry1LEtWXlCnExuOJYUUnYK63knAaEfY1Wu6jXWFt08+eFBlDGcyCjw5/EfaOjC3ZlKSF2LLN9JFx9OOnm405R0JehA1XCW7/015zshcbtwWE8IwDwdXF4DyNbR3THiyp0GA66ac2Cj+yLBhicLXEuL6VC2md5N9Y6JpjG11MgTtXhfI3XAdHErKNdniE2qymjgXTtRiEk/0fjcxp6t7XkCPXEL5oDYGYXJfSdNIUtcAdPIZelHmNF5YWCgTf5we4WRXUbuwGLDXfXEayyYKJeNmtnI9E9rYMEsu6Vw6pQLdGf14ZDN4q6Hbf2CQAqhiiVvULr0gpchs3FkQprzNCLGYVJvuDEnFB9Neqfr/lKloM5YHM+9EbhX/58GNQh7BZt8P+B8xUnpA==*/}}
-{{/*  template:*/}}
-{{/*    metadata:*/}}
-{{/*      creationTimestamp: null*/}}
-{{/*      name: credentials-velero*/}}
-{{/*      namespace: velero*/}}
-
----
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -60,9 +44,10 @@ spec:
         configuration:
           features: EnableCSI
           # TODO
+          defaultBackupStorageLocation: minio
+          # defaultVolumeSnapshotLocations: minio
           backupStorageLocation:
             - name: minio
-              default: true
               provider: aws
               bucket: velero
               config:

@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: external-snapshotter
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+  sources:
+    - repoURL: https://github.com/minio/operator
+      targetRevision: v7.0.1
+      kustomize:
+        namespace: minio-operator
+    - path: minio
+      repoURL: {{ .Values.spec.source.repoURL }}
+      targetRevision: {{ .Values.spec.source.targetRevision }}
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: minio-operator

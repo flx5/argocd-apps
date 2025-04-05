@@ -55,7 +55,7 @@ spec:
                 s3ForcePathStyle: true
                 s3Url: https://minio.minio-tenant.svc
                 # TODO Fix
-                insecureSkipTLSVerify: true
+                # insecureSkipTLSVerify: true
           volumeSnapshotLocation: []
         initContainers:
           - name: velero-plugin-for-aws

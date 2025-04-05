@@ -49,6 +49,8 @@ spec:
               default: true
               provider: aws
               bucket: velero
+              # TODO Fix
+              insecureSkipTLSVerify: true
               config:
                 region: minio
                 s3ForcePathStyle: true

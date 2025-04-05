@@ -52,7 +52,7 @@ spec:
               config:
                 region: minio
                 s3ForcePathStyle: true
-                s3Url: https://myminio-hl.minio-tenant.svc:9000
+                s3Url: https://minio.minio-tenant.svc
                 # TODO Fix
                 insecureSkipTLSVerify: true
           volumeSnapshotLocation: []

@@ -49,12 +49,12 @@ spec:
               default: true
               provider: aws
               bucket: velero
-              # TODO Fix
-              insecureSkipTLSVerify: true
               config:
                 region: minio
                 s3ForcePathStyle: true
                 s3Url: https://myminio-hl.minio-tenant.svc:9000
+                # TODO Fix
+                insecureSkipTLSVerify: true
           volumeSnapshotLocation: []
         initContainers:
           - name: velero-plugin-for-aws

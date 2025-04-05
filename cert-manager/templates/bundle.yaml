@@ -8,7 +8,7 @@ spec:
   # used to validate most TLS certificates on the internet, such as
   # those issued by Let's Encrypt, Google, Amazon and others.
   # NB: Unless you pin the pac
-  - useDefaultCAs: true
+  # - useDefaultCAs: true
   - secret:
       name: root-secret
       key: "ca.crt"

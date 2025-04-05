@@ -17,9 +17,53 @@ spec:
       targetRevision: v7.0.1
       kustomize:
         namespace: minio-operator
-    - path: minio
+        patches:
+          - patch: |-
+              apiVersion: apps/v1
+              kind: Deployment
+              metadata:
+                name: minio-operator
+                namespace: minio-operator
+              spec:
+                template:
+                  spec:
+                    containers:
+                      - name: minio-operator
+                        env:
+                          - name: OPERATOR_STS_AUTO_TLS_ENABLED
+                            value: "off"
+                          - name: OPERATOR_STS_ENABLED
+                            value: "on"
+    - path: minio-operator
       repoURL: {{ .Values.spec.source.repoURL }}
       targetRevision: {{ .Values.spec.source.targetRevision }}
   destination:
     server: "https://kubernetes.default.svc"
     namespace: minio-operator
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: minio-tenant
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: minio-tenant
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+  sources:
+    - path: minio-tenant
+      repoURL: {{ .Values.spec.source.repoURL }}
+      targetRevision: {{ .Values.spec.source.targetRevision }}
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: minio-tenant

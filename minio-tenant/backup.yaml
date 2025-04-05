@@ -52,6 +52,8 @@ spec:
   imagePullSecret: {}
   mountPath: /export
   podManagementPolicy: Parallel
+  buckets:
+    - name: velero
   pools:
     - affinity:
         nodeAffinity: {}

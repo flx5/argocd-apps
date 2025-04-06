@@ -1,4 +1,6 @@
 # TODO Could also declare one with automatic backups!
+# TODO https://github.com/longhorn/longhorn/issues/7794
+# TODO https://velero.io/docs/v1.15/data-movement-backup-pvc-configuration/
 kind: VolumeSnapshotClass
 apiVersion: snapshot.storage.k8s.io/v1
 metadata:

@@ -74,6 +74,7 @@ spec:
   podManagementPolicy: Parallel
   buckets:
     - name: velero
+    - name: longhorn
   pools:
     - affinity:
         nodeAffinity: {}

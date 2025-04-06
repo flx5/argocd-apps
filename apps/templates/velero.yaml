@@ -27,10 +27,10 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  syncPolicy: {}
-#    automated:
-#      selfHeal: true
-#      prune: true
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
   source:
     chart: velero
     repoURL: https://vmware-tanzu.github.io/helm-charts
@@ -43,9 +43,8 @@ spec:
           existingSecret: credentials-velero
         configuration:
           features: EnableCSI
-          # TODO
           defaultBackupStorageLocation: minio
-          # defaultVolumeSnapshotLocations: minio
+          defaultVolumeSnapshotLocations: minio
           backupStorageLocation:
             - name: minio
               provider: aws
@@ -53,7 +52,7 @@ spec:
               config:
                 region: minio
                 s3ForcePathStyle: true
-                s3Url: https://minio.minio-tenant.svc
+                s3Url: https://s3.nue.felix-prasse.de
           volumeSnapshotLocation:
             - name: minio
               provider: aws
@@ -62,40 +61,12 @@ spec:
                 region: minio
                 s3ForcePathStyle: true
                 s3Url: https://s3.nue.felix-prasse.de
-          extraEnvVars:
-            AWS_CA_BUNDLE: /certs/root-certs.pem
-        # TODO Use this dns server until the cluster dns server is configured to resolve our split dns...
-        #dnsPolicy: None
-        #dnsConfig:
-        #  nameservers:
-        #    - 192.168.2.92
-        extraVolumes:
-        - name: certs
-          configMap:
-            name: internal-ca
-        extraVolumeMounts:
-          - name: certs
-            mountPath: /certs/root-certs.pem
-            subPath: root-certs.pem
         initContainers:
           - name: velero-plugin-for-aws
             image: velero/velero-plugin-for-aws:v1.2.1
             volumeMounts:
               - mountPath: /target
                 name: plugins
-        nodeAgent:
-          #dnsPolicy: None
-          #dnsConfig:
-          #  nameservers:
-          #    - 192.168.2.92
-          extraVolumes:
-            - name: certs
-              configMap:
-                name: internal-ca
-          extraVolumeMounts:
-            - name: certs
-              mountPath: /certs/root-certs.pem
-              subPath: root-certs.pem
 
   destination:
     server: "https://kubernetes.default.svc"

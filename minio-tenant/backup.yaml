@@ -142,6 +142,7 @@ spec:
     - hosts:
         - console.s3.nue.felix-prasse.de
         - s3.nue.felix-prasse.de
+      secretName: minio-cert
   rules:
     - host: console.s3.nue.felix-prasse.de
       http:

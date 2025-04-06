@@ -135,14 +135,15 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/proxy-body-size: "0"
-    cert-manager.io/cluster-issuer: selfsigned-root
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: internal-nginx
   tls:
     - hosts:
-        - console.minio.home.arpa
+        - console.s3.nue.felix-prasse.de
+        - s3.nue.felix-prasse.de
   rules:
-    - host: console.minio.home.arpa
+    - host: console.s3.nue.felix-prasse.de
       http:
         paths:
           - path: /
@@ -152,3 +153,13 @@ spec:
                 name: myminio-console
                 port:
                   number: 9443
+    - host: s3.nue.felix-prasse.de
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: minio
+                port:
+                  number: 443

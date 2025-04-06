@@ -53,14 +53,7 @@ spec:
                 region: minio
                 s3ForcePathStyle: true
                 s3Url: https://s3.nue.felix-prasse.de
-          volumeSnapshotLocation:
-            - name: minio
-              provider: aws
-              bucket: velero
-              config:
-                region: minio
-                s3ForcePathStyle: true
-                s3Url: https://s3.nue.felix-prasse.de
+          volumeSnapshotLocation: []
         initContainers:
           - name: velero-plugin-for-aws
             image: velero/velero-plugin-for-aws:v1.2.1

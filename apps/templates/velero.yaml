@@ -44,7 +44,7 @@ spec:
         configuration:
           features: EnableCSI
           defaultBackupStorageLocation: minio
-          defaultVolumeSnapshotLocations: minio
+          #defaultVolumeSnapshotLocations: minio
           backupStorageLocation:
             - name: minio
               provider: aws

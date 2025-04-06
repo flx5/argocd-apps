@@ -1,7 +1,7 @@
 nextcloud:
   podAnnotations:
-    pre.hook.backup.velero.io/command: ["./occ", "maintenance:mode", "--on"]
-    post.hook.backup.velero.io/command: ["./occ", "maintenance:mode", "--off"]
+    pre.hook.backup.velero.io/command: '["./occ", "maintenance:mode", "--on"]'
+    post.hook.backup.velero.io/command: '["./occ", "maintenance:mode", "--off"]'
 
   ingress:
     enabled: true

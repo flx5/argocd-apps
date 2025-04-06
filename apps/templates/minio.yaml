@@ -62,23 +62,25 @@ kind: Namespace
 metadata:
   name: minio-tenant
 ---
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: minio-tenant
-  namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  project: default
-  syncPolicy:
-    automated:
-      selfHeal: true
-      prune: true
-  sources:
-    - path: minio-tenant
-      repoURL: {{ .Values.spec.source.repoURL }}
-      targetRevision: {{ .Values.spec.source.targetRevision }}
-  destination:
-    server: "https://kubernetes.default.svc"
-    namespace: minio-tenant
+# Disable for now. Need to figure out how to do this without killing my network during backups.
+# Currently this is very inefficient: longhorn-backup/velero data mover -> ingress -> minio -> nfs -> zfs pool
+#apiVersion: argoproj.io/v1alpha1
+#kind: Application
+#metadata:
+#  name: minio-tenant
+#  namespace: argocd
+#  finalizers:
+#    - resources-finalizer.argocd.argoproj.io
+#spec:
+#  project: default
+#  syncPolicy:
+#    automated:
+#      selfHeal: true
+#      prune: true
+#  sources:
+#    - path: minio-tenant
+#      repoURL: {{ .Values.spec.source.repoURL }}
+#      targetRevision: {{ .Values.spec.source.targetRevision }}
+#  destination:
+#    server: "https://kubernetes.default.svc"
+#    namespace: minio-tenant

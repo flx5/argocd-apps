@@ -27,10 +27,10 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  syncPolicy:
-    automated:
-      selfHeal: true
-      prune: true
+  syncPolicy: {}
+#    automated:
+#      selfHeal: true
+#      prune: true
   source:
     chart: velero
     repoURL: https://vmware-tanzu.github.io/helm-charts

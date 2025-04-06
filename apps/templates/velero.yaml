@@ -62,8 +62,9 @@ spec:
                 region: minio
                 s3ForcePathStyle: true
                 s3Url: https://s3.nue.felix-prasse.de
-          extraEnvVars:
-            AWS_CA_BUNDLE: /certs/root-certs.pem
+          #extraEnvVars:
+          #  AWS_CA_BUNDLE: /certs/root-certs.pem
+        # TODO Use this dns server until the cluster dns server is configured to resolve our split dns...
         dnsPolicy: None
         dnsConfig:
           nameservers:

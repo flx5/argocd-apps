@@ -1,4 +1,8 @@
 nextcloud:
+  podAnnotations:
+    pre.hook.backup.velero.io/command: php occ maintenance:mode --on
+    post.hook.backup.velero.io/command: php occ maintenance:mode --off
+
   ingress:
     enabled: true
     className: public-nginx

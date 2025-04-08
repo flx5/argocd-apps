@@ -44,6 +44,19 @@ spec:
     name: my-ca-issuer
     kind: ClusterIssuer
 ---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tenant-service-cert
+  namespace: minio-tenant
+spec:
+  dnsNames:
+    - "s3.nue.felix-prasse.de"
+  secretName: myminio-service-tls
+  issuerRef:
+    name: my-ca-issuer
+    kind: ClusterIssuer
+---
 apiVersion: minio.min.io/v2
 kind: Tenant
 metadata:
@@ -63,6 +76,8 @@ spec:
   externalCaCertSecret: []
   externalCertSecret:
     - name: myminio-tls
+      type: cert-manager.io/v1
+    - name: myminio-service-tls
       type: cert-manager.io/v1
   externalClientCertSecrets: []
   features:

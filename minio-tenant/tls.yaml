@@ -1,0 +1,58 @@
+# tenant-1-ca-certificate.yaml
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tenant-1-ca-certificate
+  namespace: minio-tenant
+spec:
+  isCA: true
+  commonName: tenant-1-ca
+  secretName: tenant-1-ca-tls
+  duration: 70128h # 8y
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+  issuerRef:
+    name: selfsigned-root
+    kind: ClusterIssuer
+    group: cert-manager.io
+---
+# tenant-1-ca-issuer.yaml
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: tenant-1-ca-issuer
+  namespace: minio-tenant
+spec:
+  ca:
+    secretName: tenant-1-ca-tls
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tenant-certmanager-cert
+  namespace: minio-tenant
+spec:
+  dnsNames:
+    - "minio.minio-tenant"
+    - "minio.minio-tenant.svc"
+    - 'minio.minio-tenant.svc.cluster.local'
+    - '*.minio.minio-tenant.svc.cluster.local'
+    - '*.myminio-hl.minio-tenant.svc.cluster.local'
+    - '*.myminio.minio.minio-tenant.svc.cluster.local'
+  secretName: myminio-tls
+  issuerRef:
+    name: tenant-1-ca-issuer
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tenant-service-cert
+  namespace: minio-tenant
+spec:
+  dnsNames:
+    - "s3.nue.felix-prasse.de"
+  secretName: myminio-service-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer

@@ -26,37 +26,6 @@ spec:
       name: velero-user
       namespace: minio-tenant
 ---
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: tenant-certmanager-cert
-  namespace: minio-tenant
-spec:
-  dnsNames:
-    - "minio.minio-tenant"
-    - "minio.minio-tenant.svc"
-    - 'minio.minio-tenant.svc.cluster.local'
-    - '*.minio.minio-tenant.svc.cluster.local'
-    - '*.myminio-hl.minio-tenant.svc.cluster.local'
-    - '*.myminio.minio.minio-tenant.svc.cluster.local'
-  secretName: myminio-tls
-  issuerRef:
-    name: my-ca-issuer
-    kind: ClusterIssuer
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: tenant-service-cert
-  namespace: minio-tenant
-spec:
-  dnsNames:
-    - "s3.nue.felix-prasse.de"
-  secretName: myminio-service-tls
-  issuerRef:
-    name: letsencrypt-prod
-    kind: ClusterIssuer
----
 apiVersion: minio.min.io/v2
 kind: Tenant
 metadata:

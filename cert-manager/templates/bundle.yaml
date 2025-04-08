@@ -22,10 +22,11 @@ spec:
       key: "root-certs.pem"
     namespaceSelector: {}
 ---
+# See https://blog.min.io/certificate-management-minio-operator/
 apiVersion: trust.cert-manager.io/v1alpha1
 kind: Bundle
 metadata:
-  name: myminio-tls  # Convention of minio. Must be <tenantname>-tls for the secretname
+  name: operator-ca-tls-myminio  # Convention of minio. Must be <tenantname>-tls for the secretname
 spec:
   sources:
     # Include a bundle of publicly trusted certificates which can be

@@ -9,5 +9,4 @@ cert-manager:
 trust-manager:
   secretTargets:
     enabled: true
-    authorizedSecrets:
-      - internal-ca-secret
+    authorizedSecretsAll: true

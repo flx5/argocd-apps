@@ -91,7 +91,9 @@ spec:
         seccompProfile:
           type: RuntimeDefault
       name: pool-0
-      nodeSelector: {}
+      nodeSelector:
+        # Pin on the storage node
+        kubernetes.io/hostname: nas
       resources: {}
       securityContext:
         fsGroup: 1000
@@ -112,16 +114,21 @@ spec:
           resources:
             requests:
               storage: 1Ti
-          storageClassName: zfs-generic-nfs-csi
+          storageClassName: zfs-local-zvol
         status: {}
       volumesPerServer: 1
   priorityClassName: ""
   requestAutoCert: false
   serviceAccountName: ""
+  exposeServices:
+    # Expose the minio S3 Api directly onto the network for performance (don't want the traffic to be routed across the network via ingress)
+    minio: true
+    console: false
   serviceMetadata:
     consoleServiceAnnotations: {}
     consoleServiceLabels: {}
-    minioServiceAnnotations: {}
+    minioServiceAnnotations:
+      external-dns.alpha.kubernetes.io/hostname: s3.nue.felix-prasse.de
     minioServiceLabels: {}
   subPath: ""
   users:
@@ -142,7 +149,6 @@ spec:
   tls:
     - hosts:
         - console.s3.nue.felix-prasse.de
-        - s3.nue.felix-prasse.de
       secretName: minio-cert
   rules:
     - host: console.s3.nue.felix-prasse.de
@@ -155,13 +161,3 @@ spec:
                 name: myminio-console
                 port:
                   number: 9443
-    - host: s3.nue.felix-prasse.de
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: minio
-                port:
-                  number: 443

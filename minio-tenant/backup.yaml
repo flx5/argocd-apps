@@ -85,7 +85,7 @@ spec:
     domains:
       minio:
         - https://s3.nue.felix-prasse.de
-      console: https://console.s3.nue.felix-prasse.de
+      console: https://console.nue.felix-prasse.de
   image: quay.io/minio/minio:RELEASE.2025-03-12T18-04-18Z
   imagePullSecret: {}
   mountPath: /export
@@ -166,10 +166,10 @@ spec:
   ingressClassName: internal-nginx
   tls:
     - hosts:
-        - console.s3.nue.felix-prasse.de
+        - console.nue.felix-prasse.de
       secretName: minio-cert
   rules:
-    - host: console.s3.nue.felix-prasse.de
+    - host: console.nue.felix-prasse.de
       http:
         paths:
           - path: /

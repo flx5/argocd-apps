@@ -76,9 +76,9 @@ spec:
   externalCaCertSecret: []
   externalCertSecret:
     - name: myminio-tls
-      type: cert-manager.io/v1
+      type: kubernetes.io/tls
     - name: myminio-service-tls
-      type: cert-manager.io/v1
+      type: kubernetes.io/tls
   externalClientCertSecrets: []
   features:
     bucketDNS: false

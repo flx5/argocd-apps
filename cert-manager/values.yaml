@@ -10,4 +10,4 @@ trust-manager:
   secretTargets:
     enabled: true
     authorizedSecrets:
-      - internal-ca
+      - internal-ca-secret

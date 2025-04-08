@@ -54,7 +54,7 @@ spec:
     - "s3.nue.felix-prasse.de"
   secretName: myminio-service-tls
   issuerRef:
-    name: my-ca-issuer
+    name: letsencrypt-prod
     kind: ClusterIssuer
 ---
 apiVersion: minio.min.io/v2

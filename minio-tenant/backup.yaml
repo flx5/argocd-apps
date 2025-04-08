@@ -84,8 +84,8 @@ spec:
     bucketDNS: true
     domains:
       minio:
-        - https://s3.nue.felix-prasse.de
-      console: https://console.nue.felix-prasse.de
+        - https://s3.nue.felix-prasse.de:443
+      console: https://console.nue.felix-prasse.de:443
   image: quay.io/minio/minio:RELEASE.2025-03-12T18-04-18Z
   imagePullSecret: {}
   mountPath: /export

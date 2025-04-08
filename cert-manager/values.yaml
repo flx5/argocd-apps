@@ -5,3 +5,9 @@ cert-manager:
   # Split horizon DNS: https://cert-manager.io/docs/configuration/acme/dns01/#setting-nameservers-for-dns01-self-check
   - --dns01-recursive-nameservers-only
   - --dns01-recursive-nameservers=8.8.8.8:53,1.1.1.1:53
+
+trust-manager:
+  secretTargets:
+    enabled: true
+    authorizedSecrets:
+      - internal-ca

@@ -13,7 +13,7 @@ spec:
     algorithm: ECDSA
     size: 256
   issuerRef:
-    name: selfsigned-root
+    name: my-ca-issuer
     kind: ClusterIssuer
     group: cert-manager.io
 ---

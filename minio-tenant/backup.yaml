@@ -81,8 +81,10 @@ spec:
       type: kubernetes.io/tls
   externalClientCertSecrets: []
   features:
-    bucketDNS: false
-    domains: {}
+    bucketDNS: true
+    domains:
+      minio:
+        - https://s3.nue.felix-prasse.de
   image: quay.io/minio/minio:RELEASE.2025-03-12T18-04-18Z
   imagePullSecret: {}
   mountPath: /export

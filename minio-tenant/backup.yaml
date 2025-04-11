@@ -81,7 +81,9 @@ spec:
       nodeSelector:
         # Pin on the storage node
         kubernetes.io/hostname: nas
-      resources: {}
+      resources:
+        limits:
+          cpu: 1000m
       securityContext:
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
@@ -104,6 +106,11 @@ spec:
           storageClassName: zfs-local-zvol
         status: {}
       volumesPerServer: 1
+  poolsMetadata:
+    annotations:
+      # Limit the bandwidth so that backups don't kill the network
+      kubernetes.io/ingress-bandwidth: 250M
+      kubernetes.io/egress-bandwidth: 250M
   priorityClassName: ""
   requestAutoCert: false
   serviceAccountName: ""

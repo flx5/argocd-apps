@@ -84,6 +84,8 @@ spec:
       resources:
         limits:
           cpu: 1000m
+        requests:
+          cpu: 10m
       securityContext:
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch

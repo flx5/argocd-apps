@@ -9,10 +9,10 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  syncPolicy:
-    automated:
-      selfHeal: true
-      prune: true
+#  syncPolicy:
+#    automated:
+#      selfHeal: true
+#      prune: true
   sources:
     - repoURL: https://github.com/minio/operator
       path: .

@@ -1,0 +1,60 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: storage-encryption-secret
+  namespace: nextcloud
+spec:
+  encryptedData:
+    encryptionPassphrase: AgCAwUu8WKUoJhPY73RBbvCBuo+Xx/Wj6uMsknf/YmG8j39EtAq6l0zopQ+kNcvZie1facseaxJ231OhvqCnVxhYQgYr6K6ORVDxPUl97SWvOC+Pyv14AsSMgxLHpP5EP1o/vhLCN7fKvuv9V6HAZ3pzRY94Dm8h4X3i32Gosh/NWBf62UfVld9O2h/mX6XaGTfh/LstNi6hlcFpB0IXizyViL3+MKjE/gGKJh8T52t9HJ5DKk3WieFKjcAKvqzo7gKBWI4N4UyKCVXIB9v1m39xGRpIn5r+KhNfZeeBtzeqXnpPQTlMyVdr/0Q9iHjTjl4iEpJ34H26MVZjw/qH/428+gTOJ1w6ep2+AhenTL0LlFBwcYae+ZVuqBMcvS54k4yUiQOSAK+ZriFAhJsxhLpHHtraqelsMOhP/TKNBNL9fP98VL4lKhnu9pwnNxmXK3nYr4240v23L5279TaaX4eQRe+0Xf4rEZePaZK4xODAn8OmPp/6esY9AKb+wWK9j15ntsx4LkfXUSRoWC/zPFY83mQwEp5Sx5+733hsrJwFCtDjldXC+QYNbVbbz83GGt0pfJby3AfjaAWjVtQYY2SitCLmND5NTUJG1+OG1onmFp3nwc9NW13G6mGShfjrgnP527+70XOASeOAPRI85/oldJrwV5QGs2JCO6enJYBOjJz5F4/ITJbhcaSTpYo6n043qmTaKNQ6dD6pIZWMlpWLK1EhwTEXEPYT+vJkPcAnkgwAQ2C5Zcxy3kJzSiN/GHoyuw==
+  template:
+    metadata:
+      creationTimestamp: null
+      name: storage-encryption-secret
+      namespace: nextcloud
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  finalizers:
+    - kubernetes.io/pvc-protection
+  name: nextcloud-data-v2
+  namespace: nextcloud
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Gi
+  storageClassName: rook-ceph-block
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  finalizers:
+    - kubernetes.io/pvc-protection
+  name: nextcloud-nextcloud-v2
+  namespace: nextcloud
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: rook-ceph-block
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  finalizers:
+    - kubernetes.io/pvc-protection
+  name: nextcloud-db
+  namespace: nextcloud
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: rook-ceph-block

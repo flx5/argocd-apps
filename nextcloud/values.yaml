@@ -132,10 +132,10 @@ nextcloud:
     enabled: true
   persistence:
     enabled: true
-    existingClaim: nextcloud-nextcloud
+    existingClaim: nextcloud-nextcloud-v2
     nextcloudData:
       enabled: true
-      existingClaim: nextcloud-nextcloud-data
+      existingClaim: nextcloud-data-v2
   externalDatabase:
     existingSecret:
       enabled: true
@@ -148,9 +148,14 @@ nextcloud:
     auth:
       existingSecret: mariadb-secret
     primary:
+      podAnnotations:
+      # TODO ADd this to db container as a hook to wait for maintenance mode to be in effect:
+        # TODO Use internal service address
+      # TODO For obvious reasons mariadb does neither have curl nor jq...
+       # pre.hook.backup.velero.io/command: '["bash", "-c", "while [ $(curl -s http://nextcloud:8080/status.php | jq .maintenance) ==  'false' ]; do sleep 1; done"]'
       persistence:
         enabled: true
-        existingClaim: data-nextcloud-mariadb-0
+        existingClaim: nextcloud-db
     podSecurityContext:
       # See
       # https://kubernetes.io/blog/2020/12/14/kubernetes-release-1.20-fsgroupchangepolicy-fsgrouppolicy/

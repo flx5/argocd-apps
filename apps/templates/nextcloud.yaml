@@ -14,10 +14,10 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-#  syncPolicy:
-#    automated:
-#      selfHeal: true
-#      prune: true
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
   source:
     path: nextcloud
     repoURL: {{ .Values.spec.source.repoURL }}

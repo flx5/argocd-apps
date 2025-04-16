@@ -18,7 +18,7 @@ spec:
   resources:
     requests:
       storage: 20Gi
-  storageClassName: longhorn-ssd
+  storageClassName: rook-cephfs
   volumeMode: Filesystem
 ---
 apiVersion: argoproj.io/v1alpha1
@@ -30,10 +30,10 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-#  syncPolicy:
-#    automated:
-#      selfHeal: true
-#      prune: true
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
   source:
     chart: jdownloader2
     repoURL: https://pmoscode-helm.github.io/jdownloader2/
@@ -44,7 +44,7 @@ spec:
       valuesObject:
         persistence:
           enabled: true
-          storageClass: longhorn-ssd
+          storageClass: rook-ceph-block
           size: 20Gi
         additionalVolumes:
           - name: downloads

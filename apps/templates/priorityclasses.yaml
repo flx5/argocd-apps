@@ -1,0 +1,15 @@
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: base-infra
+value: 100
+globalDefault: false
+description: "This priority class should be used for basic infrastructure only (dns, externaldns, ...)"
+---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: essential-apps
+value: 90
+globalDefault: false
+description: "This priority class should be used for essential apps"

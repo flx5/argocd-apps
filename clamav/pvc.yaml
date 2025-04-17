@@ -5,7 +5,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: rook-cephfs
+  storageClassName: rook-cephfs-insecure
   resources:
     requests:
       storage: 2Gi

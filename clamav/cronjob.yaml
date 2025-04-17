@@ -12,6 +12,9 @@ spec:
     spec:
       template:
         spec:
+          securityContext:
+            fsGroupChangePolicy: OnRootMismatch
+            fsGroup: 100
           containers:
             - image: clamav/clamav:1.4.2_base
               name: freshclam

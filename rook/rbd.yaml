@@ -72,6 +72,13 @@ reclaimPolicy: Delete
 # Optional, if you want to add dynamic resize for PVC.
 # For now only ext3, ext4, xfs resize support provided, like in Kubernetes itself.
 allowVolumeExpansion: true
+mountOptions:
+  - discard
+  # Need to add noload to be able to mount rwo readonly. See also https://init6.sh/posts/improving_cluster_backups_on_ceph_backed_clusters/
+  # relevant Dmesg log:
+  #[ 9072.923921] EXT4-fs (dm-10): INFO: recovery required on readonly filesystem
+  #[ 9072.923946] EXT4-fs (dm-10): write access unavailable, cannot proceed (try mounting with noload)
+  - noload
 ---
 apiVersion: snapshot.storage.k8s.io/v1
 kind: VolumeSnapshotClass

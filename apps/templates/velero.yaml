@@ -27,13 +27,18 @@ data:
   packuppvc.json: |
     {
       "backupPVC": {
-        "csi-rbdplugin-snapclass": {
-          "storageClass": "csi-rbdplugin-snapclass",
+        "rook-ceph-block": {
+          "storageClass": "rook-ceph-block",
           "readOnly": true,
           "spcNoRelabeling": true
         },
-        "csi-cephfsplugin-snapclass": {
-          "storageClass": "csi-cephfsplugin-snapclass",
+        "rook-cephfs": {
+          "storageClass": "rook-cephfs",
+          "readOnly": true,
+          "spcNoRelabeling": true
+        },
+        "rook-cephfs-insecure": {
+          "storageClass": "rook-cephfs-insecure",
           "readOnly": true,
           "spcNoRelabeling": true
         }

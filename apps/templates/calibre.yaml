@@ -32,7 +32,7 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 20Gi
+      storage: 10Gi
   storageClassName: rook-cephfs
   volumeMode: Filesystem
 ---
@@ -48,7 +48,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi
+      storage: 1Gi
   storageClassName: rook-ceph-block
 ---
 apiVersion: argoproj.io/v1alpha1

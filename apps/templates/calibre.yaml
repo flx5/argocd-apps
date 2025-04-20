@@ -60,10 +60,10 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-#  syncPolicy:
-#    automated:
-#      selfHeal: true
-#      prune: true
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
   source:
     chart: calibre-web
     #TODO This is deprecated
@@ -93,10 +93,10 @@ spec:
         persistence:
           config:
             enabled: true
-            existingClaim: calibre-config
+            existingClaim: config
           books:
             enabled: true
-            existingClaim: books
+            existingClaim: books-v2
   destination:
     server: "https://kubernetes.default.svc"
     namespace: calibre

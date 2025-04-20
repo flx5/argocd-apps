@@ -78,8 +78,8 @@ spec:
       volumes:
         - name: omada-data
           persistentVolumeClaim:
-            claimName: omada-data-pvc
+            claimName: omada-data-pvc-v2
         - name: omada-logs
           persistentVolumeClaim:
-            claimName: omada-logs-pvc
+            claimName: omada-logs-pvc-v2
       restartPolicy: Always

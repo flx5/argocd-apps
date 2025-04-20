@@ -25,7 +25,7 @@ kind: PersistentVolumeClaim
 metadata:
   finalizers:
     - kubernetes.io/pvc-protection
-  name: config
+  name: books-v2
   namespace: calibre
 spec:
   accessModes:
@@ -41,7 +41,7 @@ kind: PersistentVolumeClaim
 metadata:
   finalizers:
     - kubernetes.io/pvc-protection
-  name: books-v2
+  name: config
   namespace: calibre
 spec:
   accessModes:

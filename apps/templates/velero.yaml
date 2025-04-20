@@ -18,6 +18,28 @@ spec:
       name: credentials-velero
       namespace: velero
 ---
+kind: ConfigMap
+metadata:
+  name: backuppvc
+  namespace: velero
+apiVersion: v1
+data:
+  packuppvc.json: |
+    {
+      "backupPVC": {
+        "csi-rbdplugin-snapclass": {
+          "storageClass": "csi-rbdplugin-snapclass",
+          "readOnly": true,
+          "spcNoRelabeling": true
+        },
+        "csi-cephfsplugin-snapclass": {
+          "storageClass": "csi-cephfsplugin-snapclass",
+          "readOnly": true,
+          "spcNoRelabeling": true
+        }
+      }
+    }
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -39,10 +61,16 @@ spec:
       namespace: velero
       valuesObject:
         deployNodeAgent: true
+        nodeAgent:
+          # See https://init6.sh/posts/improving_cluster_backups_on_ceph_backed_clusters/
+          extraArgs:
+            [ "--node-agent-configmap=backuppvc" ]
         credentials:
           existingSecret: credentials-velero
         configuration:
+          uploaderType: kopia
           features: EnableCSI
+          defaultSnapshotMoveData: true
           defaultBackupStorageLocation: minio
           #defaultVolumeSnapshotLocations: minio
           backupStorageLocation:
@@ -53,7 +81,9 @@ spec:
                 region: minio
                 s3ForcePathStyle: true
                 s3Url: https://s3.nue.felix-prasse.de
-          volumeSnapshotLocation: []
+          volumeSnapshotLocation:
+            - name: csi
+              provider: csi
         initContainers:
           - name: velero-plugin-for-aws
             image: velero/velero-plugin-for-aws:v1.2.1

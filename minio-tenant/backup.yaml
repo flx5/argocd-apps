@@ -111,8 +111,8 @@ spec:
   poolsMetadata:
     annotations:
       # Limit the bandwidth so that backups don't kill the network
-      kubernetes.io/ingress-bandwidth: 250M
-      kubernetes.io/egress-bandwidth: 250M
+      kubernetes.io/ingress-bandwidth: 750M
+      kubernetes.io/egress-bandwidth: 750M
   priorityClassName: ""
   requestAutoCert: false
   serviceAccountName: ""

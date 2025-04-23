@@ -3,6 +3,17 @@ nextcloud:
   #  pre.hook.backup.velero.io/command: '["./occ", "maintenance:mode", "--on"]'
   #  post.hook.backup.velero.io/command: '["./occ", "maintenance:mode", "--off"]'
 
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 1
+          preference:
+            matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                  - nas
+
   ingress:
     enabled: true
     className: public-nginx

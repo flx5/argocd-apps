@@ -16,7 +16,7 @@ spec:
   sources:
     - repoURL: https://github.com/minio/operator
       path: .
-      targetRevision: v7.0.1
+      targetRevision: v7.1.1
       kustomize:
         namespace: minio-operator
         patches:

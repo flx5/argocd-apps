@@ -17,7 +17,7 @@ spec:
   syncPolicy:
     automated:
       selfHeal: true
-      prune: false
+      prune: true
   source:
     path: nextcloud
     repoURL: {{ .Values.spec.source.repoURL }}

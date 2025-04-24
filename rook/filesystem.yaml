@@ -24,7 +24,7 @@ metadata:
 provisioner: rook-ceph.cephfs.csi.ceph.com
 parameters:
   # TODO Encryption needs this command to be run in the toolbox:
-  # ceph auth caps client.csi-cephfs-node mds 'allow rw' mgr 'allow rw' mon 'allow r' osd 'allow *'
+  # ceph auth caps client.csi-cephfs-node mds 'allow rw' mgr 'allow rw' mon 'allow r' osd 'allow rwx tag cephfs *=*'
   # See https://github.com/rook/rook/issues/15283
   # After doing that it seems necessary to delete the csi-cephfsplugin- pods
   encrypted: "true"

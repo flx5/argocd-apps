@@ -96,9 +96,4 @@ parameters:
   clusterID: rook-ceph # namespace:cluster
   csi.storage.k8s.io/snapshotter-secret-name: rook-csi-rbd-provisioner
   csi.storage.k8s.io/snapshotter-secret-namespace: rook-ceph # namespace:cluster
-
-# Set to retain
-# Otherwise we get errors like this:
-# message: /error to expose snapshot: error wait volume snapshot ready: error to get VolumeSnapshot nextcloud/velero-nextcloud-nextcloud-v2-qj4gr: volumesnapshots.snapshot.storage.k8s.io "velero-nextcloud-nextcloud-v2-qj4gr" not found, plugin: velero.io/csi-pvc-backupper
-# Maybe a bug in velero deleting the snapshot too early?
-deletionPolicy: Retain
+deletionPolicy: Delete

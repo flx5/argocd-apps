@@ -42,7 +42,22 @@ data:
           "readOnly": true,
           "spcNoRelabeling": true
         }
-      }
+      },
+      "loadAffinity": [
+        {
+          "nodeSelector": {
+            "matchExpressions": [
+              {
+                "key": "kubernetes.io/hostname",
+                "values": [
+                  "nas"
+                ],
+                "operator": "In"
+              }
+            ]
+          }
+        }
+      ]
     }
 ---
 apiVersion: bitnami.com/v1alpha1

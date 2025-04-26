@@ -26,6 +26,37 @@ spec:
       name: velero-user
       namespace: minio-tenant
 ---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: local-storage
+provisioner: kubernetes.io/no-provisioner # indicates that this StorageClass does not support automatic provisioning
+volumeBindingMode: WaitForFirstConsumer
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: minio-backup
+spec:
+  capacity:
+    storage: 10Ti
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: local-storage
+  local:
+    path: /mnt/backup/minio-tenant
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - nas
+
+---
 apiVersion: minio.min.io/v2
 kind: Tenant
 metadata:
@@ -104,15 +135,16 @@ spec:
             - ReadWriteOnce
           resources:
             requests:
-              storage: 1Ti
-          storageClassName: zfs-local-zvol
+              storage: 10Ti
+          storageClassName: local-storage
+          volumeName: minio-backup
         status: {}
       volumesPerServer: 1
   poolsMetadata:
-    annotations:
+    annotations: {}
       # Limit the bandwidth so that backups don't kill the network
-      kubernetes.io/ingress-bandwidth: 750M
-      kubernetes.io/egress-bandwidth: 750M
+      #kubernetes.io/ingress-bandwidth: 750M
+      #kubernetes.io/egress-bandwidth: 750M
   priorityClassName: ""
   requestAutoCert: false
   serviceAccountName: ""

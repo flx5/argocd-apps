@@ -43,6 +43,12 @@ data:
           "spcNoRelabeling": true
         }
       },
+      "podResources": {
+        "cpuRequest": "1000m",
+        "cpuLimit": "1000m",
+        "memoryRequest": "512Mi",
+        "memoryLimit": "4Gi"
+      },
       "loadAffinity": [
         {
           "nodeSelector": {

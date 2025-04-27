@@ -99,6 +99,14 @@ spec:
       name: velero-repo-credentials
       namespace: velero
 ---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: backup
+value: 99
+globalDefault: false
+description: "This priority class should be used for velero pods only."
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -121,6 +129,8 @@ spec:
       valuesObject:
         deployNodeAgent: true
         nodeAgent:
+          # This should be copied to the datamover pod
+          priorityClassName: "backup"
           # See https://init6.sh/posts/improving_cluster_backups_on_ceph_backed_clusters/
           extraArgs:
             [ "--node-agent-configmap=node-agent-config" ]

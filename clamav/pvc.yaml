@@ -4,7 +4,7 @@ metadata:
   name: clamdb-pvc
   labels:
     # Just virus db definitions. No need to backup
-    velero.io/exclude-from-backup: true
+    velero.io/exclude-from-backup: "true"
 spec:
   accessModes:
     - ReadWriteMany

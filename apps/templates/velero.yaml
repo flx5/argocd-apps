@@ -20,7 +20,7 @@ spec:
 ---
 kind: ConfigMap
 metadata:
-  name: backuppvc
+  name: node-agent-config
   namespace: velero
 apiVersion: v1
 data:
@@ -120,7 +120,7 @@ spec:
         nodeAgent:
           # See https://init6.sh/posts/improving_cluster_backups_on_ceph_backed_clusters/
           extraArgs:
-            [ "--node-agent-configmap=backuppvc" ]
+            [ "--node-agent-configmap=node-agent-config" ]
         credentials:
           existingSecret: credentials-velero
         configuration:

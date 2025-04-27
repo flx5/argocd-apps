@@ -32,6 +32,8 @@ spec:
                     containers:
                       - name: minio-operator
                         resources:
+                          requests:
+                            cpu: 10m
                           limits:
                             cpu: 100m
                         env:

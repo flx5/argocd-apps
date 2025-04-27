@@ -138,6 +138,7 @@ spec:
           existingSecret: credentials-velero
         configuration:
           uploaderType: kopia
+          fsBackupTimeout: "16h"
           features: EnableCSI
           defaultSnapshotMoveData: true
           defaultBackupStorageLocation: minio

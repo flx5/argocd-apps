@@ -49,6 +49,9 @@ data:
         "memoryRequest": "512Mi",
         "memoryLimit": "4Gi"
       },
+      "loadConcurrency": {
+        "globalConfig": 1
+      },
       "loadAffinity": [
         {
           "nodeSelector": {

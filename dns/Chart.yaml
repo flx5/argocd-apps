@@ -24,7 +24,7 @@ appVersion: "1.0"
 
 dependencies:
   - name: coredns
-    version: 1.39.2
+    version: 1.41.0
     repository: https://coredns.github.io/helm
   - name: etcd
     version: 11.2.1

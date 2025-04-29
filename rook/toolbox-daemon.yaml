@@ -79,7 +79,7 @@ spec:
             - configMapRef:
                 name: rook-ceph-osd-env-override
                 optional: true
-          image: quay.io/ceph/ceph:v19.2.1
+          image: quay.io/ceph/ceph:v19.2.2
           imagePullPolicy: IfNotPresent
           name: provision
           resources: {}

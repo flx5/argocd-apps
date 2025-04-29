@@ -21,10 +21,10 @@ spec:
   sources:
     - path: client/config/crd
       repoURL: https://github.com/kubernetes-csi/external-snapshotter.git
-      targetRevision: v8.2.0
+      targetRevision: v8.2.1
     - path: deploy/kubernetes/snapshot-controller
       repoURL: https://github.com/kubernetes-csi/external-snapshotter.git
-      targetRevision: v8.2.0
+      targetRevision: v8.2.1
       kustomize:
         namespace: external-snapshotter
     - path: external-snapshotter

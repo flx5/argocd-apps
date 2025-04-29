@@ -123,7 +123,7 @@ spec:
   source:
     chart: velero
     repoURL: https://vmware-tanzu.github.io/helm-charts
-    targetRevision: 8.7.1
+    targetRevision: 9.0.3
     helm:
       namespace: velero
       valuesObject:

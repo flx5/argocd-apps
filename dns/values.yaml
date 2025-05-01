@@ -62,7 +62,7 @@ etcd:
     storageClass: rook-ceph-block
   # This job fails if the networking-etcd-jwt-token secret is not there yet?!
   preUpgradeJob:
-    enabled: false
+    enabled: true
 
   replicaCount: 3
 

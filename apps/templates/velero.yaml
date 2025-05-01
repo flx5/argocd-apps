@@ -128,6 +128,9 @@ spec:
       namespace: velero
       valuesObject:
         deployNodeAgent: true
+        # TODO Configure kopia caching
+        # https://github.com/vmware-tanzu/velero/issues/7725
+        # https://kopia.io/docs/advanced/caching/
         nodeAgent:
           # This should be copied to the datamover pod
           priorityClassName: "backup"
@@ -138,6 +141,7 @@ spec:
           existingSecret: credentials-velero
         configuration:
           uploaderType: kopia
+          # TODO Set the annotation on individual backups instead https://github.com/vmware-tanzu/velero/issues/5251#issuecomment-1229113528
           fsBackupTimeout: "16h"
           features: EnableCSI
           defaultSnapshotMoveData: true

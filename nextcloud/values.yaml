@@ -39,6 +39,7 @@ nextcloud:
   # Use the command `occ maintenance:repair --include-expensive` to perform the migrations.
 
   # TODO Run occ db:add-missing-indices after upgrade
+  # Maybe just use hooks like here: https://github.com/nextcloud/helm/pull/673#issuecomment-2763302385
 
   livenessProbe:
     # TODO Disabled because at startup nextcloud copies its files to the pv. This would kill the container too early...

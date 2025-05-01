@@ -286,6 +286,9 @@ spec:
       - name: "janeway"
         devices: # specific devices to use for storage can be specified for each node
           - name: "/dev/disk/by-partuuid/ec18f5f2-676a-244b-9540-213b546d5cb3" # devices can be specified using full udev paths
+      - name: "kirk"
+        devices: # specific devices to use for storage can be specified for each node
+          - name: "/dev/disk/by-partuuid/4bc9ab61-e43a-fa43-8e24-357345e04b27" # devices can be specified using full udev paths
     # Whether to always schedule OSD pods on nodes declared explicitly in the "nodes" section, even if they are
     # temporarily not schedulable. If set to true, consider adding placement tolerations for unschedulable nodes.
     scheduleAlways: false

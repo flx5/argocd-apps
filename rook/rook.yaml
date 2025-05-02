@@ -17,8 +17,6 @@ spec:
   valuesContent: |
     csi:
       enableCSIEncryption: true
-      # Use fuse instead of kernel module until https://patchwork.kernel.org/project/ceph-devel/patch/20250117035044.23309-1-slava@dubeyko.com/#26217693 is fixed
-      forceCephFSKernelClient: false
 ---
 apiVersion: v1
 kind: ConfigMap

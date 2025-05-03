@@ -48,7 +48,7 @@ spec:
               value: ""
             - name: MULTI_INSTALL_SUFFIX
               value: ""
-          image: quay.io/kata-containers/kata-deploy:latest
+          image: quay.io/kata-containers/kata-deploy:3.16.0
           imagePullPolicy: Always
           lifecycle:
             preStop:

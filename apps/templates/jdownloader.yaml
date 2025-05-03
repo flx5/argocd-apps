@@ -25,15 +25,15 @@ kind: PersistentVolumeClaim
 metadata:
   finalizers:
     - kubernetes.io/pvc-protection
-  name: downloads
+  name: downloads-v2
   namespace: jdownloader
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 20Gi
-  storageClassName: rook-cephfs
+  storageClassName: rook-cephfs-insecure
   volumeMode: Filesystem
 ---
 apiVersion: argoproj.io/v1alpha1
@@ -64,7 +64,7 @@ spec:
         additionalVolumes:
           - name: downloads
             persistentVolumeClaim:
-              claimName: downloads
+              claimName: downloads-v2
         additionalVolumeMounts:
           - mountPath: /downloads
             name: downloads

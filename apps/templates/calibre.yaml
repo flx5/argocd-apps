@@ -41,6 +41,21 @@ kind: PersistentVolumeClaim
 metadata:
   finalizers:
     - kubernetes.io/pvc-protection
+  name: books
+  namespace: calibre
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: rook-ceph-block
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  finalizers:
+    - kubernetes.io/pvc-protection
   name: config
   namespace: calibre
 spec:
@@ -96,7 +111,7 @@ spec:
             existingClaim: config
           books:
             enabled: true
-            existingClaim: books-v2
+            existingClaim: books
   destination:
     server: "https://kubernetes.default.svc"
     namespace: calibre

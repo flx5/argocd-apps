@@ -5,66 +5,6 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 ---
-apiVersion: bitnami.com/v1alpha1
-kind: SealedSecret
-metadata:
-  creationTimestamp: null
-  name: storage-encryption-secret
-  namespace: gitea
-spec:
-  encryptedData:
-    encryptionPassphrase: AgBovczbolw+++Sc6JGLmoTXJhg/lnXknvgBzWhlVswExNCIqwA7lzPTw9bC8x0WhGOdir5/O0HkAHxT5LUINELhLRb9jvidGj8q7lnF4Jg9aEGr2zRN2lPcIz9G8mvA30qcxWyBj0UOn/QLANprmDI2bB7I7XDYWbGLIUnLiK08jLUhCUy7pcPRaxRLxIQSk5dSo3RRajT6mpGenuyZgRhCPpHbMKD9sZej79PnewNbG0W7jYMj5xviUOHcWWx1+w0G2urjtOiNsaFbQqTt0N1BLiMOCg00rU/P68XaoplNSfhUt433/9vBJwC3H8pJEidducCxoGEMZp3MPyRl+MLwWcX26kAXkucmoQFscYjV6wvthH8/nznyTmRgyJ460x+uFZ+92k+QorXAVXD3jc17PSLCdeZRrmCd6lXBn4hhEtfZbTRnRQJBHvkJmBUd3jJF6nu8vfjEux9L38rRMtYJqwJFOuwTtf+Zd9o/9AkJZUyQxWSTk2nGhBHQxCOK+XzBzYexeW7FL65vD7WdRLjZpBWRRk0A391+MP4g1wEBlidL8HETdjNE6YsnQUkEZXgYOA3CtrNh47kCgO0YO2O3FGZXcgXUow9HVxlXn7z91x3Pdsg6Fr8WCgr3Syp2fohRwUTMuWPwt2IZLkMCqq53HCERwS3Q+8+iEl7JtOjBD2++zAZIr3k+A+JvLSOYbVsyC3aNVr2GdiCM0YZPLgGBcI6SKuMh3nv6pbHysoa7y7N0jXxYthcoOlMZE8oW5gp9aw==
-  template:
-    metadata:
-      creationTimestamp: null
-      name: storage-encryption-secret
-      namespace: gitea
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  finalizers:
-    - kubernetes.io/pvc-protection
-  name: gitea-shared-storage-v2
-  namespace: gitea
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-  storageClassName: rook-ceph-block
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  finalizers:
-    - kubernetes.io/pvc-protection
-  name: gitea-db
-  namespace: gitea
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-  storageClassName: rook-ceph-block
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  finalizers:
-    - kubernetes.io/pvc-protection
-  name: gitea-redis-master-0
-  namespace: gitea
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 8Gi
-  storageClassName: rook-ceph-block
----
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -79,69 +19,9 @@ spec:
       selfHeal: true
       prune: true
   source:
-    chart: gitea
-    repoURL: https://dl.gitea.com/charts/
-    targetRevision: 11.0.1
-    # Kubeseal expects the chart under the name sealed-secrets-controller and in namespace kube-system
-    helm:
-      releaseName: gitea
-      valuesObject:
-        strategy:
-          # Just because currently we use ReadWriteOnce for data...
-          type: Recreate
-
-        redis-cluster:
-          enabled: false
-        redis:
-          enabled: true
-          master:
-            persistence:
-              existingClaim: gitea-redis-master-0
-
-        postgresql:
-          enabled: true
-          primary:
-            persistence:
-              existingClaim: gitea-db
-
-        postgresql-ha:
-          enabled: false
-
-        persistence:
-          enabled: true
-          create: false
-          claimName: gitea-shared-storage-v2
-
-        service:
-          ssh:
-            type: LoadBalancer
-            externalTrafficPolicy: Local
-            annotations:
-              external-dns.alpha.kubernetes.io/hostname: ssh.git.felix-prasse.de
-        gitea:
-          config:
-            database:
-              DB_TYPE: postgres
-            indexer:
-              ISSUE_INDEXER_TYPE: bleve
-              REPO_INDEXER_ENABLED: true
-            server:
-              SSH_DOMAIN: ssh.git.felix-prasse.de
-
-        ingress:
-          enabled: true
-          className: public-nginx
-          annotations:
-            cert-manager.io/cluster-issuer: letsencrypt-prod
-          hosts:
-            - host: "git.felix-prasse.de"
-              paths:
-                - path: /
-                  pathType: Prefix
-          tls:
-            - hosts:
-                - "git.felix-prasse.de"
-              secretName: gitea-cert # < cert-manager will store the created certificate in this secret.
+    path: gitea
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
   destination:
     server: "https://kubernetes.default.svc"
     namespace: gitea

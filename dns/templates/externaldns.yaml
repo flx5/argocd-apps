@@ -92,6 +92,8 @@ spec:
             - --source=ingress
             - --domain-filter=felix-prasse.de
             - --provider=cloudflare
+            - --ingress-class=public-nginx
+            - --source=ingress
             - --default-targets=dyndns.felix-prasse.de
           env:
             - name: CF_API_TOKEN

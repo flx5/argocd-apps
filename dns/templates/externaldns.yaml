@@ -35,17 +35,17 @@ subjects:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: external-dns
+  name: external-dns-internal
 spec:
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app: external-dns
+      app: external-dns-internal
   template:
     metadata:
       labels:
-        app: external-dns
+        app: external-dns-internal
     spec:
       serviceAccountName: external-dns
       containers:
@@ -65,5 +65,39 @@ spec:
               secretKeyRef:
                 key: etcd-root-password
                 name: etcd-password
+      securityContext:
+        fsGroup: 65534 # For ExternalDNS to be able to read Kubernetes token files
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: external-dns-public
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: external-dns-public
+  template:
+    metadata:
+      labels:
+        app: external-dns-public
+    spec:
+      serviceAccountName: external-dns
+      containers:
+        - name: external-dns
+          image: registry.k8s.io/external-dns/external-dns:v0.16.1
+          args:
+            - --source=service
+            - --source=ingress
+            - --domain-filter=felix-prasse.de
+            - --provider=cloudflare
+            - --default-targets=dyndns.felix-prasse.de
+          env:
+            - name: CF_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: cloudflare-api-key
+                  key: apiKey
       securityContext:
         fsGroup: 65534 # For ExternalDNS to be able to read Kubernetes token files

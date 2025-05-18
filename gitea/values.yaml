@@ -32,6 +32,8 @@ gitea:
       annotations:
         external-dns.alpha.kubernetes.io/hostname: ssh.git.felix-prasse.de
   gitea:
+    admin:
+      existingSecret: gitea-admin-secret
     config:
       database:
         DB_TYPE: postgres

@@ -5,51 +5,6 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 ---
-apiVersion: bitnami.com/v1alpha1
-kind: SealedSecret
-metadata:
-  creationTimestamp: null
-  name: storage-encryption-secret
-  namespace: calibre
-spec:
-  encryptedData:
-    encryptionPassphrase: AgBqa9HnlaBKDydVEQwdAPP7mK7QKDa/w6IoyQ9WB8ZG7IZEQ6WC/qwG0UpDS+eKkCMA9fuGWoMeN22J1mzMBoDwACCzGGAYgF24kn/QcD74DLj1mIhPPCqkzJOrlG81f1/Rhe4CY1QPp4nN+AGnkatP4mTCHKOd5S+1BTJ4LlJMiuKFbO5Xa73+1+/oL93JqDiHDd3h9kv6p7HxxC5ieLuJNHWh9QV812uIDu4m5rAsJXC4ghXe4TLSqqr1IJxWWq/f8cb24jd9P3JNf/zf4iNHnaBA2tdjqljb00nFt+o/NiKJ/34h1ULYiKv1hwbv0uB5VPU5vBeB0qp/rV1LgDGM50rVdS0lZYfLy4syVRzrC00S+KQTI7rAkco5LCFQVfoJ9GLY5Y88+eLqV0j1dUxYz01ROiL2m7ScQjI/G33IvrX8v/paiU36YxLo7jcVz4g3ljBFEnCNJ8wrab/1+qe00hl3Fmn4ent1aUbKyB9Bn0a5S7mU1ZWzVoDKpm9GywoJp+mx6Ynwcoa2GFBBipCUdfOS/xCrEgj2ff6TQ84QUEIEXJRR3y4EWKKl7Eqk5F6mSY+mV1CPbF7tTwzN9t2dqC7LDgROHC5vLZNpjWanwSlYg9LTI0wAGVMtl/ownIfhVS51fKLdJrixzmguiBR4BPqODKvnsKN08wIXRA+K9FH5nDq5BmPDsMMGQuEw2u05NOLlWCgBxkUg4QG2DPFqB+nnC7KtNZyFmMmD+JCJ40bF5wT7e+acNZkYJ/9QPAaNzA==
-  template:
-    metadata:
-      creationTimestamp: null
-      name: storage-encryption-secret
-      namespace: calibre
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  finalizers:
-    - kubernetes.io/pvc-protection
-  name: books
-  namespace: calibre
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-  storageClassName: rook-ceph-block
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  finalizers:
-    - kubernetes.io/pvc-protection
-  name: config
-  namespace: calibre
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
-  storageClassName: rook-ceph-block
----
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -64,38 +19,9 @@ spec:
       selfHeal: true
       prune: true
   source:
-    chart: calibre-web
-    #TODO This is deprecated
-    repoURL: https://k8s-home-lab.github.io/helm-charts/
-    targetRevision: 9.0.2
-    # Kubeseal expects the chart under the name sealed-secrets-controller and in namespace kube-system
-    helm:
-      releaseName: calibre
-      valuesObject:
-        image:
-          tag: 0.6.24
-        ingress:
-          main:
-            enabled: true
-            ingressClassName: public-nginx
-            annotations:
-              cert-manager.io/cluster-issuer: letsencrypt-prod
-            hosts:
-            - host: "books.felix-prasse.de"
-              paths:
-                  - path: /
-                    pathType: Prefix
-            tls:
-              - hosts:
-                  - "books.felix-prasse.de"
-                secretName: calibre-cert # < cert-manager will store the created certificate in this secret.
-        persistence:
-          config:
-            enabled: true
-            existingClaim: config
-          books:
-            enabled: true
-            existingClaim: books
+    path: calibre
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
   destination:
     server: "https://kubernetes.default.svc"
     namespace: calibre

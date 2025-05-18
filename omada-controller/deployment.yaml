@@ -76,7 +76,8 @@ spec:
             - name: omada-logs
               mountPath: /opt/tplink/EAPController/logs
             - name: omada-backups
-              mountPath: /backups/
+              # Determined by omada...
+              mountPath: /opt/tplink/EAPController/data/autobackup
       volumes:
         - name: omada-data
           persistentVolumeClaim:

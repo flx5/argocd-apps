@@ -31,6 +31,16 @@ gitea:
         host     all             all        127.0.0.1/32                 md5
         host     all             all        ::1/128                      md5
         local   replication             postgres                         md5
+      extraVolumeMounts:
+      - mountPath: /backup
+        name: backup-volume
+      extraVolumes:
+        - name: backup-volume
+          emptyDir:
+            sizeLimit: 500Mi
+            # Since this database is very small we can live with this being in memory.
+            medium: Memory
+
 
       persistence:
         existingClaim: gitea-db

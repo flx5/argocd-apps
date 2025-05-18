@@ -43,6 +43,14 @@ gitea:
   gitea:
     admin:
       existingSecret: gitea-admin-secret
+    additionalConfigFromEnvs:
+      - name: GITEA__DATABASE__HOST
+        value: gitea-postgresql
+      - name: GITEA__DATABASE__PASSWD
+        valueFrom:
+          secretKeyRef:
+            name: postgres-users
+            key: password
     config:
       database:
         DB_TYPE: postgres

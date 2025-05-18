@@ -1,0 +1,38 @@
+velero:
+  deployNodeAgent: true
+  # TODO Configure kopia caching
+  # https://github.com/vmware-tanzu/velero/issues/7725
+  # https://kopia.io/docs/advanced/caching/
+  nodeAgent:
+    # This should be copied to the datamover pod
+    priorityClassName: "backup"
+    # See https://init6.sh/posts/improving_cluster_backups_on_ceph_backed_clusters/
+    extraArgs:
+      [ "--node-agent-configmap=node-agent-config" ]
+  credentials:
+    existingSecret: credentials-velero
+  configuration:
+    uploaderType: kopia
+    # TODO Set the annotation on individual backups instead https://github.com/vmware-tanzu/velero/issues/5251#issuecomment-1229113528
+    fsBackupTimeout: "16h"
+    features: EnableCSI
+    defaultSnapshotMoveData: true
+    defaultBackupStorageLocation: minio
+    #defaultVolumeSnapshotLocations: minio
+    backupStorageLocation:
+      - name: minio
+        provider: aws
+        bucket: velero
+        config:
+          region: minio
+          s3ForcePathStyle: true
+          s3Url: https://s3.nue.felix-prasse.de
+    volumeSnapshotLocation:
+      - name: csi
+        provider: csi
+  initContainers:
+    - name: velero-plugin-for-aws
+      image: velero/velero-plugin-for-aws:v1.12.0
+      volumeMounts:
+        - mountPath: /target
+          name: plugins

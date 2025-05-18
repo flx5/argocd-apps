@@ -1,0 +1,50 @@
+kind: ConfigMap
+metadata:
+  name: node-agent-config
+  namespace: velero
+apiVersion: v1
+data:
+  packuppvc.json: |
+    {
+      "backupPVC": {
+        "rook-ceph-block": {
+          "storageClass": "rook-ceph-block",
+          "readOnly": true,
+          "spcNoRelabeling": true
+        },
+        "rook-cephfs": {
+          "storageClass": "rook-cephfs",
+          "readOnly": true,
+          "spcNoRelabeling": true
+        },
+        "rook-cephfs-insecure": {
+          "storageClass": "rook-cephfs-insecure",
+          "readOnly": true,
+          "spcNoRelabeling": true
+        }
+      },
+      "podResources": {
+        "cpuRequest": "10m",
+        "cpuLimit": "1000m",
+        "memoryRequest": "512Mi",
+        "memoryLimit": "4Gi"
+      },
+      "loadConcurrency": {
+        "globalConfig": 1
+      },
+      "loadAffinity": [
+        {
+          "nodeSelector": {
+            "matchExpressions": [
+              {
+                "key": "kubernetes.io/hostname",
+                "values": [
+                  "nas"
+                ],
+                "operator": "In"
+              }
+            ]
+          }
+        }
+      ]
+    }

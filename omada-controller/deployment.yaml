@@ -24,7 +24,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: omada-controller
-          image: mbentley/omada-controller:5.15
+          image: mbentley/omada-controller:5.15.20.20
           imagePullPolicy: Always
           securityContext:
             allowPrivilegeEscalation: false
@@ -75,6 +75,8 @@ spec:
               mountPath: /opt/tplink/EAPController/data
             - name: omada-logs
               mountPath: /opt/tplink/EAPController/logs
+            - name: omada-backups
+              mountPath: /backups/
       volumes:
         - name: omada-data
           persistentVolumeClaim:
@@ -82,4 +84,7 @@ spec:
         - name: omada-logs
           persistentVolumeClaim:
             claimName: omada-logs-pvc-v2
+        - name: omada-backups
+          persistentVolumeClaim:
+            claimName: omada-backup-pvc
       restartPolicy: Always

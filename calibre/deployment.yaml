@@ -46,12 +46,11 @@ spec:
             - python3
             - /app/calibre-web/cps.py
           env:
-            - name: PGID
-              value: "568"
-            - name: PUID
-              value: "568"
             - name: TZ
               value: UTC
+            # Need to set this manually because we skipped supervisor script...
+            - name: CALIBRE_DBPATH
+              value: /config
           ports:
             - name: http
               containerPort: 8083

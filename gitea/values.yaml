@@ -40,8 +40,10 @@ gitea:
             sizeLimit: 500Mi
             # Since this database is very small we can live with this being in memory.
             medium: Memory
-
-
+      podAnnotations:
+        pre.hook.backup.velero.io/command: '["/bin/sh", "-c", "PGPASSWORD=$POSTGRES_POSTGRES_PASSWORD pg_basebackup -D /backup/current -X fetch -U postgres --no-password"]'
+        pre.hook.backup.velero.io/timeout: 120s
+        post.hook.backup.velero.io/command: 'rm -R /backup/current'
       persistence:
         existingClaim: gitea-db
 

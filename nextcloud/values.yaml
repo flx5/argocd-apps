@@ -170,7 +170,7 @@ nextcloud:
         - name: backup-volume
           # Must use a scratch pvc because velero wouldn't backup an emptydir...
           persistentVolumeClaim:
-            claimName: gitea-db-dump
+            claimName: nextcloud-db-dump
       podAnnotations:
         pre.hook.backup.velero.io/command: '["/bin/sh", "-c", "mariadb-backup --backup --target-dir=/backup/current/ --user=root --password=$MARIADB_ROOT_PASSWORD"]'
         pre.hook.backup.velero.io/timeout: 120s

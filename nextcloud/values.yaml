@@ -163,11 +163,18 @@ nextcloud:
     auth:
       existingSecret: mariadb-secret
     primary:
+      extraVolumeMounts:
+        - mountPath: /backup
+          name: backup-volume
+      extraVolumes:
+        - name: backup-volume
+          # Must use a scratch pvc because velero wouldn't backup an emptydir...
+          persistentVolumeClaim:
+            claimName: gitea-db-dump
       podAnnotations:
-      # TODO ADd this to db container as a hook to wait for maintenance mode to be in effect:
-        # TODO Use internal service address
-      # TODO For obvious reasons mariadb does neither have curl nor jq...
-       # pre.hook.backup.velero.io/command: '["bash", "-c", "while [ $(curl -s http://nextcloud:8080/status.php | jq .maintenance) ==  'false' ]; do sleep 1; done"]'
+        pre.hook.backup.velero.io/command: '["/bin/sh", "-c", "mariadb-backup --backup --target-dir=/backup/current/ --user=root --password=$MARIADB_ROOT_PASSWORD"]'
+        pre.hook.backup.velero.io/timeout: 120s
+        post.hook.backup.velero.io/command: '["rm", "-R", "/backup/current"]'
       persistence:
         enabled: true
         existingClaim: nextcloud-db

@@ -17,8 +17,6 @@ spec:
       labels:
         app.kubernetes.io/name: calibre-web
       annotations:
-        # find /config/ /books/ -name '*.db' -exec  sqlite3 '{}' '.backup {}.bak' \;
-
         pre.hook.backup.velero.io/command: '["bash", "-o", "errexit", "-c", "for f in /config/app.db /config/gdrive.db /books/metadata.db;  do  sqlite3 ''$f'' ''.backup $f.bak''; done"]'
         pre.hook.backup.velero.io/timeout: 120s
         post.hook.backup.velero.io/command: '["bash", "-c", "for f in /config/app.db.bak /config/gdrive.db.bak /books/metadata.db.bak;  do  rm ''$f'' ; done"]'

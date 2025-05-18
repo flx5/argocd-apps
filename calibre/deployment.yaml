@@ -45,6 +45,8 @@ spec:
           command:
             - python3
             - /app/calibre-web/cps.py
+            - -o
+            - /dev/stdout
           env:
             - name: TZ
               value: UTC

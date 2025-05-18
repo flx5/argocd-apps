@@ -11,8 +11,17 @@ gitea:
       persistence:
         existingClaim: gitea-redis-master-0
 
+  # TODO
+  # https://gitea.com/gitea/helm-gitea#external-database
+  # Any external database listed in https://docs.gitea.com/installation/database-prep can be used instead of the built-in PostgreSQL.
+  # In fact, it is highly recommended to use an external database to ensure a stable Gitea installation longterm.
   postgresql:
     enabled: true
+    auth:
+      enablePostgresUser: true
+      username: gitea
+      database: gitea
+      existingSecret: postgres-users
     primary:
       persistence:
         existingClaim: gitea-db

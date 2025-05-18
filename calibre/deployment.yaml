@@ -31,7 +31,7 @@ spec:
         fsGroup: 568
       containers:
         - name: calibre-web
-          image: "ghcr.io/linuxserver/calibre-web:0.6.24"
+          image: "ghcr.io/linuxserver/calibre-web:2021.12.16"
           imagePullPolicy: IfNotPresent
           securityContext:
             capabilities:

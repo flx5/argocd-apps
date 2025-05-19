@@ -30,6 +30,8 @@ spec:
       - 'gitea'
       - 'nextcloud'
       - 'omada-controller'
+      - 'media'
+      - 'internal'
     snapshotVolumes: true
     # Where to store the tarball and logs.
     #storageLocation: csi

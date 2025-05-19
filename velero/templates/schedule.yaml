@@ -26,7 +26,10 @@ spec:
     # Array of namespaces to include in the scheduled backup. If unspecified, all namespaces are included.
     # Optional.
     includedNamespaces:
+      - 'calibre'
       - 'gitea'
+      - 'nextcloud'
+      - 'omada-controller'
     snapshotVolumes: true
     # Where to store the tarball and logs.
     #storageLocation: csi

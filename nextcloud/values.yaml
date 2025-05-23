@@ -80,9 +80,8 @@ nextcloud:
     securityContext:
       allowPrivilegeEscalation: false
       capabilities:
-        add:
-          # Workaround required for crond until https://github.com/nextcloud/helm/pull/703 is fixed.
-          - SETGID
+        drop:
+          - ALL
     extraEnv:
       - name: PHP_MEMORY_LIMIT
         value: 1G
@@ -156,6 +155,14 @@ nextcloud:
       fsGroupChangePolicy: "OnRootMismatch"
   cronjob:
     enabled: true
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        add:
+          # Workaround required for crond until https://github.com/nextcloud/helm/pull/703 is fixed.
+          - SETGID
+        drop:
+          - ALL
   persistence:
     enabled: true
     existingClaim: nextcloud-nextcloud-v2

@@ -126,6 +126,16 @@ nextcloud:
         $CONFIG = array (
           "log_type" => "errorlog",
         );
+      trash.config.php: |
+        <?php
+        $CONFIG = array (
+          "trashbin_retention_obligation" => "30, 60",
+        );
+      versions.config.php: |
+        <?php
+        $CONFIG = array (
+          "versions_retention_obligation" => "30, 180",
+        );
   internalDatabase:
     enabled: false
   redis:

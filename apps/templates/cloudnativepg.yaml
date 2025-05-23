@@ -25,7 +25,6 @@ spec:
     chart: cloudnative-pg
     repoURL: https://cloudnative-pg.github.io/charts
     targetRevision: 0.23.2
-    # Kubeseal expects the chart under the name sealed-secrets-controller and in namespace kube-system
     helm:
       valuesObject: {}
   destination:

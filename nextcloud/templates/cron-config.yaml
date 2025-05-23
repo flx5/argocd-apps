@@ -10,5 +10,5 @@ metadata:
 data:
   # Overwrite the default crontab so that the image previews are generated with the Preview Generator  plugin.
   crontab: |
-    */5 * * * * php -f /var/www/html/cron.php
+    * * * * * php -f /var/www/html/cron.php
     5   4 * * * php -f /var/www/html/occ preview:pre-generate

@@ -45,15 +45,33 @@ parameters:
   #pool: local-kirk
   topologyConstrainedPools: |
     [
-     {"poolName":"local-kirk",
-      "domainSegments":[
-        {"domainLabel":"hostname","value":"kirk"}]},
-     {"poolName":"local-picard",
-      "domainSegments":[
-        {"domainLabel":"hostname","value":"picard"}]},
-     {"poolName":"local-janeway",
-      "domainSegments":[
-        {"domainLabel":"hostname","value":"janeway"}]},
+      {
+        "poolName": "local-kirk",
+        "domainSegments": [
+          {
+            "domainLabel": "hostname",
+            "value": "kirk"
+          }
+        ]
+      },
+      {
+        "poolName": "local-picard",
+        "domainSegments": [
+          {
+            "domainLabel": "hostname",
+            "value": "picard"
+          }
+        ]
+      },
+      {
+        "poolName": "local-janeway",
+        "domainSegments": [
+          {
+            "domainLabel": "hostname",
+            "value": "janeway"
+          }
+        ]
+      }
     ]
 
   encrypted: "true"

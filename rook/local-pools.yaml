@@ -35,7 +35,7 @@ spec:
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: rook-local-kirk
+  name: rook-local
 # Change "rook-ceph" provisioner prefix to match the operator namespace if needed
 provisioner: rook-ceph.rbd.csi.ceph.com
 parameters:
@@ -108,6 +108,7 @@ reclaimPolicy: Delete
 # Optional, if you want to add dynamic resize for PVC.
 # For now only ext3, ext4, xfs resize support provided, like in Kubernetes itself.
 allowVolumeExpansion: true
+volumeBindingMode: WaitForFirstConsumer
 mountOptions:
   - discard
   # Need to add noload to be able to mount rwo readonly. See also https://init6.sh/posts/improving_cluster_backups_on_ceph_backed_clusters/

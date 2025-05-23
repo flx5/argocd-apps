@@ -161,8 +161,6 @@ nextcloud:
         add:
           # Workaround required for crond until https://github.com/nextcloud/helm/pull/703 is fixed.
           - SETGID
-        drop:
-          - ALL
   persistence:
     enabled: true
     existingClaim: nextcloud-nextcloud-v2

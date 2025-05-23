@@ -80,8 +80,6 @@ nextcloud:
     securityContext:
       allowPrivilegeEscalation: false
       capabilities:
-        drop:
-          - ALL
         add:
           # Workaround required for crond until https://github.com/nextcloud/helm/pull/703 is fixed.
           - SETGID

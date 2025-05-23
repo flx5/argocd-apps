@@ -33,6 +33,7 @@ nextcloud:
   # TODO Run this as init container: NEXTCLOUD_UPDATE=1 /entrypoint.sh /bin/sh -c 'exit 0'
   # See also: https://github.com/nextcloud/helm/pull/344...
   # TODO Maybe add some argo hooks to backup / snapshot /  migrate the database?
+  # https://github.com/vmware-tanzu/velero/discussions/6967
   # TODO https://www.allerstorfer.at/nextcloud-install-preview-generator/
 
   # TODO Run occ maintenance:repair --include-expensive after upgrade:

@@ -84,7 +84,7 @@ nextcloud:
           - ALL
         add:
           # Workaround required for crond until https://github.com/nextcloud/helm/pull/703 is fixed.
-          - CAP_SETGID
+          - SETGID
     extraEnv:
       - name: PHP_MEMORY_LIMIT
         value: 1G

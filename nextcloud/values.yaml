@@ -183,6 +183,10 @@ nextcloud:
     auth:
       existingSecret: mariadb-secret
     primary:
+      readinessProbe:
+        initialDelaySeconds: 120
+      livenessProbe:
+        initialDelaySeconds: 120
       extraVolumeMounts:
         - mountPath: /backup
           name: backup-volume

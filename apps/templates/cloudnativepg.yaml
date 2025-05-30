@@ -6,6 +6,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
 ---
 # TODO Need to figure this out first: https://cloudnative-pg.io/documentation/1.25/storage/#block-storage-considerations-cephlonghorn
+# TODO Use storageclass rook-local with replication on application level
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:

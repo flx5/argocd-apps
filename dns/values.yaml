@@ -59,7 +59,7 @@ coredns:
 etcd:
   persistence:
     enabled: true
-    storageClass: rook-ceph-block
+    storageClass: rook-local
   # This job fails if the networking-etcd-jwt-token secret is not there yet?!
   preUpgradeJob:
     enabled: true
@@ -75,4 +75,4 @@ etcd:
 
   service:
     clusterIP: 10.43.142.0
-
+  podAntiAffinityPreset: hard

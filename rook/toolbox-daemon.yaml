@@ -126,7 +126,7 @@ spec:
             - /rook
           command:
             - cp
-          image: docker.io/rook/ceph:v1.17.1
+          image: docker.io/rook/ceph:v1.17.5
           imagePullPolicy: IfNotPresent
           name: copy-bins
           resources: {}

@@ -23,13 +23,13 @@ spec:
 apiVersion: ceph.rook.io/v1
 kind: CephBlockPool
 metadata:
-  name: local-janeway
+  name: local-sisko
   namespace: rook-ceph
 spec:
   failureDomain: osd
   replicated:
     size: 1
-  crushRoot: janeway
+  crushRoot: sisko
 
 ---
 apiVersion: storage.k8s.io/v1
@@ -63,11 +63,11 @@ parameters:
         ]
       },
       {
-        "poolName": "local-janeway",
+        "poolName": "local-sisko",
         "domainSegments": [
           {
             "domainLabel": "hostname",
-            "value": "janeway"
+            "value": "sisko"
           }
         ]
       }

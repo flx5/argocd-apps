@@ -65,6 +65,13 @@ etcd:
     enabled: true
 
   replicaCount: 3
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+    limits:
+      cpu: 100m
+      memory: 250Mi
 
   auth:
     rbac:

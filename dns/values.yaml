@@ -58,13 +58,13 @@ coredns:
             credentials {$ETCD_USERNAME} {$ETCD_PASSWORD}
 etcd:
   persistence:
-    enabled: true
+    enabled: false
     storageClass: rook-local
   # This job fails if the networking-etcd-jwt-token secret is not there yet?!
   preUpgradeJob:
-    enabled: true
+    enabled: false
 
-  replicaCount: 3
+  replicaCount: 1
   resources:
     requests:
       cpu: 10m

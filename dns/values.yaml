@@ -62,7 +62,7 @@ etcd:
     storageClass: rook-local
   # This job fails if the networking-etcd-jwt-token secret is not there yet?!
   preUpgradeJob:
-    enabled: true
+    enabled: false
 
   replicaCount: 3
 

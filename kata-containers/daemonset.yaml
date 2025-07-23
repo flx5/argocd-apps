@@ -24,10 +24,12 @@ spec:
                   fieldPath: spec.nodeName
             - name: DEBUG
               value: "false"
+#            - name: SHIMS
+#              value: clh cloud-hypervisor dragonball fc qemu qemu-coco-dev qemu-runtime-rs
+#                qemu-se-runtime-rs qemu-sev qemu-snp qemu-tdx stratovirt qemu-nvidia-gpu
+#                qemu-nvidia-gpu-snp qemu-nvidia-gpu-tdx
             - name: SHIMS
-              value: clh cloud-hypervisor dragonball fc qemu qemu-coco-dev qemu-runtime-rs
-                qemu-se-runtime-rs qemu-sev qemu-snp qemu-tdx stratovirt qemu-nvidia-gpu
-                qemu-nvidia-gpu-snp qemu-nvidia-gpu-tdx
+              value: qemu
             - name: DEFAULT_SHIM
               value: qemu
             - name: CREATE_RUNTIMECLASSES
@@ -49,7 +51,7 @@ spec:
             - name: MULTI_INSTALL_SUFFIX
               value: ""
           image: quay.io/kata-containers/kata-deploy:3.19.1
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           lifecycle:
             preStop:
               exec:

@@ -24,5 +24,5 @@ appVersion: "1.0"
 
 dependencies:
   - name: gitea
-    version: 11.0.1
+    version: 12.1.2
     repository: https://dl.gitea.com/charts/

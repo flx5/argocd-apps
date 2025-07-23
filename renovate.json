@@ -12,5 +12,12 @@
     "fileMatch": [
       "apps/templates/.+\\.yaml$"
     ]
-  }
+  },
+  "packageRules": [
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["clamav/clamav"],
+      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?_(?<compatibility>.*)?$"
+    }
+  ]
 }

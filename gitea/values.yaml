@@ -3,9 +3,9 @@ gitea:
     # Just because currently we use ReadWriteOnce for data...
     type: Recreate
 
-  redis-cluster:
+  valkey-cluster:
     enabled: false
-  redis:
+  valkey:
     enabled: true
     master:
       persistence:

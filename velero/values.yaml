@@ -30,6 +30,9 @@ velero:
       - name: minio-offsite
         provider: aws
         bucket: velero
+        credential:
+          name: minio-offsite-credentials
+          key: cloud
         config:
           region: minio
           s3ForcePathStyle: true

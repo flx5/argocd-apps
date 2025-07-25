@@ -34,7 +34,7 @@ velero:
           name: minio-offsite-credentials
           key: cloud
         config:
-          region: minio
+          region: schwaben-1
           s3ForcePathStyle: true
           s3Url: http://192.168.2.134:9091
     volumeSnapshotLocation:

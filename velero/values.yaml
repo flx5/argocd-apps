@@ -27,6 +27,13 @@ velero:
           region: minio
           s3ForcePathStyle: true
           s3Url: https://s3.nue.felix-prasse.de
+      - name: minio-offsite
+        provider: aws
+        bucket: velero
+        config:
+          region: minio
+          s3ForcePathStyle: true
+          s3Url: http://192.168.2.134:9091
     volumeSnapshotLocation:
       - name: csi
         provider: csi

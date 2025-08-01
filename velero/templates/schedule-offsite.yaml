@@ -13,7 +13,7 @@ spec:
   # When true, the controller will skip the immediate backup, set LastSkipped timestamp, and reset this to false.
   skipImmediately: false
   # Schedule is a Cron expression defining when to run the Backup
-  schedule: 0 1 * * *
+  schedule: 0 3 * * *
   # Specifies whether to use OwnerReferences on backups created by this Schedule.
   # Notice: if set to true, when schedule is deleted, backups will be deleted too. Optional.
   useOwnerReferencesInBackup: false
@@ -37,7 +37,7 @@ spec:
       - 'internal'
     snapshotVolumes: true
     # Where to store the tarball and logs.
-    #storageLocation: csi
+    storageLocation: minio-offsite
     # The list of locations in which to store volume snapshots created for backups under this schedule.
     #volumeSnapshotLocations:
     #  - csi

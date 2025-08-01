@@ -283,10 +283,10 @@ spec:
     nodes:
       - name: "picard"
         devices: # specific devices to use for storage can be specified for each node
-          - name: "/dev/disk/by-partuuid/5e42828c-e8f0-cd4f-adec-1a43bac7811e" # devices can be specified using full udev paths
-      #- name: "sisko"
-      #  devices: # specific devices to use for storage can be specified for each node
-      #    - name: "/dev/disk/by-partuuid/ec18f5f2-676a-244b-9540-213b546d5cb3" # devices can be specified using full udev paths
+          - name: "/dev/disk/by-partuuid/8dd89326-9f81-1c42-826e-4d0a247c6c82" # devices can be specified using full udev paths
+      - name: "sisko"
+        devices: # specific devices to use for storage can be specified for each node
+          - name: "/dev/disk/by-partuuid/ec18f5f2-676a-244b-9540-213b546d5cb3" # devices can be specified using full udev paths
       - name: "kirk"
         devices: # specific devices to use for storage can be specified for each node
           - name: "/dev/disk/by-partuuid/4bc9ab61-e43a-fa43-8e24-357345e04b27" # devices can be specified using full udev paths

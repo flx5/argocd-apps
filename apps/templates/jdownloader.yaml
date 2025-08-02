@@ -52,7 +52,7 @@ spec:
   source:
     chart: jdownloader2
     repoURL: https://pmoscode-helm.github.io/jdownloader2/
-    targetRevision: 1.4.0
+    targetRevision: 1.4.1
     # Kubeseal expects the chart under the name sealed-secrets-controller and in namespace kube-system
     helm:
       releaseName: jdownloader

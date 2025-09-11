@@ -27,5 +27,5 @@ dependencies:
     version: 1.41.0
     repository: https://coredns.github.io/helm
   - name: etcd
-    version: 11.3.0
+    version: 11.3.6
     repository: https://charts.bitnami.com/bitnami

@@ -14,7 +14,7 @@ spec:
   source:
     chart: sealed-secrets
     repoURL: https://bitnami-labs.github.io/sealed-secrets
-    targetRevision: 2.17.3
+    targetRevision: 2.17.7
     # Kubeseal expects the chart under the name sealed-secrets-controller and in namespace kube-system
     helm:
       releaseName: sealed-secrets

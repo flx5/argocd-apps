@@ -48,11 +48,12 @@ coredns:
         - name: loop
         - name: reload
         - name: loadbalance
-        # Limit to local hostnames and don't fall through. This should prevent grabbing public dns entries.
+        # Limit to local hostnames and don't fall through for arpa domains. This should prevent grabbing public dns entries.
+        # But allow fallthrough for public domains (so that *.mon. domains can be reached)
         - name: etcd
           parameters: home.arpa felix-prasse.de
           configBlock: |-
-            stubzones
+            fallthrough felix-prasse.de
             path /skydns
             endpoint http://10.43.142.0:2379
             credentials {$ETCD_USERNAME} {$ETCD_PASSWORD}

@@ -1,7 +1,7 @@
 apiVersion: velero.io/v1
 kind: Schedule
 metadata:
-  name: backup
+  name: backup-offsite
   # Schedule namespace. Must be the namespace of the Velero server. Required.
   namespace: velero
 # Parameters about the scheduled backup. Required.

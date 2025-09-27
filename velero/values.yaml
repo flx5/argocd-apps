@@ -36,7 +36,7 @@ velero:
         config:
           region: schwaben-1
           s3ForcePathStyle: true
-          s3Url: http://192.168.2.134:9091
+          s3Url: https://s3.mon.felix-prasse.de:9091
     volumeSnapshotLocation:
       - name: csi
         provider: csi

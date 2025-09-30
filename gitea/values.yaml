@@ -40,7 +40,7 @@ gitea:
           persistentVolumeClaim:
             claimName: gitea-db-dump
       podAnnotations:
-        pre.hook.backup.velero.io/command: '["/bin/sh", "-c", "PGPASSWORD=$POSTGRES_POSTGRES_PASSWORD pg_basebackup -D /backup/current -X fetch -U postgres --no-password"]'
+        pre.hook.backup.velero.io/command: '["/bin/sh", "-c", "PGPASSWORD=$(cat $POSTGRES_POSTGRES_PASSWORD_FILE) pg_basebackup -D /backup/current -X fetch -U postgres --no-password"]'
         pre.hook.backup.velero.io/timeout: 120s
         post.hook.backup.velero.io/command: '["rm", "-R", "/backup/current"]'
       persistence:

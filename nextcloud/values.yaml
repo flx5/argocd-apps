@@ -102,6 +102,7 @@ nextcloud:
     defaultConfigs:
       imaginary.config.php: true
     configs:
+      # TODO config.php is currently writeable. Is this supposed to be this way?
       proxy.config.php: |-
         <?php
         $CONFIG = array (

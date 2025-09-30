@@ -62,7 +62,8 @@ coredns:
           parameters: . /etc/resolv.conf
 etcd:
   # TODO Migrate to https://etcd.io/docs/v3.5/op-guide/kubernetes/
-  image: docker.io/bitnamilegacy/etcd:3.6.4-debian-12-r3
+  image:
+    repository: docker.io/bitnamilegacy
   persistence:
     enabled: false
     storageClass: rook-local

@@ -63,7 +63,7 @@ coredns:
 etcd:
   # TODO Migrate to https://etcd.io/docs/v3.5/op-guide/kubernetes/
   image:
-    repository: docker.io/bitnamilegacy
+    repository: bitnamilegacy/etcd
   persistence:
     enabled: false
     storageClass: rook-local

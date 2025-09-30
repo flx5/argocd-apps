@@ -197,7 +197,7 @@ nextcloud:
           persistentVolumeClaim:
             claimName: nextcloud-db-dump
       podAnnotations:
-        pre.hook.backup.velero.io/command: '["/bin/sh", "-c", "mariadb-backup --backup --target-dir=/backup/current/ --user=root --password=$MARIADB_ROOT_PASSWORD"]'
+        pre.hook.backup.velero.io/command: '["/bin/sh", "-c", "mariadb-backup --backup --target-dir=/backup/current/ --user=root --password=$(cat $MARIADB_ROOT_PASSWORD_FILE)"]'
         pre.hook.backup.velero.io/timeout: 10m
         post.hook.backup.velero.io/command: '["rm", "-R", "/backup/current"]'
       persistence:

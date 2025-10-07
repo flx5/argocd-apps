@@ -181,6 +181,12 @@ nextcloud:
 
   mariadb:
     enabled: true
+    global:
+      security:
+        allowInsecureImages: true
+    # TODO FU bitnami.... Migrate to postgres operator...
+    image:
+      repository: bitnamilegacy/mariadb
     auth:
       existingSecret: mariadb-secret
     primary:

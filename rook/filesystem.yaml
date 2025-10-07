@@ -16,20 +16,14 @@ spec:
     activeCount: 1
     activeStandby: true
 ---
+# TODO Delete
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  # TODO Don't use until https://patchwork.kernel.org/project/ceph-devel/patch/20250117035044.23309-1-slava@dubeyko.com/#26217693 is fixed
-  name: rook-cephfs
+  name: rook-cephfs-insecure
 # Change "rook-ceph" provisioner prefix to match the operator namespace if needed
 provisioner: rook-ceph.cephfs.csi.ceph.com
 parameters:
-  # TODO Encryption needs this command to be run in the toolbox:
-  # ceph auth caps client.csi-cephfs-node mds 'allow rw' mgr 'allow rw' mon 'allow r' osd 'allow rwx tag cephfs *=*'
-  # See https://github.com/rook/rook/issues/15283
-  # After doing that it seems necessary to delete the csi-cephfsplugin- pods
-  encrypted: "true"
-  encryptionKMSID: "user-secret-metadata"
   # clusterID is the namespace where the rook cluster is running
   # If you change this namespace, also change the namespace below where the secret namespaces are defined
   clusterID: rook-ceph
@@ -52,12 +46,11 @@ parameters:
 
 reclaimPolicy: Delete
 allowVolumeExpansion: true
-
 ---
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: rook-cephfs-insecure
+  name: rook-cephfs
 # Change "rook-ceph" provisioner prefix to match the operator namespace if needed
 provisioner: rook-ceph.cephfs.csi.ceph.com
 parameters:

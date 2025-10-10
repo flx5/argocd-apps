@@ -45,6 +45,8 @@ nextcloud:
   # TODO Run occ db:add-missing-indices after upgrade
   # Maybe just use hooks like here: https://github.com/nextcloud/helm/pull/673#issuecomment-2763302385
 
+# TODO Delete data/updater-ocjy6onqgvnt/backups/
+
   livenessProbe:
     # TODO Disabled because at startup nextcloud copies its files to the pv. This would kill the container too early...
     enabled: false
@@ -168,10 +170,10 @@ nextcloud:
           - SETGID
   persistence:
     enabled: true
-    existingClaim: nextcloud-nextcloud-v2
+    existingClaim: nextcloud-app
     nextcloudData:
       enabled: true
-      existingClaim: nextcloud-data-v2
+      existingClaim: nextcloud-data
   externalDatabase:
     existingSecret:
       enabled: true

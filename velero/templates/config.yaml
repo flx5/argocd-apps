@@ -16,11 +16,6 @@ data:
           "storageClass": "rook-cephfs",
           "readOnly": true,
           "spcNoRelabeling": true
-        },
-        "rook-cephfs-insecure": {
-          "storageClass": "rook-cephfs-insecure",
-          "readOnly": true,
-          "spcNoRelabeling": true
         }
       },
       "podResources": {

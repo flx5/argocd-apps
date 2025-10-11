@@ -33,7 +33,7 @@ spec:
   resources:
     requests:
       storage: 20Gi
-  storageClassName: rook-cephfs-insecure
+  storageClassName: rook-cephfs
   volumeMode: Filesystem
 ---
 apiVersion: argoproj.io/v1alpha1

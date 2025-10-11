@@ -8,7 +8,12 @@ spec:
   isCA: true
   commonName: tenant-1-ca
   secretName: tenant-1-ca-tls
-  duration: 70128h # 8y
+  # TODO
+  # This is an issue: https://cert-manager.io/docs/configuration/ca/#important-information
+  # The certificate can outlive the root-ca. And cert-manager doesn't check that when issuing the cert.
+  # Use very short livetimes here to mitigate for a while...
+  duration: 72h
+  renewBefore: 24h
   privateKey:
     algorithm: ECDSA
     size: 256
@@ -33,6 +38,12 @@ metadata:
   name: tenant-certmanager-cert
   namespace: minio-tenant
 spec:
+  # TODO
+  # This is an issue: https://cert-manager.io/docs/configuration/ca/#important-information
+  # The certificate can outlive the root-ca. And cert-manager doesn't check that when issuing the cert.
+  # Use very short livetimes here to mitigate for a while...
+  duration: 48h
+  renewBefore: 24h
   dnsNames:
     - "minio.minio-tenant"
     - "minio.minio-tenant.svc"

@@ -1,0 +1,34 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres-cluster
+spec:
+  instances: 3
+  affinity:
+    nodeSelector:
+      node-role.kubernetes.io/postgres: ""
+  bootstrap:
+    initdb:
+      database: nextcloud
+      owner: nextcloud
+      secret:
+        name: nextcloud-postgres
+  storage:
+    storageClass: local-path
+    size: 1Gi
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: nextcloud-postgres
+  namespace: nextcloud
+spec:
+  encryptedData:
+    password: AgBLiVKG11cDpWUkdnkA9+4g1aHvRsKO+Qpss6vgFJ4iEMUC9YifCa4JCeq3YAK3mK+D1TPpxYXrHAgegfzTqpKahEy8t0HNZdm4uX/o+pfXk7UHA1zycF43Ie9gOYw79I/6RUNaDv6290RTil21iak1OtGDD1RFJPjjiPRmbxkncE6BxIG4cqAgqLpBJqSDeA5VXKLHndfQsRpO7Z18tZ3SKc3DF3TpAcm6QCaBLet4LIHi+aKITwF8cIQYmpXOE7ayGL/YAYtbHQ3TJlNKqwnSbDTbVVJNTtk1LM9/B4XOyMMV7oArqniYUmjG4bylqs9sRZ53sq3WBdWdRxSdvsMQ0sA+iOsHw0J9CnIcDBKC7tjRGIUnO6STGLdqiSwZNWwOwqU962zE/fbJ2v5+n9Cbi+d1O7FlCMWcIFwEU6hbsW1y1NFUdQXWUQwoquBaGP1LAastvxNNoQNfW/ERphNYF+gK4WhrqORt3rMQRfY1jxDDIjqpUdIhimk4KYpEIty4absA7GbN1/evkmdNqG0G/ki7x+0PncUsip7Z+494DE7dYBNQr1CWwfaWoKaHkE01susrYmlkR6sf7t1YPODItt87NTfP+MW2lljb0SfKHDsXq87qPpAAqbqFvRwTsWn240zMcy88+WXLuq0Cl0gmkLvCoObS/xM1deaSNGG8kFWYuvKWPIuGRogqlk4pnYMsG1s/qJ7aOGKTQjWM0EEwcVyw3g==
+    username: AgCVOaKLEcCh3mqEXSPO6G/Qdsi7ZHew7jwv/XfR3gnEitrDR6vRe59SIyBeE/5AggMphJHwxZ3TsLPUivTaLvc9m40jL/azD6R2nEmgW+TKGGaoRgUL6no54z7/QW4iJUsoywGcdV2bPUfrBe4uhcR/90i5kIQ4VKPGbxlCHJ90rGYl/B7HZiHrSmgmAfH9S1YkWQ5tjlCUJ7tTqmY+doM5hyquucuaDYSjb+oL03C3Yd6KZi6QZp1XlAITnysHox23YrwDBj9eD9FNieRDRdMmuHC4c3xYeD01dJeu0Pp0EOcxxuTiAv5nHUoRydjg8syESOa2NoRptF71dK1X1kOCS6A0LcxKf0/HXywsejsnvX34JxPukL5to2cYNF7b+lQHUJrNF9jP9wn9bnDo2OuFOh+eRbVfpJcwmojKqsM+UNHd2EXes9f30UidaRJ+9dKbYnYmn9XUJP0ZHOOJYQHAZ2EJYvgrNAzui3Oe+hqww0ARbYUKIKb/6hUBBmDA9ZKRyhDjO4/A8qSZMRuH7LWnYNyG6Uwvvw3JWy4nxSPf6PaX0L1uEy8U/LNZ4MpEuTUObgPXZy2bvxepw4z1o+L1vFM9gZpBBAbJr94G8iCtUome6K4VbUkTPQGqdpi92EcvrKtI9b5k6sQEQRpx33CwGIhZZDNwR5MT99ZPsZtQW3fp9kFsxirwt5UVTPvGxBLIkadzAlCNpFk=
+  template:
+    metadata:
+      creationTimestamp: null
+      name: nextcloud-postgres
+      namespace: nextcloud

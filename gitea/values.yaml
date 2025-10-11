@@ -6,6 +6,12 @@ gitea:
   valkey-cluster:
     enabled: false
   valkey:
+    global:
+      security:
+        allowInsecureImages: true
+    # TODO FU bitnami....
+    image:
+      repository: bitnamilegacy/valkey
     enabled: true
     master:
       persistence:
@@ -16,6 +22,12 @@ gitea:
   # Any external database listed in https://docs.gitea.com/installation/database-prep can be used instead of the built-in PostgreSQL.
   # In fact, it is highly recommended to use an external database to ensure a stable Gitea installation longterm.
   postgresql:
+    global:
+      security:
+        allowInsecureImages: true
+    # TODO FU bitnami....
+    image:
+      repository: bitnamilegacy/postgresql
     enabled: true
     auth:
       enablePostgresUser: true

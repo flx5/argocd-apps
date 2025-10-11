@@ -143,6 +143,12 @@ nextcloud:
   internalDatabase:
     enabled: false
   redis:
+    global:
+      security:
+        allowInsecureImages: true
+    # TODO FU bitnami....
+    image:
+      repository: bitnamilegacy/redis
     enabled: true
     master:
       persistence:

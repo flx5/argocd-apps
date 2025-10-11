@@ -15,7 +15,7 @@ spec:
         name: nextcloud-postgres
   storage:
     storageClass: local-path
-    size: 1Gi
+    size: 4Gi
 ---
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret

@@ -12,8 +12,8 @@ spec:
   # This is an issue: https://cert-manager.io/docs/configuration/ca/#important-information
   # The certificate can outlive the root-ca. And cert-manager doesn't check that when issuing the cert.
   # Use very short livetimes here to mitigate for a while...
-  duration: 72h
-  renewBefore: 24h
+  duration: 720h # 30d
+  renewBefore: 360h # 15d
   privateKey:
     algorithm: ECDSA
     size: 256
@@ -38,12 +38,12 @@ metadata:
   name: tenant-certmanager-cert
   namespace: minio-tenant
 spec:
-  # TODO
+  # TODO Maybe switch to https://openbao.org/docs/secrets/pki/ if that does better rotation?
   # This is an issue: https://cert-manager.io/docs/configuration/ca/#important-information
   # The certificate can outlive the root-ca. And cert-manager doesn't check that when issuing the cert.
   # Use very short livetimes here to mitigate for a while...
-  duration: 48h
-  renewBefore: 24h
+  duration: 360h # 15d
+  renewBefore: 240h # 10d
   dnsNames:
     - "minio.minio-tenant"
     - "minio.minio-tenant.svc"

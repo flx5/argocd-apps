@@ -12,8 +12,9 @@ spec:
   # This is an issue: https://cert-manager.io/docs/configuration/ca/#important-information
   # The certificate can outlive the root-ca. And cert-manager doesn't check that when issuing the cert.
   # Use very short livetimes here to mitigate for a while...
-  duration: 720h # 30d
-  renewBefore: 360h # 15d
+  # Can't be too short though otherwise minio operator complains about expiring certs...
+  duration: 4320h # 180d
+  renewBefore: 2160h # 90d
   privateKey:
     algorithm: ECDSA
     size: 256
@@ -42,8 +43,8 @@ spec:
   # This is an issue: https://cert-manager.io/docs/configuration/ca/#important-information
   # The certificate can outlive the root-ca. And cert-manager doesn't check that when issuing the cert.
   # Use very short livetimes here to mitigate for a while...
-  duration: 360h # 15d
-  renewBefore: 240h # 10d
+  duration: 2160h # 90d
+  renewBefore: 720h # 30d
   dnsNames:
     - "minio.minio-tenant"
     - "minio.minio-tenant.svc"

@@ -12,6 +12,8 @@ metadata:
   namespace: cert-manager
 spec:
   isCA: true
+  duration: 8760h # 365d
+  renewBefore: 4320h # 180d
   subject:
     organizations:
     - "NUE-ROOT-CA"

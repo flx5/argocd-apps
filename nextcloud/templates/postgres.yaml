@@ -13,7 +13,8 @@ spec:
       owner: nextcloud
       secret:
         name: nextcloud-postgres
-  postgresql: {}
+  postgresql:
+    log_statement: all
   storage:
     storageClass: local-path
     size: 4Gi

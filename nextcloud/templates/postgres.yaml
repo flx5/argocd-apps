@@ -13,6 +13,12 @@ spec:
       owner: nextcloud
       secret:
         name: nextcloud-postgres
+  postgresql:
+    parameters:
+      "pgaudit.log": "all, -misc"
+      "pgaudit.log_catalog": "off"
+      "pgaudit.log_parameter": "on"
+      "pgaudit.log_relation": "on"
   storage:
     storageClass: local-path
     size: 4Gi

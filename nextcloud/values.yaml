@@ -140,6 +140,16 @@ nextcloud:
         $CONFIG = array (
           "versions_retention_obligation" => "30, 180",
         );
+      db.config.php: |
+        <?php
+        $CONFIG = array(
+          'dbtype' => 'pgsql',
+          'dbuser' => getenv('POSTGRES_USER'),
+          'dbpassword' => getenv('POSTGRES_PASSWORD'),
+          'dbname' => getenv('POSTGRES_DB'),
+          'dbhost' => getenv('POSTGRES_HOST'),
+          'dbport' => '',
+        );
   internalDatabase:
     enabled: false
   redis:

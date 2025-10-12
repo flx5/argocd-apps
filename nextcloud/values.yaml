@@ -186,9 +186,9 @@ nextcloud:
     host: postgres-cluster-rw
     existingSecret:
       enabled: true
-      secretName: mariadb-secret
-      passwordKey: mariadb-password
-      usernameKey: nextcloud-user
+      secretName: nextcloud-postgres
+      passwordKey: password
+      usernameKey: username
 
   mariadb:
     enabled: false

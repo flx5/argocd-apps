@@ -181,6 +181,8 @@ nextcloud:
       enabled: true
       existingClaim: nextcloud-data
   externalDatabase:
+    type: postgresql
+    host: postgres-cluster-rw
     existingSecret:
       enabled: true
       secretName: mariadb-secret
@@ -188,7 +190,7 @@ nextcloud:
       usernameKey: nextcloud-user
 
   mariadb:
-    enabled: true
+    enabled: false
     global:
       security:
         allowInsecureImages: true

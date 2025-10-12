@@ -14,7 +14,8 @@ spec:
       secret:
         name: nextcloud-postgres
   postgresql:
-    log_statement: all
+    parameters:
+      log_statement: all
   storage:
     storageClass: local-path
     size: 4Gi

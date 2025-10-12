@@ -181,6 +181,7 @@ nextcloud:
       enabled: true
       existingClaim: nextcloud-data
   externalDatabase:
+    enabled: true
     type: postgresql
     host: postgres-cluster-rw
     existingSecret:

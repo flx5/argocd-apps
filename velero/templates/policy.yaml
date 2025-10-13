@@ -11,7 +11,7 @@ data:
       - conditions:
           # pv matches one of the storage class list
           storageClass:
-            - local-path
+            - "local-path"
         action:
           type: skip
       - conditions:
@@ -27,4 +27,3 @@ data:
             - cinder
         action:
           type: skip
-

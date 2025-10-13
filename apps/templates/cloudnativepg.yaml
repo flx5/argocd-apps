@@ -5,8 +5,6 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 ---
-# TODO Need to figure this out first: https://cloudnative-pg.io/documentation/1.25/storage/#block-storage-considerations-cephlonghorn
-# TODO Use storageclass rook-local with replication on application level
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -21,13 +19,11 @@ spec:
       - ServerSideApply=true
     automated:
       selfHeal: true
-      prune: true
+      prune: false
   source:
-    chart: cloudnative-pg
-    repoURL: https://cloudnative-pg.github.io/charts
-    targetRevision: 0.26.0
-    helm:
-      valuesObject: {}
+    path: cloudnative-pg
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
   destination:
     server: "https://kubernetes.default.svc"
     namespace: cnpg-system

@@ -8,12 +8,12 @@ data:
     # currently only supports v1 version
     version: v1
     volumePolicies:
-      # Local volume snapshots are waiting for a bugfix in velero v1.17 so use fs backup for now
       - conditions:
-          csi:
-            driver: org.democratic-csi.zfs-local-nas-ssd
+          # pv matches one of the storage class list
+          storageClass:
+            - local-path
         action:
-          type: fs-backup
+          type: skip
       - conditions:
           # csi could be empty which matches any csi volume source
           csi: { }

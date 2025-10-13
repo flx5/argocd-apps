@@ -76,16 +76,16 @@ gitea:
             key: password
     config:
       queue:
-        TYPE: valkey
+        TYPE: redis
         CONN_STR: "redis://gitea-valkey.gitea.svc.cluster.local:6379/0?pool_size=100&idle_timeout=180s&"
 
       session:
-        PROVIDER: valkey
+        PROVIDER: redis
         PROVIDER_CONFIG: "redis://gitea-valkey.gitea.svc.cluster.local:6379/0?pool_size=100&idle_timeout=180s&"
 
       cache:
         ENABLED: true
-        ADAPTER: valkey
+        ADAPTER: redis
         HOST: "redis://gitea-valkey.gitea.svc.cluster.local:6379/0?pool_size=100&idle_timeout=180s&"
 
       database:

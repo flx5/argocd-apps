@@ -76,7 +76,7 @@ gitea:
             key: password
     config:
       queue:
-        TYPE: valkey`
+        TYPE: valkey
         CONN_STR: "redis://gitea-valkey.gitea.svc.cluster.local:6379/0?pool_size=100&idle_timeout=180s&"
 
       session:

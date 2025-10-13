@@ -1,3 +1,11 @@
+backupNamespaces:
+  - 'calibre'
+  - 'gitea'
+  - 'nextcloud'
+  - 'omada-controller'
+  - 'media'
+  - 'internal'
+
 velero:
   deployNodeAgent: true
   # TODO Configure kopia caching

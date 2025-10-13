@@ -6,16 +6,7 @@ gitea:
   valkey-cluster:
     enabled: false
   valkey:
-    global:
-      security:
-        allowInsecureImages: true
-    # TODO FU bitnami....
-    image:
-      repository: bitnamilegacy/valkey
-    enabled: true
-    master:
-      persistence:
-        existingClaim: gitea-redis-master-0
+    enabled: false
 
   # TODO
   # https://gitea.com/gitea/helm-gitea#external-database
@@ -84,6 +75,19 @@ gitea:
             name: postgres-users
             key: password
     config:
+      queue:
+        TYPE: valkey`
+        CONN_STR: "redis://gitea-valkey.gitea.svc.cluster.local:6379/0?pool_size=100&idle_timeout=180s&"
+
+      session:
+        PROVIDER: valkey
+        PROVIDER_CONFIG: "redis://gitea-valkey.gitea.svc.cluster.local:6379/0?pool_size=100&idle_timeout=180s&"
+
+      cache:
+        ENABLED: true
+        ADAPTER: valkey
+        HOST: "redis://gitea-valkey.gitea.svc.cluster.local:6379/0?pool_size=100&idle_timeout=180s&"
+
       database:
         DB_TYPE: postgres
       indexer:

@@ -4,6 +4,11 @@ metadata:
   name: postgres-cluster
 spec:
   instances: 3
+  imageCatalogRef:
+    apiGroup: postgresql.cnpg.io
+    kind: ClusterImageCatalog
+    name: postgresql
+    major: 17
   affinity:
     nodeSelector:
       node-role.kubernetes.io/postgres: ""
@@ -13,9 +18,6 @@ spec:
       owner: nextcloud
       secret:
         name: nextcloud-postgres
-  postgresql:
-    parameters:
-      log_statement: all
   storage:
     storageClass: local-path
     size: 4Gi

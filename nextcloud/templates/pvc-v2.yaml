@@ -1,34 +1,3 @@
----
-apiVersion: bitnami.com/v1alpha1
-kind: SealedSecret
-metadata:
-  creationTimestamp: null
-  name: storage-encryption-secret
-  namespace: nextcloud
-spec:
-  encryptedData:
-    encryptionPassphrase: AgASCU8/6HDsUyVBwNWbsVRJdoYGbH88oYXiheFQBbRlDW3U5CV0gjtQlGz6ZwfeSRv6SrV0gT8Op8CkxBWM/gtrcR+QgDwfzcOuspoOygD7Qh65/+X4DXL6yqlx0XaV7fHuwHATD5VYzElMSKrncviOENE9bQcU8QLZCX82kwF/gqOGt8cj3/2xRKHraGnzcBtlpkTRnuhDFwSgpucAsyOjMYol+jM8xlGT7KsuVGLNX9tKoUyQVLcSwwKu7kDDXtkBvs52oELEkc0P/eEgPGrR8jtjkc0pgDRKRZMJ/eh+ZCUzUmAyFYx6tgFcFnEr4jcnBGynuyxxgbiUBe0gKk36uhGEgC4DfK3/3hkq3ufoq5GBwP76gG7Tm6YO2noyrqbCzBu5Y5omYaBhoFxOeJqoq9pTa/y/uFkvNHWQyMGmUC35O5uGBVbLrVf4tTMR1OMXPkxXy/z9JbFGsHHwFAAzYmxlsgpqcp0kZ2JKK70zlHd43PM4RaDx1U1eC524fyFL58YmlbxkSsgIAiUJmKiTaP8h7lAhBQJ9u4X1lJuFNFCZ3GHRw857RaBYB4dP6eQ5QknYh4oqAzpyfDh3aa8AhZuzaRpNCe5wwLGIseeNXrlgPiA6gT46WaYpP7sGrRqY0/IZVgHGw3St57d8kqUucci+740vCT2J3HnwRsFJREtRTbjedSMuCB1qI5YA30skbdpyJFwfsdOuvRt1FgNU7LORnENDaacMeCSPPKCQbE5yLp2x5/LI59Bh6b0p8u+HN6hdC4TAKOMYzKtKj7XHWAlhbQ==
-  template:
-    metadata:
-      creationTimestamp: null
-      name: storage-encryption-secret
-      namespace: nextcloud
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  finalizers:
-    - kubernetes.io/pvc-protection
-  name: nextcloud-data-v2
-  namespace: nextcloud
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 600Gi
-  storageClassName: rook-ceph-block
----
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -49,21 +18,6 @@ kind: PersistentVolumeClaim
 metadata:
   finalizers:
     - kubernetes.io/pvc-protection
-  name: nextcloud-nextcloud-v2
-  namespace: nextcloud
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-  storageClassName: rook-ceph-block
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  finalizers:
-    - kubernetes.io/pvc-protection
   name: nextcloud-app
   namespace: nextcloud
 spec:
@@ -73,33 +27,3 @@ spec:
     requests:
       storage: 10Gi
   storageClassName: rook-cephfs
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  finalizers:
-    - kubernetes.io/pvc-protection
-  name: nextcloud-db
-  namespace: nextcloud
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-  storageClassName: rook-ceph-block
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  finalizers:
-    - kubernetes.io/pvc-protection
-  name: nextcloud-db-dump
-  namespace: nextcloud
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-  storageClassName: rook-ceph-block

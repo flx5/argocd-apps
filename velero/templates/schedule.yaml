@@ -50,4 +50,4 @@ spec:
     # UploaderConfig specifies the configuration for the uploader
     uploaderConfig:
       # ParallelFilesUpload is the number of files parallel uploads to perform when using the uploader.
-      parallelFilesUpload: 10
+      parallelFilesUpload: 1

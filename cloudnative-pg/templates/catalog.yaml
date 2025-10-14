@@ -9,4 +9,4 @@ spec:
     - major: 16
       image: ghcr.io/cloudnative-pg/postgresql:16.10
     - major: 17
-      image: ghcr.io/cloudnative-pg/postgresql:17.5
+      image: ghcr.io/cloudnative-pg/postgresql:17.6

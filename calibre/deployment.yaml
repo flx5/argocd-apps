@@ -86,7 +86,7 @@ spec:
       volumes:
         - name: books
           persistentVolumeClaim:
-            claimName: books
+            claimName: books2
         - name: config
           persistentVolumeClaim:
-            claimName: config
+            claimName: config2

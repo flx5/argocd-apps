@@ -24,5 +24,5 @@ appVersion: "1.0"
 
 dependencies:
   - name: immich
-    version: 0.9.3
+    version: 0.10.0
     repository: "oci://ghcr.io/immich-app/immich-charts"

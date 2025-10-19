@@ -45,10 +45,8 @@ spec:
     initdb:
       database: nextcloud
       owner: nextcloud
-      secret:
-        name: nextcloud-postgres
   storage:
-    storageClass: local-path-resizable
+    storageClass: local-path
     size: 4Gi
   plugins:
     - name: barman-cloud.cloudnative-pg.io

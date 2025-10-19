@@ -1,11 +1,13 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: immich-cluster
+  name: postgres-immich-cluster
 spec:
   imageName: ghcr.io/cloudnative-pg/postgresql:17.2-standard-bookworm
-  instances: 1
-
+  instances: 3
+  affinity:
+    nodeSelector:
+      node-role.kubernetes.io/postgres: ""
   bootstrap:
     initdb:
       database: immich
@@ -17,8 +19,8 @@ spec:
         - CREATE EXTENSION IF NOT EXISTS earthdistance;
         - CREATE EXTENSION IF NOT EXISTS vector;
   storage:
-    storageClass: rook-ceph-block
-    size: 4Gi
+    storageClass: local-path
+    size: 1Gi
 ---
 apiVersion: v1
 kind: Secret

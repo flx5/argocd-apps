@@ -193,10 +193,10 @@ nextcloud:
   externalDatabase:
     enabled: true
     type: postgresql
-    host: postgres-cluster-rw
+    host: pg-nextcloud-rw
     existingSecret:
       enabled: true
-      secretName: nextcloud-postgres
+      secretName: pg-nextcloud-app
       passwordKey: password
       usernameKey: username
 

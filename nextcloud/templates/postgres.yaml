@@ -70,6 +70,8 @@ spec:
       node-role.kubernetes.io/postgres: ""
   bootstrap:
     pg_basebackup:
+      database: nextcloud
+      owner: nextcloud
       source: postgres-cluster
   storage:
     storageClass: local-path

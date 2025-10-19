@@ -20,7 +20,7 @@ spec:
         name: nextcloud-postgres
   storage:
     storageClass: local-path
-    size: 4Gi
+    size: 1Gi # TODO Should be 4G but local-path doesn't support resize. Not really an issue because local-path doesn't check the size anyways.
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true

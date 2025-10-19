@@ -54,6 +54,47 @@ spec:
       parameters:
         barmanObjectName: ceph-store
 ---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: pg-nextcloud
+spec:
+  instances: 3
+  imageCatalogRef:
+    apiGroup: postgresql.cnpg.io
+    kind: ClusterImageCatalog
+    name: postgresql
+    major: 17
+  affinity:
+    nodeSelector:
+      node-role.kubernetes.io/postgres: ""
+  bootstrap:
+    pg_basebackup:
+      source: postgres-cluster
+  storage:
+    storageClass: local-path
+    size: 4Gi  # Never change this. local-path does not support resizing!
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: ceph-store
+  externalClusters:
+    - name: postgres-cluster
+      connectionParameters:
+        host: postgres-cluster-rw.default.svc
+        user: streaming_replica
+        sslmode: verify-full
+      sslKey:
+        name: postgres-cluster-replication
+        key: tls.key
+      sslCert:
+        name: postgres-cluster-replication
+        key: tls.crt
+      sslRootCert:
+        name: postgres-cluster-ca
+        key: ca.crt
+---
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
 metadata:

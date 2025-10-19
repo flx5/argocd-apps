@@ -20,7 +20,7 @@ spec:
         name: nextcloud-postgres
   storage:
     storageClass: local-path
-    size: 4Gi # TODO Should be 4G but local-path doesn't support resize. Not really an issue because local-path doesn't check the size anyways.
+    size: 4Gi # Never change this. local-path does not support resizing!
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
@@ -47,7 +47,7 @@ spec:
       owner: nextcloud
   storage:
     storageClass: local-path
-    size: 4Gi
+    size: 4Gi  # Never change this. local-path does not support resizing!
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
@@ -84,7 +84,7 @@ metadata:
   name: ceph-store
 spec:
   configuration:
-    destinationPath: s3://postgres-bkt-b313d549-23a4-47cd-8579-aba0a9b46507/
+    destinationPath: s3://nextcloud-bkt-4f8bfd8a-f59a-4a8e-86cc-0095f4421ad1/
     endpointURL: http://rook-ceph-rgw-my-store.rook-ceph.svc
     s3Credentials:
       accessKeyId:

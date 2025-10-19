@@ -42,3 +42,21 @@ spec:
       creationTimestamp: null
       name: nextcloud-postgres
       namespace: nextcloud
+---
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: ceph-store
+spec:
+  configuration:
+    destinationPath: s3://postgres-bkt-b313d549-23a4-47cd-8579-aba0a9b46507/
+    endpointURL: http://rook-ceph-rgw-my-store.rook-ceph.svc
+    s3Credentials:
+      accessKeyId:
+        name: ceph-bucket
+        key: AWS_ACCESS_KEY_ID
+      secretAccessKey:
+        name: ceph-bucket
+        key: AWS_SECRET_ACCESS_KEY
+    wal:
+      compression: gzip

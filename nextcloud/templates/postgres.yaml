@@ -82,7 +82,7 @@ spec:
   externalClusters:
     - name: postgres-cluster
       connectionParameters:
-        host: postgres-cluster-rw.default.svc
+        host: postgres-cluster-rw
         user: streaming_replica
         sslmode: verify-full
       sslKey:

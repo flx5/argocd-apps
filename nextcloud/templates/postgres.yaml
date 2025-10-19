@@ -42,7 +42,7 @@ spec:
     nodeSelector:
       node-role.kubernetes.io/postgres: ""
   bootstrap:
-    recovery:
+    initdb:
       database: nextcloud
       owner: nextcloud
       secret:

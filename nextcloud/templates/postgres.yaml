@@ -20,7 +20,36 @@ spec:
         name: nextcloud-postgres
   storage:
     storageClass: local-path
-    size: 1Gi # TODO Should be 4G but local-path doesn't support resize. Not really an issue because local-path doesn't check the size anyways.
+    size: 4Gi # TODO Should be 4G but local-path doesn't support resize. Not really an issue because local-path doesn't check the size anyways.
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: ceph-store
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: nextcloud
+spec:
+  instances: 3
+  imageCatalogRef:
+    apiGroup: postgresql.cnpg.io
+    kind: ClusterImageCatalog
+    name: postgresql
+    major: 17
+  affinity:
+    nodeSelector:
+      node-role.kubernetes.io/postgres: ""
+  bootstrap:
+    recovery:
+      database: nextcloud
+      owner: nextcloud
+      secret:
+        name: nextcloud-postgres
+  storage:
+    storageClass: local-path-resizable
+    size: 4Gi
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true

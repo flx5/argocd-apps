@@ -21,6 +21,11 @@ spec:
   storage:
     storageClass: local-path
     size: 4Gi
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: ceph-store
 ---
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret

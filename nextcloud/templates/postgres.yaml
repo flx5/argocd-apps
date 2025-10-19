@@ -43,6 +43,14 @@ spec:
       name: nextcloud-postgres
       namespace: nextcloud
 ---
+apiVersion: objectbucket.io/v1alpha1
+kind: ObjectBucketClaim
+metadata:
+  name: ceph-bucket
+spec:
+  generateBucketName: nextcloud-bkt
+  storageClassName: rook-ceph-bucket
+---
 apiVersion: barmancloud.cnpg.io/v1
 kind: ObjectStore
 metadata:

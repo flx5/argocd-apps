@@ -13,7 +13,7 @@ data:
           storageClass:
             - "local-path"
         action:
-          type: skip
+          type: fs-backup
       - conditions:
           # csi could be empty which matches any csi volume source
           csi: { }

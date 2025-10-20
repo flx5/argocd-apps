@@ -95,7 +95,7 @@ spec:
                   - key: node-role.kubernetes.io/control-plane
                     operator: In
                     values:
-                      - true
+                      - "true"
         ## The podAntiAffinity is a set of rules for scheduling that describe
         ## when NOT to place a pod from this StatefulSet on a node.
         podAntiAffinity:

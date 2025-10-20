@@ -69,6 +69,11 @@ gitea:
           secretKeyRef:
             name: pg-gitea-app
             key: host
+      - name: GITEA__database__NAME
+        valueFrom:
+          secretKeyRef:
+            name: pg-gitea-app
+            key: dbname
       - name: GITEA__database__USER
         valueFrom:
           secretKeyRef:

@@ -1,28 +1,39 @@
 immich:
-  image:
-    tag: v1.133.0
-
-  env:
-    DB_HOSTNAME: immich-cluster-rw
-    DB_USERNAME: immich
-    DB_VECTOR_EXTENSION: pgvector
-    DB_PASSWORD:
-      valueFrom:
-        secretKeyRef:
-          name: immich-db-secret
-          key: password
-
+  controllers:
+    main:
+      containers:
+        main:
+          image: {}
+            # tag: v2.0.1
   immich:
     persistence:
       library:
         existingClaim: library
-  redis:
+
+  valkey:
     enabled: true
     master:
       persistence:
         storageClass: rook-ceph-block
   server:
+    #persistence:
+    #  custom:
+    #    existingClaim: extern
     enabled: true
+    controllers:
+      main:
+        containers:
+          main:
+            env:
+              DB_HOSTNAME: postgres-immich-cluster-rw
+              DB_USERNAME: immich
+              DB_VECTOR_EXTENSION: pgvector
+              DB_PASSWORD:
+                valueFrom:
+                  secretKeyRef:
+                    name: immich-db-secret
+                    key: password
+
     ingress:
       main:
         enabled: true
@@ -30,7 +41,7 @@ immich:
           cert-manager.io/cluster-issuer: letsencrypt-prod
           # proxy-body-size is set to 0 to remove the body limit on file uploads
           nginx.ingress.kubernetes.io/proxy-body-size: "0"
-        ingressClassName: public-nginx
+        className: public-nginx
         hosts:
           - host: pictures.felix-prasse.de
             paths:
@@ -41,14 +52,28 @@ immich:
             secretName: immich-cert
 
   machine-learning:
-    controller:
-      replicas: 2
-    probes:
-      readiness:
-        custom: true
-        spec:
-          timeoutSeconds: 5
+    controllers:
+      replicas: 1
+      main:
+        pod:
+          nodeSelector:
+            kubernetes.io/hostname: nas
+        containers:
+          main:
+            resources:
+              limits:
+                #cpu: 100m
+                memory: 2048Mi
+              requests:
+                cpu: 100m
+                memory: 2048Mi
+            probes:
+              readiness:
+                custom: true
+                spec:
+                  timeoutSeconds: 5
     persistence:
       cache:
-        type: pvc
-        storageClass: rook-cephfs-insecure
+        enabled: true
+        type: persistentVolumeClaim
+        storageClass: rook-cephfs

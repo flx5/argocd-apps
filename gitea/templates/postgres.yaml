@@ -47,14 +47,13 @@ spec:
   generateBucketName: gitea-bkt
   storageClassName: rook-ceph-bucket
 ---
-  {{/*}}
 apiVersion: barmancloud.cnpg.io/v1
 kind: ObjectStore
 metadata:
   name: ceph-store
 spec:
   configuration:
-    destinationPath: s3://nextcloud-bkt-4f8bfd8a-f59a-4a8e-86cc-0095f4421ad1/
+    destinationPath: s3://gitea-bkt-95187899-5958-4fb0-a6d0-dd3510efcb70/
     endpointURL: http://rook-ceph-rgw-my-store.rook-ceph.svc
     s3Credentials:
       accessKeyId:
@@ -70,13 +69,12 @@ spec:
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
 metadata:
-  name: pg-nextcloud-backup
+  name: pg-gitea-backup
 spec:
   cluster:
-    name: pg-nextcloud
+    name: pg-gitea
   schedule: '0 0 0 * * *'
   backupOwnerReference: self
   method: plugin
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io
-*/}}

@@ -19,7 +19,7 @@ spec:
         fsGroup: 100
       containers:
         - name: clamav
-          image: clamav/clamav:1.5.0_base
+          image: clamav/clamav:1.5.1_base
           securityContext:
             runAsUser: 100
             runAsGroup: 100

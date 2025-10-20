@@ -61,13 +61,6 @@ spec:
         env:
           - name: ETCD_URLS
             value: http://etcd:2379
-          - name: ETCD_USERNAME
-            value: root
-          - name: ETCD_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: etcd-root-password
-                name: etcd-password
       securityContext:
         fsGroup: 65534 # For ExternalDNS to be able to read Kubernetes token files
 ---

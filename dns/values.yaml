@@ -10,15 +10,6 @@ coredns:
       # und wieder ein anderer bekommt das Lease gitea/kubevip-gitea-ssh
       kube-vip.io/loadbalancerIPs: 192.168.2.92
 
-  env:
-    - name: ETCD_USERNAME
-      value: root
-    - name: ETCD_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          key: etcd-root-password
-          name: etcd-password
-
   # Default zone is what Kubernetes recommends:
   # https://kubernetes.io/docs/tasks/administer-cluster/dns-custom-nameservers/#coredns-configmap-options
   servers:
@@ -55,41 +46,7 @@ coredns:
             fallthrough felix-prasse.de
             path /skydns
             endpoint http://etcd:2379
-            # credentials {$ETCD_USERNAME} {$ETCD_PASSWORD}
         - name: forward
           parameters: felix-prasse.de 1.1.1.1
         - name: forward
           parameters: . /etc/resolv.conf
-etcd:
-  global:
-    security:
-      allowInsecureImages: true
-  # TODO Migrate to https://etcd.io/docs/v3.5/op-guide/kubernetes/
-  image:
-    repository: bitnamilegacy/etcd
-  persistence:
-    enabled: false
-    storageClass: rook-local
-  # This job fails if the networking-etcd-jwt-token secret is not there yet?!
-  preUpgradeJob:
-    enabled: false
-
-  replicaCount: 1
-#  resources:
-#    requests:
-#      cpu: 10m
-#      memory: 100Mi
-#    limits:
-#      cpu: 100m
-#      memory: 250Mi
-
-  auth:
-    rbac:
-      existingSecret: etcd-password
-      existingSecretPasswordKey: etcd-root-password
-    token:
-      enabled: false
-
-  service:
-    clusterIP: 10.43.142.0
-  podAntiAffinityPreset: hard

@@ -26,20 +26,5 @@ data:
       },
       "loadConcurrency": {
         "globalConfig": 1
-      },
-      "loadAffinity": [
-        {
-          "nodeSelector": {
-            "matchExpressions": [
-              {
-                "key": "kubernetes.io/hostname",
-                "values": [
-                  "nas"
-                ],
-                "operator": "In"
-              }
-            ]
-          }
-        }
-      ]
+      }
     }

@@ -1,0 +1,82 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: pg-gitea
+spec:
+  instances: 3
+  imageCatalogRef:
+    apiGroup: postgresql.cnpg.io
+    kind: ClusterImageCatalog
+    name: postgresql
+    major: 18
+  affinity:
+    nodeSelector:
+      node-role.kubernetes.io/postgres: ""
+  bootstrap:
+    initdb:
+      import:
+        type: microservice
+        databases:
+          - gitea
+        source:
+          externalCluster: postgres-cluster
+  storage:
+    storageClass: local-path
+    size: 4Gi  # Never change this. local-path does not support resizing!
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: ceph-store
+  externalClusters:
+    - name: postgres-cluster
+      connectionParameters:
+        # Use the correct IP or host name for the source database
+        host: gitea-postgresql
+        user: postgres
+        dbname: postgres
+      password:
+        name: postgres-users
+        key: postgres-password
+---
+apiVersion: objectbucket.io/v1alpha1
+kind: ObjectBucketClaim
+metadata:
+  name: ceph-bucket
+spec:
+  generateBucketName: gitea-bkt
+  storageClassName: rook-ceph-bucket
+---
+  {{/*}}
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: ceph-store
+spec:
+  configuration:
+    destinationPath: s3://nextcloud-bkt-4f8bfd8a-f59a-4a8e-86cc-0095f4421ad1/
+    endpointURL: http://rook-ceph-rgw-my-store.rook-ceph.svc
+    s3Credentials:
+      accessKeyId:
+        name: ceph-bucket
+        key: AWS_ACCESS_KEY_ID
+      secretAccessKey:
+        name: ceph-bucket
+        key: AWS_SECRET_ACCESS_KEY
+    wal:
+      compression: gzip
+  retentionPolicy: "30d"
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: pg-nextcloud-backup
+spec:
+  cluster:
+    name: pg-nextcloud
+  schedule: '0 0 0 * * *'
+  backupOwnerReference: self
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
+*/}}

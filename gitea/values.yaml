@@ -1,4 +1,5 @@
 gitea:
+  replicaCount: 0
   strategy:
     # Just because currently we use ReadWriteOnce for data...
     type: Recreate

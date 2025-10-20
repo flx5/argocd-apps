@@ -176,15 +176,17 @@ nextcloud:
       fsGroupChangePolicy: "OnRootMismatch"
   cronjob:
     enabled: true
+    type: cronjob
     # Workaround required for crond until https://github.com/nextcloud/helm/pull/703 is fixed.
     securityContext:
       allowPrivilegeEscalation: false
-      runAsUser: 0
-      runAsGroup: 0
-      runAsNonRoot: false
+      fsGroupChangePolicy: "OnRootMismatch"
+      runAsNonRoot: true
+      runAsUser: 33
+      runAsGroup: 33
       capabilities:
-        add:
-          - SETGID
+        drop:
+          - ALL
   persistence:
     enabled: true
     existingClaim: nextcloud-app

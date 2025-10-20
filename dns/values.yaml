@@ -54,8 +54,8 @@ coredns:
           configBlock: |-
             fallthrough felix-prasse.de
             path /skydns
-            endpoint http://10.43.142.0:2379
-            credentials {$ETCD_USERNAME} {$ETCD_PASSWORD}
+            endpoint http://etcd:2379
+            # credentials {$ETCD_USERNAME} {$ETCD_PASSWORD}
         - name: forward
           parameters: felix-prasse.de 1.1.1.1
         - name: forward

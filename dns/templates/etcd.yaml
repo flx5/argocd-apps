@@ -1,4 +1,5 @@
-# file: etcd.yaml
+# Based on https://etcd.io/docs/v3.6/op-guide/kubernetes/
+# TODO Migrate to https://github.com/etcd-io/etcd-operator once that becomes GA
 ---
 apiVersion: v1
 kind: Service

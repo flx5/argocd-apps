@@ -60,7 +60,7 @@ spec:
         - --provider=coredns
         env:
           - name: ETCD_URLS
-            value: http://10.43.142.0:2379
+            value: http://etcd:2379
           - name: ETCD_USERNAME
             value: root
           - name: ETCD_PASSWORD

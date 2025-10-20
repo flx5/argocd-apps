@@ -65,7 +65,15 @@ gitea:
       existingSecret: gitea-admin-secret
     additionalConfigFromEnvs:
       - name: GITEA__DATABASE__HOST
-        value: pg-gitea-rw
+        valueFrom:
+          secretKeyRef:
+            name: pg-gitea-app
+            key: host
+      - name: GITEA__database__USER
+        valueFrom:
+          secretKeyRef:
+            name: pg-gitea-app
+            key: username
       - name: GITEA__DATABASE__PASSWD
         valueFrom:
           secretKeyRef:

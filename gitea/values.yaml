@@ -3,48 +3,9 @@ gitea:
   valkey-cluster:
     enabled: false
   valkey:
-    enabled: false
-
-  # TODO
-  # https://gitea.com/gitea/helm-gitea#external-database
-  # Any external database listed in https://docs.gitea.com/installation/database-prep can be used instead of the built-in PostgreSQL.
-  # In fact, it is highly recommended to use an external database to ensure a stable Gitea installation longterm.
+    enabled: false # Use own dependency because of bitnami
   postgresql:
-    global:
-      security:
-        allowInsecureImages: true
-    # TODO FU bitnami....
-    image:
-      repository: bitnamilegacy/postgresql
-    enabled: true
-    auth:
-      enablePostgresUser: true
-      username: gitea
-      database: gitea
-      existingSecret: postgres-users
-    primary:
-      # Modify hba configuration to include replication. Required for pg_basebackup
-      pgHbaConfiguration: |
-        host     all             all             0.0.0.0/0               md5
-        host     all             all             ::/0                    md5
-        local    all             all                                     md5
-        host     all             all        127.0.0.1/32                 md5
-        host     all             all        ::1/128                      md5
-        local   replication             postgres                         md5
-      extraVolumeMounts:
-      - mountPath: /backup
-        name: backup-volume
-      extraVolumes:
-        - name: backup-volume
-          # Must use a scratch pvc because velero wouldn't backup an emptydir...
-          persistentVolumeClaim:
-            claimName: gitea-db-dump
-      podAnnotations:
-        pre.hook.backup.velero.io/command: '["/bin/sh", "-c", "PGPASSWORD=$(cat $POSTGRES_POSTGRES_PASSWORD_FILE) pg_basebackup -D /backup/current -X fetch -U postgres --no-password"]'
-        pre.hook.backup.velero.io/timeout: 120s
-        post.hook.backup.velero.io/command: '["rm", "-R", "/backup/current"]'
-      persistence:
-        existingClaim: gitea-db
+    enabled: false
 
   postgresql-ha:
     enabled: false

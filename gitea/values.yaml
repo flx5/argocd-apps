@@ -1,8 +1,4 @@
 gitea:
-  replicaCount: 0
-  strategy:
-    # Just because currently we use ReadWriteOnce for data...
-    type: Recreate
 
   valkey-cluster:
     enabled: false
@@ -56,7 +52,7 @@ gitea:
   persistence:
     enabled: true
     create: false
-    claimName: gitea-shared-storage-v2
+    claimName: gitea-shared-storage
 
   service:
     ssh:
@@ -69,11 +65,11 @@ gitea:
       existingSecret: gitea-admin-secret
     additionalConfigFromEnvs:
       - name: GITEA__DATABASE__HOST
-        value: gitea-postgresql
+        value: pg-gitea-rw
       - name: GITEA__DATABASE__PASSWD
         valueFrom:
           secretKeyRef:
-            name: postgres-users
+            name: pg-gitea-app
             key: password
     config:
       queue:

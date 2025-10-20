@@ -33,6 +33,21 @@ kind: PersistentVolumeClaim
 metadata:
   finalizers:
     - kubernetes.io/pvc-protection
+  name: gitea-shared-storage
+  namespace: gitea
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: rook-cephfs
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  finalizers:
+    - kubernetes.io/pvc-protection
   name: gitea-db
   namespace: gitea
 spec:

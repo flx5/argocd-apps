@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pg-nextcloud-backup
+  name: pg-nextcloud-backup
+  namespace: nextcloud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pg-nextcloud-backup
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: pg-nextcloud-backup
+      # TODO Pre-Backup Hook: pg_basebackup -h pg-nextcloud-rw -U streaming_replica -D /backup/
+    spec:
+      terminationGracePeriodSeconds: 1
+      containers:
+        - image: alpine/psql:17.6
+          env:
+            - name: PGSSLCERT
+              value: /secret/replication/tls.crt
+            - name: PGSSLKEY
+              value: /secret/replication/tls.key
+            - name: PGSSLMODE
+              value: verify-full
+            - name: PGSSLROOTCERT
+              value: /secret/ca/ca.crt
+          command:
+            - tail
+            - -f
+            - /dev/null
+          name: psql
+          resources: {}
+          volumeMounts:
+            - mountPath: /secret/replication
+              name: pg-nextcloud-replication
+            - mountPath: /secret/ca
+              name: pg-nextcloud-ca
+            - mountPath: /backup
+              name: backup-target
+      volumes:
+        - name: pg-nextcloud-replication
+          secret:
+            secretName: pg-nextcloud-replication
+            defaultMode: 0600
+        - name: pg-nextcloud-ca
+          secret:
+            secretName: pg-nextcloud-ca
+            defaultMode: 0600
+        - name: backup-target
+          persistentVolumeClaim:
+            claimName: pg-nextcloud-backup
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pg-nextcloud-backup
+  namespace: nextcloud
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: rook-cephfs

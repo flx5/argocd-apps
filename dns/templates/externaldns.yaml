@@ -91,6 +91,7 @@ spec:
             - --ingress-class=public-nginx
             - --source=ingress
             - --default-targets=dyndns.felix-prasse.de
+            - --exclude-target-net=192.168.0.0/16
           env:
             - name: CF_API_TOKEN
               valueFrom:

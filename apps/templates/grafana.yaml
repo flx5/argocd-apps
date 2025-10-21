@@ -99,7 +99,7 @@ spec:
         podLogs:
           enabled: true
         applicationObservability:
-          enabled: true
+          enabled: false
           receivers:
             otlp:
               grpc:
@@ -112,7 +112,7 @@ spec:
               enabled: true
               port: 9411
         autoInstrumentation:
-          enabled: true
+          enabled: false
         integrations:
           alloy:
             instances:

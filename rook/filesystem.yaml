@@ -15,6 +15,12 @@ spec:
   metadataServer:
     activeCount: 1
     activeStandby: true
+    resources:
+      limits:
+        memory: "2048Mi"
+      requests:
+        memory: "2048Mi"
+
 ---
 apiVersion: storage.k8s.io/v1
 kind: StorageClass

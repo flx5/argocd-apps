@@ -91,7 +91,7 @@ spec:
             - --ingress-class=public-nginx
             - --source=ingress
             - --default-targets=dyndns.felix-prasse.de
-            - --exclude-target-net=192.168.0.0/16
+            - --force-default-targets # TODO This is apparently legacy: https://github.com/kubernetes-sigs/external-dns/blob/d9a20d1f8cb70a442a3628b2b6d9b7a723852045/docs/tutorials/crd.md
           env:
             - name: CF_API_TOKEN
               valueFrom:

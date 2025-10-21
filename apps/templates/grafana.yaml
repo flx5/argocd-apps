@@ -86,6 +86,7 @@ spec:
                 defaultClusterId: k3s-nue
               prometheus:
                 existingSecretName: grafana-cloud-metrics-grafana-k8s-monitoring
+                password_key: token
                 external:
                   url: https://prometheus-prod-24-prod-eu-west-2.grafana.net/api/prom
           kepler:

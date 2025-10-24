@@ -34,7 +34,7 @@ spec:
       - {{ . | quote }}
     snapshotVolumes: true
     # Where to store the tarball and logs.
-    #storageLocation: csi
+    storageLocation: minio
     # The list of locations in which to store volume snapshots created for backups under this schedule.
     #volumeSnapshotLocations:
     #  - csi

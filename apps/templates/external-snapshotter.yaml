@@ -21,7 +21,7 @@ spec:
   sources:
     - path: client/config/crd
       repoURL: https://github.com/kubernetes-csi/external-snapshotter.git
-      targetRevision: v8.3.0
+      targetRevision: v8.4.0
     - path: external-snapshotter
       repoURL: {{ .Values.spec.source.repoURL }}
       targetRevision: {{ .Values.spec.source.targetRevision }}

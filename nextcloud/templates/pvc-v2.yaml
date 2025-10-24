@@ -4,7 +4,6 @@ metadata:
   finalizers:
     - kubernetes.io/pvc-protection
   name: nextcloud-data
-  namespace: nextcloud
 spec:
   accessModes:
     - ReadWriteMany
@@ -19,7 +18,6 @@ metadata:
   finalizers:
     - kubernetes.io/pvc-protection
   name: nextcloud-app
-  namespace: nextcloud
 spec:
   accessModes:
     - ReadWriteMany

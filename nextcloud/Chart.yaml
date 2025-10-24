@@ -24,5 +24,5 @@ appVersion: "1.0"
 
 dependencies:
   - name: nextcloud
-    version: 8.4.1
+    version: 8.5.0
     repository: https://nextcloud.github.io/helm/

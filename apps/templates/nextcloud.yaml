@@ -22,6 +22,34 @@ spec:
     path: nextcloud
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
+
   destination:
     server: "https://kubernetes.default.svc"
     namespace: nextcloud
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nextcloud-internal
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+  source:
+    path: nextcloud
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+    helm:
+      parameters:
+        - name: "nextcloud.ingress.className"
+          value: "internal-nginx"
+        - name: "nextcloud.nextcloud.host"
+          value: "cloud.internal.home.arpa"
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: internal

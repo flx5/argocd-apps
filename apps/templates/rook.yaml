@@ -17,7 +17,7 @@ spec:
   syncPolicy:
     automated:
       selfHeal: false
-      prune: true
+      prune: false
   source:
     path: rook
     repoURL: {{ .Values.spec.source.repoURL }}

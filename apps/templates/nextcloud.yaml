@@ -22,6 +22,19 @@ spec:
     path: nextcloud
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
+    helm:
+      valuesObject:
+        nextcloud:
+          ingress:
+            className: public-nginx
+            annotations:
+              cert-manager.io/cluster-issuer: letsencrypt-prod
+            tls:
+              - hosts:
+                  - cloud.felix-prasse.de
+                secretName: nextcloud-cert # < cert-manager will store the created certificate in this secret.
+          nextcloud:
+            host: "cloud.felix-prasse.de"
 
   destination:
     server: "https://kubernetes.default.svc"

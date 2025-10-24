@@ -13,18 +13,12 @@ nextcloud:
 
   ingress:
     enabled: true
-    className: public-nginx
     annotations:
-      cert-manager.io/cluster-issuer: letsencrypt-prod
       nginx.ingress.kubernetes.io/affinity: cookie
       nginx.ingress.kubernetes.io/enable-cors: "true"
       nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
       nginx.ingress.kubernetes.io/proxy-buffering: "off"
       nginx.ingress.kubernetes.io/proxy-body-size: "4096m"
-    tls:
-      - hosts:
-          - cloud.felix-prasse.de
-        secretName: nextcloud-cert # < cert-manager will store the created certificate in this secret.
   # TODO Run this as init container: NEXTCLOUD_UPDATE=1 /entrypoint.sh /bin/sh -c 'exit 0'
   # See also: https://github.com/nextcloud/helm/pull/344...
   # TODO Maybe add some argo hooks to backup / snapshot /  migrate the database?
@@ -50,8 +44,6 @@ nextcloud:
   phpClientHttpsFix:
     enabled: true
     protocol: https
-  nextcloud:
-    host: "cloud.felix-prasse.de"
     podSecurityContext:
       # See
       # https://kubernetes.io/blog/2020/12/14/kubernetes-release-1.20-fsgroupchangepolicy-fsgrouppolicy/

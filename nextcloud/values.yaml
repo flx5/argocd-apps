@@ -44,6 +44,7 @@ nextcloud:
   phpClientHttpsFix:
     enabled: true
     protocol: https
+  nextcloud:
     podSecurityContext:
       # See
       # https://kubernetes.io/blog/2020/12/14/kubernetes-release-1.20-fsgroupchangepolicy-fsgrouppolicy/

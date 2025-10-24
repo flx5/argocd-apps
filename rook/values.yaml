@@ -1,0 +1,8 @@
+rook-ceph:
+  csi:
+    enableCSIEncryption: true
+    topology:
+      enabled: true
+      domainLabels:
+        - kubernetes.io/hostname
+      # - topology.kubernetes.io/zone

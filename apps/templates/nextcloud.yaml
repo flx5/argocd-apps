@@ -50,6 +50,8 @@ spec:
           value: "internal-nginx"
         - name: "nextcloud.nextcloud.host"
           value: "cloud.internal.home.arpa"
+        - name: "postgres.version"
+          value: "18"
   destination:
     server: "https://kubernetes.default.svc"
     namespace: internal

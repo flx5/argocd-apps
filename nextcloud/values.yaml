@@ -1,3 +1,6 @@
+postgres:
+  version: 17
+
 nextcloud:
   #podAnnotations:
   #  pre.hook.backup.velero.io/command: '["./occ", "maintenance:mode", "--on"]'
@@ -6,16 +9,7 @@ nextcloud:
 # TODO
   # https://github.com/nextcloud/helm/pull/673#issuecomment-2763302385
   # TODO https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#proxy-request-buffering
-  affinity:
-    nodeAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-        - weight: 1
-          preference:
-            matchExpressions:
-              - key: kubernetes.io/hostname
-                operator: In
-                values:
-                  - nas
+
 
   ingress:
     enabled: true
@@ -90,9 +84,6 @@ nextcloud:
       - name: PHP_MEMORY_LIMIT
         value: 1G
     extraVolumeMounts:
-      - name: cron-config
-        mountPath: /var/spool/cron/crontabs/www-data
-        subPath: crontab
       - name: nextcloud-redis-session-ini
         mountPath: "/usr/local/etc/php/conf.d/redis-session.ini" # fix permission denied error
         subPath: redis-session.ini
@@ -176,8 +167,7 @@ nextcloud:
       fsGroupChangePolicy: "OnRootMismatch"
   cronjob:
     enabled: true
-    type: cronjob
-    # Workaround required for crond until https://github.com/nextcloud/helm/pull/703 is fixed.
+    type: cronjob # TODO Currently this means the additional job defined in cron-config is not executed.
     securityContext:
       allowPrivilegeEscalation: false
       fsGroupChangePolicy: "OnRootMismatch"

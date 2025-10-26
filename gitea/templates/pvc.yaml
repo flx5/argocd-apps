@@ -4,7 +4,6 @@ metadata:
   finalizers:
     - kubernetes.io/pvc-protection
   name: gitea-shared-storage
-  namespace: gitea
 spec:
   accessModes:
     - ReadWriteMany

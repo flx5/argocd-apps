@@ -25,3 +25,43 @@ spec:
   destination:
     server: "https://kubernetes.default.svc"
     namespace: gitea
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitea-internal
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+  source:
+    path: gitea
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+    helm:
+      valuesObject:
+        gitea:
+          service:
+            ssh:
+              annotations:
+                external-dns.alpha.kubernetes.io/hostname: ssh.git.home.arpa
+          gitea:
+            config:
+              server:
+                SSH_DOMAIN: ssh.git.home.arpa
+            ingress:
+              enabled: false
+              className: internal-nginx
+              hosts:
+                - host: "git.home.arpa"
+                  paths:
+                    - path: /
+                      pathType: Prefix
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: internal

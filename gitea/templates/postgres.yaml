@@ -36,7 +36,7 @@ spec:
         user: postgres
         dbname: postgres
       password:
-        name: postgres-users
+        name: gitea-postgresql
         key: postgres-password
 ---
 apiVersion: objectbucket.io/v1alpha1

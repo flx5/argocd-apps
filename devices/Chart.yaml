@@ -28,4 +28,4 @@ dependencies:
     repository: https://intel.github.io/helm-charts/
   - name: node-feature-discovery
     version: 0.18.2
-    repository: oci://registry.k8s.io/nfd/charts/
+    repository: oci://registry.k8s.io/nfd/charts

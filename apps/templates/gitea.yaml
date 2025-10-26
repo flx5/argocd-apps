@@ -71,18 +71,19 @@ spec:
             ssh:
               annotations:
                 external-dns.alpha.kubernetes.io/hostname: ssh.git.home.arpa
+          ingress:
+            enabled: true
+            className: internal-nginx
+            hosts:
+              - host: "git.home.arpa"
+                paths:
+                  - path: /
+                    pathType: Prefix
           gitea:
             config:
               server:
                 SSH_DOMAIN: ssh.git.home.arpa
-            ingress:
-              enabled: true
-              className: internal-nginx
-              hosts:
-                - host: "git.home.arpa"
-                  paths:
-                    - path: /
-                      pathType: Prefix
+
   destination:
     server: "https://kubernetes.default.svc"
     namespace: internal

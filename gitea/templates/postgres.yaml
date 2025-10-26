@@ -52,7 +52,7 @@ metadata:
   name: gitea-ceph-store
 spec:
   configuration:
-    destinationPath: s3://gitea-bkt-95187899-5958-4fb0-a6d0-dd3510efcb70/
+    destinationPath: s3://{{ .Values.bucketName }}/
     endpointURL: http://rook-ceph-rgw-my-store.rook-ceph.svc
     s3Credentials:
       accessKeyId:

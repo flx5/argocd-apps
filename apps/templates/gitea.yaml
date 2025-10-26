@@ -63,6 +63,7 @@ spec:
     helm:
       valuesObject:
         gitea:
+          replicaCount: 0
           service:
             ssh:
               annotations:

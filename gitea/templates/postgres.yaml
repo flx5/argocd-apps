@@ -33,11 +33,10 @@ spec:
       connectionParameters:
         # Use the correct IP or host name for the source database
         host: gitea-postgresql
-        user: postgres
+        user: gitea
+        password: gitea
         dbname: postgres
-      password:
-        name: gitea-postgresql
-        key: postgres-password
+
 ---
 apiVersion: objectbucket.io/v1alpha1
 kind: ObjectBucketClaim

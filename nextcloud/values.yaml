@@ -76,6 +76,8 @@ nextcloud:
     extraEnv:
       - name: PHP_MEMORY_LIMIT
         value: 1G
+      - name: REDIS_HOST
+        value: nextcloud-valkey
     extraVolumeMounts:
       - name: nextcloud-redis-session-ini
         mountPath: "/usr/local/etc/php/conf.d/redis-session.ini" # fix permission denied error

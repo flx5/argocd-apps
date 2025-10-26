@@ -62,6 +62,9 @@ spec:
     targetRevision: {{ .Values.spec.source.targetRevision }}
     helm:
       valuesObject:
+        admin:
+          password: AgA+bcTN1qBN3TMA5bKX3jNiKbJ3hM5i6YD41cN8P7bNkJ50Yputg8ZaCkQWDCsvUzIK2q/IjWUPmyukA+OsS57IkP1aRqkFroF4Oc0DXvAIOM4kmOQ92Nn+f+ImGinfFA2myRt+pYZ9kym2ydSTXIfWVN6yw1jwFva5r9eFxFNI1cevRrthUBGUrphPOHcOhieafai4SMvsUshEXrzDl0SiSXHso2GU2IXmUcHgPeFHpKPSomWsXA8xurcUzbfIN6viJUlKH2resiCbikEO3mAr6rhKr3NTz7GlNK7vMYHgMr2tGhWwGJ01q9Na1PIrzMbEaNs+VT+Tnsh3qz95rNnDjZruKhIZHcNW6z63Kua3V9RjAqPx1n4+imagVF4TpIcmRRb4VcGMJ6pHxni+CjouQg6okMjeRDhVj8oozYS+xlwoRpepfWdxP7S/F7ky6egF7t0i3WoRc9hNj93DQ41yYEZe3V7txcMMu/qAQue8i28t6HRgJeYx4ujw2RDHA+/HgYKJyW5RCn0MPBTdcfwyq16PjzNjy6Y+hftnfpub9wcnfdnEkb8LT6mjIU+kGBB8/sVdfJ9VUdYYmzFKsGWy91DUy7n/98fWbsypyYy4cyGBWvfAjdmHQHxCOzAynmQR6WBg+jZ96AbJNgSotpHuHzX/QMu924FJ/Jby6udpB1yGKVRQhqKsz3jTzX2A+OZYnM4srwA+o8OlSFM4D09VV4sJEw==
+          username: AgATx8rLJy/jcEkWxiExVmyu4CtpnsNfWfts1WrbUuJ7KI92i/wnZ2JgP7eU/1jOqRY0fr9skctFi9a7kkgXJ2SZY0/iMSxINtpzFFnYMZwpnoScSeG5pPxG21FrSg7GCQeQF6yAjAEO1V/dWsdD05Zmhsoc7+Fd9OiTmO5P4evs2nkF99oX3HMaMxLjtiixZLmERixrJImPQ4WoPl8L6ihDvvytlSWm5zJjtq61lqmMjIBhzLTr39M+Vu2jFU+DMWF9kya1+LjEeAgx2CY0T0SHHIH7svr/teJ4iSgTVvW+zewCSzIP9NSi9+eJLW29TPqCZUnFE+U1acmoGMnIg8TyVO0eo4KAvptMu/9v3LBTnTKqFkPmjJuIJ1UZ3WMekfXN5Hr/jrMKziuHM3Yf1fDGzjBWXVMCH4YjLM0PfWrFwvWXCdkgpwdmDlR9Ax/DTBIyoFybUy+h4jGlyC8Ps4Phk639KzrEo9r0gt1o0h76lfCq0B2gOtnj/cL9SEPJkUaKxYDjMOGrXfxwK6VUJ/gvTbUCf+fhTnpLQ9IwFAS61T1+4ZjF7zKQu+LrY5g1hTUzywqEWz7LsK4ge62EvkJ7NGn+NKAEMQJeUpfKfu00yMXXxTf4Iy5lX7VHtl3MCsV1FBONl/flYQFMVffFpXQv61K1HVnSYM+b5oR6IEViecWDYnDOmb18a3To5kEYcXMfAL5A7Q==
         gitea:
           replicaCount: 0
           service:

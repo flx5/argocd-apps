@@ -49,7 +49,7 @@ spec:
 apiVersion: barmancloud.cnpg.io/v1
 kind: ObjectStore
 metadata:
-  name: ceph-store
+  name: gitea-ceph-store
 spec:
   configuration:
     destinationPath: s3://gitea-bkt-95187899-5958-4fb0-a6d0-dd3510efcb70/

@@ -26,6 +26,10 @@ spec:
       valuesObject:
         bucketName: gitea-bkt-95187899-5958-4fb0-a6d0-dd3510efcb70
         gitea:
+          service:
+            ssh:
+              annotations:
+                external-dns.alpha.kubernetes.io/hostname: ssh.git.felix-prasse.de
           ingress:
             enabled: true
             className: public-nginx

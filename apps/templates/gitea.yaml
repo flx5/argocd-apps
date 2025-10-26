@@ -67,7 +67,6 @@ spec:
           username: AgCepnSf4niqpHEhAErYMVAyKQreFgVh5KsIro30yGZA29GCJTKJmYsuP7SBJK1ECNSqpPKGhilj4bsBhfp7ppAeUaUwD/C191hNwHYpbFAiEgceuyeRGXTJFFRp2itKJjJ5rH91Ie9GDkgHyYDs5DvsIpoVvtlD+4tjCxBPh7m80acQXIFZNgqY/OWybLfTQ8cSQs/Hd1NZz6yY8/oXBxEym0+X57Lo+XVbpRiPn+lxWlZo1CLx+LTxpBboNe3oWw4T4/Zc2RkE2Sxg0DiEKZon6ebiKNBNPr+xMDW1zNHxxh1b5oQ+ipWd3JFKbaR9PzDNOCI1wfnv+kVVyzlz63GL4Ayujh8Wi3Ni+c+4dgy2S+XCWCKOOn/ZPYHO+Hw0TEhvGEM6Qdm1LO+Mq41piNxElkbcEuhxW2hK43cEFgAMI2WR/MgJ9UWPh1kEzSnSET4zEkWO9PEyVmHeDita/RK+rmEjBZIClb9qBDd0hINcqrOSDfP0QQ5VgkTpEScfnnPaC0fbexnfZRRj8FZgYw6E7SB6EU1LtpSIz8IQAOQtvniKEI0x+vm7a6M58iQQP6wvnxoDuO8FNJ0XnPzW/biKYdT/omNb8izDqT+6bCersJRqeS+CSyaK8ooQLD2f0EV7ouotS10j7uom7nZzcfpAjQWeLVHEEbX0lEGZVeV2JZSB0cMBQHIzuAP9ZFKN00GUiH/X
 
         gitea:
-          replicaCount: 0
           service:
             ssh:
               annotations:
@@ -77,7 +76,7 @@ spec:
               server:
                 SSH_DOMAIN: ssh.git.home.arpa
             ingress:
-              enabled: false
+              enabled: true
               className: internal-nginx
               hosts:
                 - host: "git.home.arpa"

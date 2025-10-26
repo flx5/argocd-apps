@@ -71,17 +71,3 @@ gitea:
       server:
         SSH_DOMAIN: ssh.git.felix-prasse.de
 
-  ingress:
-    enabled: true
-    className: public-nginx
-    annotations:
-      cert-manager.io/cluster-issuer: letsencrypt-prod
-    hosts:
-      - host: "git.felix-prasse.de"
-        paths:
-          - path: /
-            pathType: Prefix
-    tls:
-      - hosts:
-          - "git.felix-prasse.de"
-        secretName: gitea-cert # < cert-manager will store the created certificate in this secret.

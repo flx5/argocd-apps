@@ -22,6 +22,23 @@ spec:
     path: gitea
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
+    helm:
+      valuesObject:
+        gitea:
+          ingress:
+            enabled: true
+            className: public-nginx
+            annotations:
+              cert-manager.io/cluster-issuer: letsencrypt-prod
+            hosts:
+              - host: "git.felix-prasse.de"
+                paths:
+                  - path: /
+                    pathType: Prefix
+            tls:
+              - hosts:
+                  - "git.felix-prasse.de"
+                secretName: gitea-cert # < cert-manager will store the created certificate in this secret.
   destination:
     server: "https://kubernetes.default.svc"
     namespace: gitea

@@ -138,26 +138,7 @@ nextcloud:
   internalDatabase:
     enabled: false
   redis:
-    global:
-      security:
-        allowInsecureImages: true
-    # TODO FU bitnami....
-    image:
-      repository: bitnamilegacy/redis
-    enabled: true
-    master:
-      persistence:
-        enabled: false
-    auth:
-      enabled: false
-    replica:
-      replicaCount: 0
-    podSecurityContext:
-      # See
-      # https://kubernetes.io/blog/2020/12/14/kubernetes-release-1.20-fsgroupchangepolicy-fsgrouppolicy/
-      # https://github.com/kubernetes/kubernetes/issues/69699
-      # https://longhorn.io/docs/1.8.1/nodes-and-volumes/volumes/pvc-ownership-and-permission/#longhorn-pvc-with-block-volume-mode
-      fsGroupChangePolicy: "OnRootMismatch"
+    enabled: false
   cronjob:
     enabled: true
     type: cronjob # TODO Currently this means the additional job defined in cron-config is not executed.

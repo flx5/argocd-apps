@@ -9,4 +9,6 @@ policy-reporter:
     className: internal-nginx
     hosts:
       - host: kyverno.home.arpa
-        paths: []
+        paths:
+          - path: /
+            pathType: Prefix

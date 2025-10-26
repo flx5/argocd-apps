@@ -12,3 +12,8 @@ policy-reporter:
   plugin:
     kyverno:
       enabled: true
+
+kyverno-policies:
+  # -- Pod Security Standard profile (`baseline`, `restricted`, `privileged`, `custom`).
+  # For more info https://kyverno.io/policies/pod-security.
+  podSecurityStandard: restricted

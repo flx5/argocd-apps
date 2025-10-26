@@ -1,0 +1,4 @@
+intel-device-plugins-gpu:
+  # We can configure the GPU plugin to allow multiple pods to share the same GPU resource,
+  # here we’ve configured for up to five workloads to share each iGPU
+  sharedDevNum: 5

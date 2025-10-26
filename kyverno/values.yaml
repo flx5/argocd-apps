@@ -1,14 +1,14 @@
 policy-reporter:
   ui:
     enabled: true
+    ingress:
+      enabled: true
+      className: internal-nginx
+      hosts:
+        - host: kyverno.home.arpa
+          paths:
+            - path: /
+              pathType: Prefix
   plugin:
     kyverno:
       enabled: true
-  ingress:
-    enabled: true
-    className: internal-nginx
-    hosts:
-      - host: kyverno.home.arpa
-        paths:
-          - path: /
-            pathType: Prefix

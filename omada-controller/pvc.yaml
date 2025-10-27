@@ -16,18 +16,6 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: omada-data-pvc-v2
-spec:
-  storageClassName: rook-ceph-block
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 3Gi
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
   name: omada-data-pvc
 spec:
   storageClassName: rook-cephfs
@@ -42,7 +30,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: omada-backup-pvc
 spec:
-  storageClassName: rook-ceph-block
+  storageClassName: rook-cephfs
   accessModes:
     - ReadWriteOnce
   resources:
@@ -54,7 +42,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: omada-logs-pvc-v2
 spec:
-  storageClassName: rook-ceph-block
+  storageClassName: rook-cephfs
   accessModes:
     - ReadWriteOnce
   resources:

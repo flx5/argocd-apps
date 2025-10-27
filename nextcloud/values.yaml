@@ -152,7 +152,7 @@ nextcloud:
         - bash
         - -x
         - -c
-        - "php -f /var/www/html/cron.php -- -verbose && php -f /var/www/html/occ preview:pre-generate"
+        - "php -f /var/www/html/cron.php -- --verbose && php -f /var/www/html/occ preview:pre-generate --verbose"
     securityContext:
       allowPrivilegeEscalation: false
       fsGroupChangePolicy: "OnRootMismatch"

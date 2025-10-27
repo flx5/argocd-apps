@@ -150,6 +150,7 @@ nextcloud:
     cronjob:
       command:
         - bash
+        - -x
         - -c
         - "php -f /var/www/html/cron.php -- -verbose && php -f /var/www/html/occ preview:pre-generate"
     securityContext:

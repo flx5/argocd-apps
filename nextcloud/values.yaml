@@ -1,6 +1,9 @@
 postgres:
   version: 17
 
+valkey:
+  fullnameOverride: nextcloud-valkey
+
 nextcloud:
   #podAnnotations:
   #  pre.hook.backup.velero.io/command: '["./occ", "maintenance:mode", "--on"]'

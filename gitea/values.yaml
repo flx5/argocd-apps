@@ -24,7 +24,6 @@ gitea:
   service:
     ssh:
       type: LoadBalancer
-      externalTrafficPolicy: Local
   gitea:
     admin:
       existingSecret: gitea-admin-secret

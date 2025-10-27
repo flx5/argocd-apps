@@ -153,10 +153,10 @@ nextcloud:
         - -x
         - -c
         - >-
-             php -f /var/www/html/cron.php -- --verbose
-          && php -f /var/www/html/occ preview:pre-generate
-          && php -f /var/www/html/occ maintenance:repair --include-expensive
-          && php -f /var/www/html/occ db:add-missing-indices
+                php -f /var/www/html/cron.php -- --verbose
+             && php -f /var/www/html/occ preview:pre-generate
+             && php -f /var/www/html/occ maintenance:repair --include-expensive
+             && php -f /var/www/html/occ db:add-missing-indices
 
     securityContext:
       allowPrivilegeEscalation: false

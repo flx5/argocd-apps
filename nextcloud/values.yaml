@@ -147,6 +147,11 @@ nextcloud:
   cronjob:
     enabled: true
     type: cronjob # TODO Currently this means the additional job defined in cron-config is not executed.
+    cronjob:
+      command:
+        - bash
+        - -c
+        - "php -f /var/www/html/cron.php -- -verbose && php -f /var/www/html/occ preview:pre-generate"
     securityContext:
       allowPrivilegeEscalation: false
       fsGroupChangePolicy: "OnRootMismatch"

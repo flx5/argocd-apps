@@ -17,6 +17,9 @@ spec:
       securityContext:
         fsGroupChangePolicy: OnRootMismatch
         fsGroup: 100
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - name: clamav
           image: clamav/clamav:1.5.1_base

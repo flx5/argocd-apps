@@ -3,6 +3,13 @@ postgres:
 
 valkey:
   fullnameOverride: nextcloud-valkey
+  podSecurityContext:
+    fsGroupChangePolicy: "OnRootMismatch"
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
+  securityContext:
+    allowPrivilegeEscalation: false
 
 nextcloud:
   #podAnnotations:

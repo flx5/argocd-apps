@@ -73,6 +73,11 @@ nextcloud:
       - name: init-redis-session-ini
         image: busybox:1.37
         command: [ 'touch', '/usr/local/etc/php/conf.d/redis-session.ini' ]
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
         volumeMounts:
           - name: nextcloud-redis-session-ini
             mountPath: "/usr/local/etc/php/conf.d"

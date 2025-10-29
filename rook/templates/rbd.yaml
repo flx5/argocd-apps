@@ -20,9 +20,6 @@ parameters:
   # Ceph pool into which the RBD image shall be created
   pool: replicapool
 
-  encrypted: "true"
-  encryptionKMSID: "user-secret-metadata"
-
   # (optional) mapOptions is a comma-separated list of map options.
   # For krbd options refer
   # https://docs.ceph.com/docs/master/man/8/rbd/#kernel-rbd-krbd-options

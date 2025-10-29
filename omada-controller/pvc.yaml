@@ -1,18 +1,3 @@
-apiVersion: bitnami.com/v1alpha1
-kind: SealedSecret
-metadata:
-  creationTimestamp: null
-  name: storage-encryption-secret
-  namespace: omada-controller
-spec:
-  encryptedData:
-    encryptionPassphrase: AgC7jYNkUsy17cZad4fhVvh2mocduFoiLT0z7DnYyDEnd9YX88wUcAhB+eh1PGdJ4o7nnj3XdTMW4X2eWwALgf9xckIfFzKS33kRCuhfsXkB3yOLa8y4w1dPfqvxF6nL6a0AzoHbiG+LvK0W0f992oXN/zlmZOiLqsfp4Y8APnmcfIK5M3RJ0PMc+hEpn4bPPG6XfxRxKd6yvaIQDcbRIb0ZBszor1HochGkbDtgAVOVrhzESIX6Ntecw53/u9cHArgZgdxpA1R60RWtQhszb65MLUhqD6eFycR5OrLSh/O1XqODNbuL+TyDv6R+fCcz7nCjJ2po5EBcmMI+PLgM+FMjcO2+hz6JfY/orbNSno2Bj9Ovf9LZvFDv/pXL7x3RKy1UhgmUcyoOFRYeAT+3fjmEfmZIux7cQeYHELP9jTz40PUF5qV01kPb78xiFrcEjsxugOzlJzjUtDyE0ehDjUGwjADkHpwZ92mlZ3wUtfanoPbd9d2Tly/jh9ITwjg7m1LEBJxhSwd69UmQT6sEIweZ5Z09iG22UdBum1Zqhjn4Pj+C1ZhBsLxoXN0334eh9HMfn1VKI+Je67GYsdfgQkFmqmT0Gnn0nEs1vQnqv9c0fXZTT0NfUwd15bFewNyIiWI+UsgY7aWd5ckk6SDS/CE14J4mvRFsegSqjOOci+/YivlgG0ldmcwt00owxOmI7JU4i3D2LxbYuXeLHSDwRbNDEoWZAZguHexI3cOQVqCpPCjUpByUDQBjelf+/NUgDKyIOg==
-  template:
-    metadata:
-      creationTimestamp: null
-      name: storage-encryption-secret
-      namespace: omada-controller
----
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:

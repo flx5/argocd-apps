@@ -159,13 +159,10 @@ nextcloud:
 
       securityContext:
         allowPrivilegeEscalation: false
-        fsGroupChangePolicy: "OnRootMismatch"
-        runAsNonRoot: true
-        runAsUser: 33
-        runAsGroup: 33
         capabilities:
           drop:
             - ALL
+
   persistence:
     enabled: true
     existingClaim: nextcloud-app

@@ -5,6 +5,15 @@ admin:
 bucketName: nil
 
 gitea:
+  podSecurityContext:
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
+  containerSecurityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+         drop:
+           - ALL
 
   valkey-cluster:
     enabled: false

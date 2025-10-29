@@ -157,15 +157,15 @@ nextcloud:
              && php -f /var/www/html/occ preview:pre-generate
              && php -f /var/www/html/occ db:add-missing-indices
 
-    securityContext:
-      allowPrivilegeEscalation: false
-      fsGroupChangePolicy: "OnRootMismatch"
-      runAsNonRoot: true
-      runAsUser: 33
-      runAsGroup: 33
-      capabilities:
-        drop:
-          - ALL
+      securityContext:
+        allowPrivilegeEscalation: false
+        fsGroupChangePolicy: "OnRootMismatch"
+        runAsNonRoot: true
+        runAsUser: 33
+        runAsGroup: 33
+        capabilities:
+          drop:
+            - ALL
   persistence:
     enabled: true
     existingClaim: nextcloud-app

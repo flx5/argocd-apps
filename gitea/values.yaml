@@ -4,6 +4,15 @@ admin:
 
 bucketName: nil
 
+valkey:
+  podSecurityContext:
+    fsGroupChangePolicy: "OnRootMismatch"
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
+  securityContext:
+    allowPrivilegeEscalation: false
+
 gitea:
   podSecurityContext:
     runAsNonRoot: true

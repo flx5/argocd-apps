@@ -16,6 +16,11 @@ data:
           "storageClass": "rook-cephfs",
           "readOnly": true,
           "spcNoRelabeling": true
+        },
+        "zfs-generic-nfs-csi": {
+          "storageClass": "zfs-generic-nfs-csi",
+          "readOnly": true,
+          "spcNoRelabeling": true
         }
       },
       "podResources": {

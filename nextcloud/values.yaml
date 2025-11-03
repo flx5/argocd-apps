@@ -81,21 +81,21 @@ nextcloud:
         volumeMounts:
           - name: nextcloud-redis-session-ini
             mountPath: "/usr/local/etc/php/conf.d"
-    extraSidecarContainers:
-        - name: nextcloud-exporter
-          image: ghcr.io/xperimental/nextcloud-exporter:0.9.0
-          env:
-            - name: NEXTCLOUD_SERVER
-              value: http://localhost:8080
-            - name: NEXTCLOUD_AUTH_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  key: test
-                  name: test
-            - name: NEXTCLOUD_INFO_APPS
-              value: "true"
-            - name: NEXTCLOUD_INFO_UPDATE
-              value: "true"
+#    extraSidecarContainers:
+#        - name: nextcloud-exporter
+#          image: ghcr.io/xperimental/nextcloud-exporter:0.9.0
+#          env:
+#            - name: NEXTCLOUD_SERVER
+#              value: http://localhost:8080
+#            - name: NEXTCLOUD_AUTH_TOKEN
+#              valueFrom:
+#                secretKeyRef:
+#                  key: test
+#                  name: test
+#            - name: NEXTCLOUD_INFO_APPS
+#              value: "true"
+#            - name: NEXTCLOUD_INFO_UPDATE
+#              value: "true"
 
     # Set securityContext parameters for the nextcloud CONTAINER only (will not affect nginx container).
     securityContext:

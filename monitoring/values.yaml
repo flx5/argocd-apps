@@ -3,6 +3,21 @@ kube-prometheus-stack:
     upgradeJob:
       enabled: true
   grafana:
+    extraSecretMounts:
+      - name: pg-grafana-app
+        secretName: pg-grafana-app
+        defaultMode: 0440
+        mountPath: /etc/secrets/postgres
+        readOnly: true
+
+    grafana.ini:
+      database:
+        type: "postgres"
+        host: $__file{/etc/secrets/postgres/host}
+        name: $__file{/etc/secrets/postgres/dbname}
+        user: $__file{/etc/secrets/postgres/user}
+        password: $__file{/etc/secrets/postgres/password}
+
     ingress:
       enabled: true
       ingressClassName: public-nginx
@@ -18,5 +33,5 @@ kube-prometheus-stack:
 
     persistence:
       type: pvc
-      enabled: true
+      enabled: false
       storageClassName: rook-ceph-block

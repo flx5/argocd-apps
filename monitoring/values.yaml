@@ -3,6 +3,12 @@ kube-prometheus-stack:
     upgradeJob:
       enabled: true
   grafana:
+    admin:
+      # TODO Use Vault with env.GF_SECURITY_ADMIN_PASSWORD__FILE instead of sealed secret
+      existingSecret: monitoring-grafana
+      passwordKey: admin-password
+      userKey: admin-user
+
     extraSecretMounts:
       - name: pg-grafana-app
         secretName: pg-grafana-app

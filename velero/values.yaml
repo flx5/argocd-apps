@@ -7,6 +7,9 @@ backupNamespaces:
   - 'internal'
 
 velero:
+  metrics:
+    servicemonitor:
+      enabled: true
   deployNodeAgent: true
   # TODO Configure kopia caching
   # https://github.com/vmware-tanzu/velero/issues/7725

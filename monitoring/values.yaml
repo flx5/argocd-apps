@@ -1,7 +1,21 @@
+# TODO https://github.com/k3s-io/k3s/issues/3619
+# TODO Monitor DNS (internal + external)
+# TODO Monitor PoE Switch
+# TODO Monitor Main Switch
+# TODO Monitor DSL-Modem
+
 kube-prometheus-stack:
   crds:
     upgradeJob:
       enabled: true
+  prometheus:
+    prometheusSpec:
+      # Otherwise resources need to add labels to crds: https://github.com/prometheus-operator/kube-prometheus/issues/1392#issuecomment-993654670
+      podMonitorSelectorNilUsesHelmValues: false
+      scrapeConfigSelectorNilUsesHelmValues: false
+      probeSelectorNilUsesHelmValues: false
+      ruleSelectorNilUsesHelmValues: false
+      serviceMonitorSelectorNilUsesHelmValues: false
   grafana:
     admin:
       # TODO Use Vault with env.GF_SECURITY_ADMIN_PASSWORD__FILE instead of sealed secret

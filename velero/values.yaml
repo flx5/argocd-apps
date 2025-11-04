@@ -8,7 +8,9 @@ backupNamespaces:
 
 velero:
   metrics:
-    servicemonitor:
+    serviceMonitor:
+      enabled: true
+    prometheusRule:
       enabled: true
   deployNodeAgent: true
   # TODO Configure kopia caching

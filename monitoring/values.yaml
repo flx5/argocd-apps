@@ -69,15 +69,9 @@ kube-prometheus-stack:
 
     ingress:
       enabled: true
-      ingressClassName: public-nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-prod
-      tls:
-        - hosts:
-            - monitoring.felix-prasse.de
-          secretName: grafana-cert # < cert-manager will store the created certificate in this secret.
+      ingressClassName: internal-nginx
       hosts:
-      - monitoring.felix-prasse.de
+      - monitoring.home.arpa
       path: /
 
     persistence:

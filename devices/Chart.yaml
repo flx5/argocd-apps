@@ -24,7 +24,7 @@ appVersion: "1.0"
 
 dependencies:
   - name: node-feature-discovery
-    version: 0.18.2
+    version: 0.18.3
     repository: oci://registry.k8s.io/nfd/charts
   - name: intel-device-plugins-operator
     version: 0.34.0

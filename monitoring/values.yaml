@@ -17,6 +17,19 @@ kube-prometheus-stack:
       ruleSelectorNilUsesHelmValues: false
       serviceMonitorSelectorNilUsesHelmValues: false
   grafana:
+    dashboards:
+      default:
+        velero:
+          # Ref: https://grafana.com/dashboards/23838
+          gnetId: 23838
+          revision: 1
+          datasource: Prometheus
+        velero-exporter:
+          # Ref: https://grafana.com/dashboards/15469
+          gnetId: 15469
+          revision: 1
+          datasource: Prometheus
+
     admin:
       # TODO Use Vault with env.GF_SECURITY_ADMIN_PASSWORD__FILE instead of sealed secret
       existingSecret: monitoring-grafana

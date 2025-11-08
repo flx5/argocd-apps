@@ -3,6 +3,8 @@
 # TODO Monitor PoE Switch
 # TODO Monitor Main Switch
 # TODO Monitor DSL-Modem
+# TOOO Monitor OPNSense
+# TODO Provision dashboards via sidecar: https://medium.com/cloud-native-daily/provision-grafana-dashboards-and-alerts-using-helm-and-sidecars-733dcd223037
 
 kube-prometheus-stack:
   crds:
@@ -35,7 +37,9 @@ kube-prometheus-stack:
           # Ref: https://grafana.com/dashboards/23838
           gnetId: 23838
           revision: 1
-          datasource: Prometheus
+          datasource:
+            - name: DS_PROMETHEUS
+              value: Prometheus
         velero-exporter:
           # Ref: https://grafana.com/dashboards/15469
           gnetId: 15469

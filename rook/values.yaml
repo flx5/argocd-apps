@@ -1,6 +1,6 @@
 rook-ceph:
   csi:
-    enableCSIEncryption: true
+    enableCSIEncryption: false
     topology:
       enabled: true
       domainLabels:

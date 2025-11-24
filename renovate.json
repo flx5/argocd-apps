@@ -15,12 +15,12 @@
   },
   "customManagers": [
     {
-      "customType": "jsonata",
+      "customType": "regex",
       "managerFilePatterns": ["/catalog.yaml$/"],
       "matchStrings": [
-        "($latest := $single(spec.images, function($v) { $v.major = $max(spec.images.major) }).image; $parts := $split($latest, ':'); { 'depName': $parts[0], 'currentValue': $parts[1] })"
+        "image:\\s+(?<depName>.*):(?<currentValue>[^\\s]+)"
       ],
-      "versioningTemplate": "major: {{{newMajor}}}image: {{{depName}}}:{{{newValue}}}",
+      "autoReplaceStringTemplate": "- major: {{{newMajor}}}image: {{{depName}}}:{{{newValue}}}",
       "datasourceTemplate": "docker",
       "fileFormat": "yaml"
     }

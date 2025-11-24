@@ -4,11 +4,14 @@ metadata:
   name: postgresql
 spec:
   images:
-    - major: 15
-      image: ghcr.io/cloudnative-pg/postgresql:15.15
-    - major: 16
-      image: ghcr.io/cloudnative-pg/postgresql:16.11
-    - major: 17
-      image: ghcr.io/cloudnative-pg/postgresql:17.7
+    - image: ghcr.io/cloudnative-pg/postgresql:15.15
+- major: 18
+image: ghcr.io/cloudnative-pg/postgresql:18.1
+    - image: ghcr.io/cloudnative-pg/postgresql:16.11
+- major: 18
+image: ghcr.io/cloudnative-pg/postgresql:18.1
+    - image: ghcr.io/cloudnative-pg/postgresql:17.7
+- major: 18
+image: ghcr.io/cloudnative-pg/postgresql:18.1
     - major: 18
       image: ghcr.io/cloudnative-pg/postgresql:18.1

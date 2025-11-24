@@ -18,7 +18,7 @@
       "customType": "regex",
       "managerFilePatterns": ["/catalog.yaml$/"],
       "matchStrings": [
-        "major: \\d+\\s+image:\\s+(?<depName>.*):(?<currentValue>[^\\s]+)\\Z"
+        "major: \\d+\\s+image:\\s+(?<depName>.*):(?<currentValue>[^\\s]+)"
       ],
       "autoReplaceStringTemplate": "image: {{{depName}}}:{{{currentValue}}}\n{{{indentation}}}- major: {{{newMajor}}}\n{{{indentation}}}image: {{{depName}}}:{{{newValue}}}",
       "datasourceTemplate": "docker",

@@ -24,7 +24,7 @@
       "datasourceTemplate": "docker",
       "fileFormat": "yaml"
     }
-  ]
+  ],
   "packageRules": [
     {
       "matchDatasources": ["docker"],

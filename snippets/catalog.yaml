@@ -1,7 +1,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: ClusterImageCatalog
 metadata:
-  name: postgresql
+  name: renovatebottest
 spec:
   images:
     - major: 15
@@ -10,5 +10,3 @@ spec:
       image: ghcr.io/cloudnative-pg/postgresql:16.11
     - major: 17
       image: ghcr.io/cloudnative-pg/postgresql:17.7
-    - major: 18
-      image: ghcr.io/cloudnative-pg/postgresql:18.1

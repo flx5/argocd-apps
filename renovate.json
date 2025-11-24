@@ -42,12 +42,6 @@
       "matchCurrentVersion": "!/^0/",
       "automerge": true,
       "automergeType": "branch"
-    },
-    {
-      "matchPackageNames": ["ghcr.io/cloudnative-pg/postgresql"],
-      "major": {
-
-      }
     }
   ]
 }

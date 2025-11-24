@@ -20,7 +20,7 @@
       "matchStrings": [
         "image:\\s+(?<depName>.*):(?<currentValue>[^\\s]+)"
       ],
-      "autoReplaceStringTemplate": "{{{currentValue}}}\n{{{indentation}}}- major: {{{newMajor}}}image: {{{depName}}}:{{{newValue}}}",
+      "autoReplaceStringTemplate": "image: {{{depName}}}:{{{currentValue}}}\n{{{indentation}}}- major: {{{newMajor}}}\n{{{indentation}}}image: {{{depName}}}:{{{newValue}}}",
       "datasourceTemplate": "docker",
       "fileFormat": "yaml"
     }

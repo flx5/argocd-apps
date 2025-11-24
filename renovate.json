@@ -13,18 +13,6 @@
       "apps/templates/.+\\.yaml$"
     ]
   },
-  "customManagers": [
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["/catalog.yaml$/"],
-      "matchStrings": [
-        "images:\\s+\\-\\s+major:\\s+\\d+\\s+image:\\s+(?<depName>.*):(?<currentValue>[^\\s]+)"
-      ],
-      "autoReplaceStringTemplate": "{{{indentation}}}images:\n - major {{{currentValue}}}\n{{{indentation}}}  image: {{{depName}}}:{{{currentValue}}}\n{{{indentation}}}- major: {{{newMajor}}}\n{{{indentation}}}image: {{{depName}}}:{{{newValue}}}",
-      "datasourceTemplate": "docker",
-      "fileFormat": "yaml"
-    }
-  ],
   "packageRules": [
     {
       "matchDatasources": ["docker"],

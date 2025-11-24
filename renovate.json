@@ -39,7 +39,7 @@
       "matchPackageNames": ["ghcr.io/cloudnative-pg/postgresql"],
       "matchUpdateTypes": ["major"],
       "matchManagers": ["kubernetes"],
-      "enabled": false
+      "enabled": true
     },
     {
       "matchUpdateTypes": ["patch"],

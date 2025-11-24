@@ -20,7 +20,7 @@
       "matchStrings": [
         "($latest := $single(spec.images, function($v) { $v.major = $max(spec.images.major) }).image; $parts := $split($latest, ':'); { 'depName': $parts[0], 'currentValue': $parts[1] })"
       ],
-      "autoReplaceStringTemplate": "- major: {{{newMajor}}}image: {{{depName}}}:{{{newValue}}}",
+      "versioningTemplate": "major: {{{newMajor}}}image: {{{depName}}}:{{{newValue}}}",
       "datasourceTemplate": "docker",
       "fileFormat": "yaml"
     }

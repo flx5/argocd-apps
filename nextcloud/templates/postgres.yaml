@@ -55,7 +55,7 @@ metadata:
   name: ceph-store
 spec:
   configuration:
-    destinationPath: s3://nextcloud-bkt-4f8bfd8a-f59a-4a8e-86cc-0095f4421ad1/
+    destinationPath: s3://{{ .Values.bucket }}/
     endpointURL: http://rook-ceph-rgw-my-store.rook-ceph.svc
     s3Credentials:
       accessKeyId:

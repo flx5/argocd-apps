@@ -24,6 +24,7 @@ spec:
     targetRevision: {{ .Values.spec.source.targetRevision }}
     helm:
       valuesObject:
+        bucket: nextcloud-bkt-4f8bfd8a-f59a-4a8e-86cc-0095f4421ad1
         nextcloud:
           ingress:
             className: public-nginx
@@ -59,6 +60,8 @@ spec:
     targetRevision: {{ .Values.spec.source.targetRevision }}
     helm:
       parameters:
+        - value: nextcloud-bkt-16f3ce3d-5d88-473d-9205-2ef45e3792ba
+          name: "bucket"
         - name: "nextcloud.ingress.className"
           value: "internal-nginx"
         - name: "nextcloud.nextcloud.host"

@@ -5,6 +5,9 @@ omada-controller-helm:
   nodeSelector:
     # Mongo DB 8 requires AVX
     feature.node.kubernetes.io/cpu-cpuid.AVX: "true"
+  startupProbe:
+    failureThreshold: 60
+    periodSeconds: 60
   persistence:
     data:
       storageClassName: rook-cephfs

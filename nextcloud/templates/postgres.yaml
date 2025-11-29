@@ -12,11 +12,6 @@ spec:
   affinity:
     nodeSelector:
       node-role.kubernetes.io/postgres: ""
-  bootstrap:
-    pg_basebackup:
-      database: nextcloud
-      owner: nextcloud
-      source: postgres-cluster
   storage:
     storageClass: local-path
     size: 4Gi  # Never change this. local-path does not support resizing!
@@ -25,21 +20,6 @@ spec:
       isWALArchiver: true
       parameters:
         barmanObjectName: ceph-store
-  externalClusters:
-    - name: postgres-cluster
-      connectionParameters:
-        host: postgres-cluster-rw
-        user: streaming_replica
-        sslmode: verify-full
-      sslKey:
-        name: postgres-cluster-replication
-        key: tls.key
-      sslCert:
-        name: postgres-cluster-replication
-        key: tls.crt
-      sslRootCert:
-        name: postgres-cluster-ca
-        key: ca.crt
 ---
 apiVersion: objectbucket.io/v1alpha1
 kind: ObjectBucketClaim

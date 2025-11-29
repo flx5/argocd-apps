@@ -13,8 +13,33 @@ spec:
         size: 3
   preserveFilesystemOnDelete: true
   metadataServer:
-    activeCount: 1
+    activeCount: 3
     activeStandby: true
+    placement:
+      podAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                    - ceph-osd
+            topologyKey: kubernetes.io/hostname
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/name
+                    operator: In
+                    values:
+                      - ceph-mds
+                  - key: app.kubernetes.io/part-of
+                    operator: In
+                    values:
+                      - myfs
+              topologyKey: kubernetes.io/hostname
     resources:
       limits:
         memory: "2048Mi"

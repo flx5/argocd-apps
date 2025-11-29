@@ -1,0 +1,17 @@
+omada-controller-helm:
+#  service:
+#    annotations:
+#      external-dns.alpha.kubernetes.io/hostname: omada.home.arpa
+  persistence:
+    data:
+      storageClassName: rook-cephfs
+    logs:
+      storageClassName: rook-cephfs
+#    extraVolumeMounts:
+#      - name: omada-backups
+#        # Determined by omada...
+#        mountPath: /opt/tplink/EAPController/data/autobackup
+#    extraVolumes:
+#      - name: omada-backups
+#        persistentVolumeClaim:
+#          claimName: omada-backup-pvc

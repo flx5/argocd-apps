@@ -1,0 +1,11 @@
+apiVersion: v2
+name: omada-wrapper
+description: Applications
+type: application
+version: 0.1.0
+appVersion: "1.0"
+
+dependencies:
+  - name: omada-controller-helm
+    version: 1.0.0
+    repository: oci://registry-1.docker.io/mbentley

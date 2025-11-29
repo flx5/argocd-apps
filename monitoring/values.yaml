@@ -45,6 +45,18 @@ kube-prometheus-stack:
           gnetId: 15469
           revision: 1
           datasource: Prometheus
+        ceph-cluster:
+          gnetId: 2842
+          revision: 18
+          datasource: Prometheus
+        ceph-osd-single:
+          gnetId: 5336
+          revision: 9
+          datasource: Prometheus
+        ceph-pools:
+          gnetId: 5342
+          revision: 9
+          datasource: Prometheus
 
     admin:
       # TODO Use Vault with env.GF_SECURITY_ADMIN_PASSWORD__FILE instead of sealed secret

@@ -1,7 +1,7 @@
 omada-controller-helm:
-#  service:
-#    annotations:
-#      external-dns.alpha.kubernetes.io/hostname: omada.home.arpa
+  service:
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: omada.home.arpa
   nodeSelector:
     # Mongo DB 8 requires AVX
     feature.node.kubernetes.io/cpu-cpuid.AVX: "true"
@@ -13,11 +13,11 @@ omada-controller-helm:
       storageClassName: rook-cephfs
     logs:
       storageClassName: rook-cephfs
-#    extraVolumeMounts:
-#      - name: omada-backups
-#        # Determined by omada...
-#        mountPath: /opt/tplink/EAPController/data/autobackup
-#    extraVolumes:
-#      - name: omada-backups
-#        persistentVolumeClaim:
-#          claimName: omada-backup-pvc
+    extraVolumeMounts:
+      - name: omada-backups
+        # Determined by omada...
+        mountPath: /opt/tplink/EAPController/data/autobackup
+    extraVolumes:
+      - name: omada-backups
+        persistentVolumeClaim:
+          claimName: omada-backup-pvc

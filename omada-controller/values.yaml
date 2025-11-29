@@ -2,6 +2,8 @@ omada-controller-helm:
 #  service:
 #    annotations:
 #      external-dns.alpha.kubernetes.io/hostname: omada.home.arpa
+  nodeSelector: 
+    feature.node.kubernetes.io/cpu-cpuid.AVX: true
   persistence:
     data:
       storageClassName: rook-cephfs

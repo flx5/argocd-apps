@@ -38,7 +38,7 @@ spec:
     includedResources:
           - pvc # Restrict to pvcs for now
           - secret # generated secrets for cloud native pg for example
-          # TODO Add pod or migrate postgres to topolvm!
+          - pod # TODO Can remove this if we move postgres data to topolvm
     snapshotVolumes: true
     # Where to store the tarball and logs.
     storageLocation: minio

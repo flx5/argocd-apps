@@ -1,15 +1,13 @@
-{{- range .Values.backupNamespaces }}
----
 apiVersion: velero.io/v1
 kind: Schedule
 metadata:
-  name: backup-offsite-{{ . }}
+  name: backup-offsite
   # Schedule namespace. Must be the namespace of the Velero server. Required.
   namespace: velero
 # Parameters about the scheduled backup. Required.
 spec:
   # Paused specifies whether the schedule is paused or not
-  paused: true
+  paused: false
   # SkipImmediately specifies whether to skip backup if schedule is due immediately when unpaused or created.
   # This is a one-time flag that will be automatically reset to false after being consumed.
   # When true, the controller will skip the immediate backup, set LastSkipped timestamp, and reset this to false.
@@ -31,7 +29,14 @@ spec:
     # Array of namespaces to include in the scheduled backup. If unspecified, all namespaces are included.
     # Optional.
     includedNamespaces:
+      {{- range .Values.backupNamespaces }}
       - {{ . | quote }}
+      {{- end }}
+    includedResources:
+      - pvc # Restrict to pvcs for now
+      - secret # generated secrets for cloud native pg for example
+      # Onsite Backup takes about 1h for onsite backup. This is mostly due to nextcloud data on cephfs
+      - pod # TODO Can remove this if we move postgres data to topolvm
     snapshotVolumes: true
     # Where to store the tarball and logs.
     storageLocation: minio-offsite
@@ -48,4 +53,3 @@ spec:
     uploaderConfig:
       # ParallelFilesUpload is the number of files parallel uploads to perform when using the uploader.
       parallelFilesUpload: 1
-{{- end }}

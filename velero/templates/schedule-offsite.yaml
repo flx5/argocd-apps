@@ -37,6 +37,7 @@ spec:
       - secret # generated secrets for cloud native pg for example
       # Onsite Backup takes about 1h for onsite backup. This is mostly due to nextcloud data on cephfs
       - pod # TODO Can remove this if we move postgres data to topolvm
+    itemOperationTimeout: 12h0m0s
     snapshotVolumes: true
     # Where to store the tarball and logs.
     storageLocation: minio-offsite

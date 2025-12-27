@@ -59,6 +59,7 @@ traefik:
         creationTimestamp: null
         name: dashboard-public-auth-secret
         namespace: traefik
+      type: kubernetes.io/basic-auth
       spec:
         encryptedData:
           password: AgBE1gbfEqE+yAARfFEpqpMX1c5kmmmDMTCZoBmtT0L6+7fm6pm4jj+OBj0SzQmk8XOtkJOFfQcvXIS1noa65B0OnMi6VPXlhpv2ZsBvw8Da/NSvdt9/lXzhc6iZZF+mNmlv3tdcpbGDr8vw2mnErf2pYaLAjyGonaS8SCrPUNTVZkDlM4K1KmhXkmlN/HqKBO2DS+J467EXhWbEiRUjS75692Yk7Wh8riY1a0BkR+y6xEimcCcvKsZ37QU+974yWyQA6Uxt+mqaToNCFhGbuwqIPfvawD0YyGlF9M8ITbUQsop3WkEyCtcxcfwhk/aJLu4PpZJrDK/ob8PFmLYqEiT7Vv72cMyaGzuKj5FojlDrjQXxUTySVRd5+OZUivFh8WFTHNlVeKgXS6Qg8BZUmWmxI/w6+k5crfX0AY/m3seRN05VkhAsynAuWMLQ/Rk/POpbo5jwIh/EU+0vIYALeslE9cRoldi87jGwwMfupCX98yoeZexoZl4BppD3remnsPMInBQbxi9L6HBw7Xt+NZh/1YW4EFReV/L9oTLcVpfICie7KKYb3uLvfFupGFZj9d5Gj0IADtKvQVQ+kXE/f7lKKssyy+Jux5RS4qRppwrZUA27F5ecRUlX38oZDLL83g4aficE9/bRUl/ElHHMyRMXmS6gO/+CG6M7zD3UBQSv+ML3O4W9+zoTRbI2z/wHKszWTRMIs5+UjwsvqDdppzyc
@@ -72,8 +73,8 @@ traefik:
       kind: Middleware
       metadata:
         name: dashboard-public-auth
-        annotations:
-          kubernetes.io/ingress.class: traefik-public
+        labels:
+          traefik.io/controller: public
       spec:
         basicAuth:
           secret: dashboard-public-auth-secret
@@ -82,8 +83,8 @@ traefik:
       metadata:
         name: bouncer
         namespace: traefik
-        annotations:
-          kubernetes.io/ingress.class: traefik-public
+        labels:
+          traefik.io/controller: public
       spec:
         plugin:
           crowdsec-bouncer-traefik-plugin:
@@ -123,6 +124,7 @@ traefik:
   providers:
     kubernetesCRD:
       ingressClass: traefik-public
+      labelSelector: traefik.io/controller=public
     kubernetesIngress:
       enabled: true
       ingressClass: traefik-public

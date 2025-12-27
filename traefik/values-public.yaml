@@ -34,25 +34,47 @@ ingressRoute:
     entryPoints:
       - websecure
     middlewares:
-      - name: dashboard-auth
+      - name: dashboard-public-auth
 
 # Creates a BasiAuth Middleware and Secret for the Dashboard Security
 extraObjects:
-  - apiVersion: v1
-    kind: Secret
+  - apiVersion: bitnami.com/v1alpha1
+    kind: SealedSecret
     metadata:
-      name: dashboard-auth-secret
-    type: kubernetes.io/basic-auth
-    stringData:
-      username: admin
-      password: "P@ssw0rd"      # TODO Replace with an Actual Password
+      creationTimestamp: null
+      name: crowdsec-lapi
+      namespace: traefik
+    spec:
+      encryptedData:
+        # TODO This must be kept in sync with crowdsec secret. So either use openbao or kubernetes-reflector
+        traefik: AgCdGsQVb9ysPhJS0/sXH2HgMtB6djTkFbLqc25a9z8S4svqtk/50AmtXU4EBfXqQl4AlaJoZKNz+ztiiZRwleSlqSCHDYinMAFmrcYVkw6nswLw16Uky3vCSLAfKHxgsanpxu32DdYoJhV6eK7IhoZaiJZK4CtofmzQp+67YFb7EmhdeWIMngMn5rpM93JM5nZmOla46SvaYwhpFFBmTQB/JR/YqgeHT26yoyRaSkCtPIHBxaj8NVzFCELtA4CiXm37KmPRJ7QA/ePqQZ6idtpiqjw/m/ReC+7JfxxgBQh9hMfncpnph848YyX2wBNGiazxRxlcIjJetRoh97ZygFOVu6uCHVsUcUmlSf0NIhwpX+7e7xJ5D/yfrN5z22balQaZXmJ0YF3yYvS/7OYk8BpB+05gHsZl2gP8VJOsYLmfY+qsF0OtLIr/4icW6R3MvkvHA+q81Yg28NNWD19dQkuRxGCrgnHO/sG0lcWRFB9MZetXXG5fJ+aRB5liLt4CvSG3Y8wy0pZjnaju9YWDDXfhuybpKH5UsB3lJ34prclC2O0wAn+LZGfmgEbHy2IJuHFZjV/EE+U9gI30/8sqOHWcOa7lL9qrm4LzKUk1L68+VFSDtajwddl14o7f55LPvhdOJfWS1BaRqiBEU1iF6UmzIQgb8k7IJUq3p9fZrV7VQNCyaVlngz5LpSJbHKuox9kQ4He9TmuHeIOmGLiqFe9S
+      template:
+        metadata:
+          creationTimestamp: null
+          name: crowdsec-lapi
+          namespace: traefik
+  - apiVersion: bitnami.com/v1alpha1
+    kind: SealedSecret
+    metadata:
+      creationTimestamp: null
+      name: dashboard-public-auth-secret
+      namespace: traefik
+    spec:
+      encryptedData:
+        password: AgBE1gbfEqE+yAARfFEpqpMX1c5kmmmDMTCZoBmtT0L6+7fm6pm4jj+OBj0SzQmk8XOtkJOFfQcvXIS1noa65B0OnMi6VPXlhpv2ZsBvw8Da/NSvdt9/lXzhc6iZZF+mNmlv3tdcpbGDr8vw2mnErf2pYaLAjyGonaS8SCrPUNTVZkDlM4K1KmhXkmlN/HqKBO2DS+J467EXhWbEiRUjS75692Yk7Wh8riY1a0BkR+y6xEimcCcvKsZ37QU+974yWyQA6Uxt+mqaToNCFhGbuwqIPfvawD0YyGlF9M8ITbUQsop3WkEyCtcxcfwhk/aJLu4PpZJrDK/ob8PFmLYqEiT7Vv72cMyaGzuKj5FojlDrjQXxUTySVRd5+OZUivFh8WFTHNlVeKgXS6Qg8BZUmWmxI/w6+k5crfX0AY/m3seRN05VkhAsynAuWMLQ/Rk/POpbo5jwIh/EU+0vIYALeslE9cRoldi87jGwwMfupCX98yoeZexoZl4BppD3remnsPMInBQbxi9L6HBw7Xt+NZh/1YW4EFReV/L9oTLcVpfICie7KKYb3uLvfFupGFZj9d5Gj0IADtKvQVQ+kXE/f7lKKssyy+Jux5RS4qRppwrZUA27F5ecRUlX38oZDLL83g4aficE9/bRUl/ElHHMyRMXmS6gO/+CG6M7zD3UBQSv+ML3O4W9+zoTRbI2z/wHKszWTRMIs5+UjwsvqDdppzyc
+        username: AgB4gfXHSw7EfPGRhfBPybXbi2bzqYCKg/1Cl5YPxIsEOHPg6dPwbAIUql5DDMvO1oTRHEF0AdFtmhANLtbtcutV+U3Ed4JdiQ1qaI4KAwjSwhQIklVGgHpxfjVWznU/xZHqd6tVpEyDwlzCLsAHyPN3KMyIhLsw1u/gbWnbvK0uRU29YeNthsCEjzExUZrb7KPzGCRqeExME+Idgmc4OIpFJKSqcK0cb7FYtxUUJ9WaXqxqfqozzUsKV/I2bQZLq7L5lVsUq3SCjKtJ6lk/TlEWWGF0o17CoTGmx0bGPfIGvLCbg8bJKFJKGpQp6a7qzAxQUwDdGo1yn/wCeP0Qu0aslC2h6qBJqs8APLTG5wNLm9ong97a1//JFOwG+Xa9W3DzODQqICXK+11VjTtzL7x0ClBkOu73ycRgekVDzu2/p1a3GjVMpc2P0zEIu/zrnWvTGJeEWbMmP2xMRan+GPh+HM/KnTV+i4VVgrXK4TH0FNdo7YInk74tqt7LX22GLEX/yX+XJpCRME+ChHiFL65iPVn0K0S5GlMLken0GxmJsuZ3vd8Nmmf1iU3s9AK7/dBJttlOpL6UEchZLI5c6EKoQX65zacZwaq67nU9N4Z24TBW8BpIcqi5X/Xgo1O6AqmOUayZCXCSJaOrZ8XXgNfg7UiGtbMy2onnFAnBK/48Ziti2tmfFxFqqbeVSZeenZALsNsQkA==
+      template:
+        metadata:
+          creationTimestamp: null
+          name: dashboard-public-auth-secret
+          namespace: traefik
   - apiVersion: traefik.io/v1alpha1
     kind: Middleware
     metadata:
-      name: dashboard-auth
+      name: dashboard-public-auth
     spec:
       basicAuth:
-        secret: dashboard-auth-secret
+        secret: dashboard-public-auth-secret
   - apiVersion: traefik.io/v1alpha1
     kind: Middleware
     metadata:
@@ -65,7 +87,7 @@ extraObjects:
           crowdsecMode: stream
           crowdsecLapiScheme: http
           crowdsecLapiHost: crowdsec-service.crowdsec.svc.cluster.local:8080
-          crowdsecLapiKey: mysecretkey12345
+          crowdsecLapiKeyFile: /crowdsec/traefik
           crowdsecAppsecEnabled: true
           crowdsecAppsecHost: crowdsec-appsec-service.crowdsec.svc.cluster.local:7422
           crowdsecAppsecPath: "/"
@@ -73,6 +95,12 @@ extraObjects:
           crowdsecAppsecUnreachableBlock: true
           crowdsecAppsecBodyLimit: 10485760
           crowdsecLapiPath: "/"
+
+volumes:
+ - name: crowdsec-lapi
+   mountPath: "/crowdsec"
+   type: secret
+
 
 service:
   annotations:

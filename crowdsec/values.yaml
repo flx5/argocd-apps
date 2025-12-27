@@ -1,0 +1,77 @@
+crowdsec:
+  # for raw logs format: json or cri (docker|containerd)
+  container_runtime: containerd
+  agent:
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+    # Specify each pod whose logs you want to process
+    acquisition:
+      # The namespace where the pod is located
+      - namespace: traefik
+        # The pod name
+        podName: traefik-public-*
+        # as in crowdsec configuration, we need to specify the program name to find a matching parser
+        program: traefik
+    env:
+      - name: COLLECTIONS
+        value: "crowdsecurity/traefik"
+  lapi:
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+    env:
+      # To enroll the Security Engine to the console
+      - name: ENROLL_KEY
+        valueFrom:
+          secretKeyRef:
+            name: crowdsec-enroll-secret
+            key: password
+      - name: ENROLL_INSTANCE_NAME
+        value: "k8s-nue"
+      - name: ENROLL_TAGS
+        value: "k8s linux nue"
+      - name: BOUNCER_KEY_traefik
+        valueFrom:
+          secretKeyRef:
+            name: crowdsec-traefik-secret
+            key: password
+
+  config:
+    config.yaml.local: |
+      api:
+        server:
+          auto_registration:
+            enabled: true
+            token: "${REGISTRATION_TOKEN}" # /!\ Do not modify this variable (auto-generated and handled by the chart)
+            allowed_ranges:
+              - "127.0.0.1/32"
+              - "192.168.0.0/16"
+              - "10.0.0.0/8"
+              - "172.16.0.0/12"
+      db_config:
+            flush:
+              agents_autodelete:
+                cert: 60m # This is TLS client authentication
+                login_password: 60m # This includes the auto registration token as well
+              ## Flush both login types if the machine has not logged in for 60 minutes or more
+  appsec:
+    enabled: true
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+    acquisitions:
+      - source: appsec
+        listen_addr: "0.0.0.0:7422"
+        path: /
+        appsec_configs:
+          - crowdsecurity/appsec-default
+          - crowdsecurity/crs
+        labels:
+          type: appsec
+    env:
+      - name: COLLECTIONS
+        value: "crowdsecurity/appsec-virtual-patching crowdsecurity/appsec-crs crowdsecurity/appsec-generic-rules"

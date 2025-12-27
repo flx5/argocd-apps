@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: traefik
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik-public
+  namespace: argocd
+spec:
+  project: default
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+  source:
+    chart: traefik
+    repoURL: https://traefik.github.io/charts
+    targetRevision: 38.0.1
+    helm:
+      releaseName: traefik-public
+      valueFiles:
+        - ../traefik/values-public.yaml
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: traefik
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik-private
+  namespace: argocd
+spec:
+  project: default
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+  source:
+    chart: traefik
+    repoURL: https://traefik.github.io/charts
+    targetRevision: 38.0.1
+    helm:
+      releaseName: traefik-private
+      valueFiles:
+        - ../traefik/values-private.yaml
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: traefik

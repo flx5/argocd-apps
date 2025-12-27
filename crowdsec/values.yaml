@@ -40,6 +40,11 @@ crowdsec:
             key: traefik
 
   config:
+    console.yaml: |
+      share_manual_decisions: true
+      share_tainted: true
+      share_custom: true
+      share_context: true
     config.yaml.local: |
       api:
         server:

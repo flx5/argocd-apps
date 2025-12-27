@@ -1,107 +1,107 @@
+traefik:
+  # Configure Network Ports and EntryPoints
+  # EntryPoints are the network listeners for incoming traffic.
+  ports:
+    # Defines the HTTP entry point named 'web'
+    web:
+      port: 80
+    # Defines the HTTPS entry point named 'websecure'
+    websecure:
+      port: 443
 
-# Configure Network Ports and EntryPoints
-# EntryPoints are the network listeners for incoming traffic.
-ports:
-  # Defines the HTTP entry point named 'web'
-  web:
-    port: 80
-  # Defines the HTTPS entry point named 'websecure'
-  websecure:
-    port: 443
+  # Enables the dashboard in Secure Mode
+  api:
+    dashboard: true
+    insecure: false
 
-# Enables the dashboard in Secure Mode
-api:
-  dashboard: true
-  insecure: false
+  ingressRoute:
+    dashboard:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: traefik-internal
+      matchRule: Host(`internal.traefik.home.arpa`)
+      entryPoints:
+        - websecure
+      middlewares:
+        - name: dashboard-auth-internal
 
-ingressRoute:
-  dashboard:
-    enabled: true
+  # Creates a BasiAuth Middleware and Secret for the Dashboard Security
+  extraObjects:
+    - apiVersion: bitnami.com/v1alpha1
+      kind: SealedSecret
+      metadata:
+        creationTimestamp: null
+        name: dashboard-internal-auth-secret
+        namespace: traefik
+      spec:
+        encryptedData:
+          password: AgCNsy8qnssmPpJ3/Nl+wGrh+lGebw6GYXRsqte7rRqiss3wwaSD72AAnTKTvX01yBmJDJk+DMUhdDUXk6UZUNUFtRRwaiMyXcFk/VdT8GnNLFZyW3GOGPVe08kyvOO7GUWtkDFUl8pYawxwJh4O3vIG+ZZe2dlBZ0h0GnWMNPIfyfQ/pUSDvDFGiGCHdltOdA+7/WsV51AYXsWuWAZHFXMmDUkuWpGKQlNH77L8M/KGZ2IcEs8FoZkPG9+ppKTs8Jcq0yE/yLHu9rzjJzlgJXTRtjEUwBw+gSliD90bWqPKjRy44L/kf4FGrhpeucJcLaQ+T0rIOmSftv5+vA1B/MhrckfndpzrSXH3UFZfjvbC2lI5dtAOvfSin0oxU+9QBdLOJIgsWDK7cTyPRjEX3tC/Nq71OHH5I7RwL8VIKD7LgqJkiwuWjI6JTpZW97/uPraQcL7+GtBUaCHFOkAmj0ZsNjBfsCreDW9o7xiFOe5Jfb5c8P8bXGJav8zLLArpKtVgV34P8H10MjLHKKnhqysLWVwGxffCuTwCQGID2ah7W7hjKfJicUxH0HrVVYdOb4RdHW5dx+iWQ4XgyCmXWxDXeVmt7fCrO6HtvLkdzWXomgLf/syQRqmjsZ1DkJQ+mZVT4i2KiWXrEbgdHs0cTBJrzMlHSBqTvDwaHIFcXYwWU2mpesMY+ZJuZ7/CMYsITi7zPtZQCnmj7QXiirBBWceh
+          username: AgCTWEe/gasjBer3QMpAWL7HhZfWTCRUtTxzNILcTziCWKeE5oc/OHpO7p9C8ZNCfFHA1Q7vyOqOP6155yGvoFb57zWo/AyGnURCiO0X8mqVSH08NoCSlrQxns5jykuZgTejbQouWBEgVsef88YSZUZiLfxYyG6EzHn9dRwhjz7jOGNEnoLfNmzcUZy2w6bxxtrROE1WgU1gAbWhDECbszo6nwqOPgqreXBW6V1GpSCgZuEfZzFRAVSpR5ZfZCAXgEccuxOKDUsNOMNSwLoM75BtjqqlYYQ+iUU+l2Va59lEmaTWWfPZN0xCZ9H6h92gb2dASd1Zvc7e0AXeF6gNYZNIgdJxzxCZiGvOdHTFkDCa6ur1cRbTAGBldfyFK+KRBsy7tYc0lyrEQ1BNbGm9CGu8aQ0rxCxUgE5by77odTDOQX/drX1ycskNdxoVwWo4iQFdzd0DHVzuOax2fWOdytHUu3tsYsdR635b0JVaJGMt61tcMa3+OWFOjUJFhEW8JMw89dN3qaisAToIVP/Lvypv4z+TNdD0XZesVIVM0QMkfyGtDsxOJg5kegSYXQ/DSrBPvVyqFu1kx2mbTH6ld0pYVPIU6v+caBEpiBxglkwIVvs9Cp3665YQhV5k9DYUV8gG89BsBeepejiffkG3OhE99F6Ktk3xLTfkBNuOULqilqn9YUvyJAAGKjFfpXzz7mVGH9UgEg==
+        template:
+          metadata:
+            creationTimestamp: null
+            name: dashboard-internal-auth-secret
+            namespace: traefik
+    - apiVersion: traefik.io/v1alpha1
+      kind: Middleware
+      metadata:
+        name: dashboard-auth-internal
+      spec:
+        basicAuth:
+          secret: dashboard-internal-auth-secret
+
+  service:
     annotations:
-      kubernetes.io/ingress.class: traefik-internal
-    matchRule: Host(`internal.traefik.home.arpa`)
-    entryPoints:
-      - websecure
-    middlewares:
-      - name: dashboard-auth-internal
-
-# Creates a BasiAuth Middleware and Secret for the Dashboard Security
-extraObjects:
-  - apiVersion: bitnami.com/v1alpha1
-    kind: SealedSecret
-    metadata:
-      creationTimestamp: null
-      name: dashboard-internal-auth-secret
-      namespace: traefik
+      external-dns.alpha.kubernetes.io/hostname: internal.traefik.home.arpa
     spec:
-      encryptedData:
-        password: AgCNsy8qnssmPpJ3/Nl+wGrh+lGebw6GYXRsqte7rRqiss3wwaSD72AAnTKTvX01yBmJDJk+DMUhdDUXk6UZUNUFtRRwaiMyXcFk/VdT8GnNLFZyW3GOGPVe08kyvOO7GUWtkDFUl8pYawxwJh4O3vIG+ZZe2dlBZ0h0GnWMNPIfyfQ/pUSDvDFGiGCHdltOdA+7/WsV51AYXsWuWAZHFXMmDUkuWpGKQlNH77L8M/KGZ2IcEs8FoZkPG9+ppKTs8Jcq0yE/yLHu9rzjJzlgJXTRtjEUwBw+gSliD90bWqPKjRy44L/kf4FGrhpeucJcLaQ+T0rIOmSftv5+vA1B/MhrckfndpzrSXH3UFZfjvbC2lI5dtAOvfSin0oxU+9QBdLOJIgsWDK7cTyPRjEX3tC/Nq71OHH5I7RwL8VIKD7LgqJkiwuWjI6JTpZW97/uPraQcL7+GtBUaCHFOkAmj0ZsNjBfsCreDW9o7xiFOe5Jfb5c8P8bXGJav8zLLArpKtVgV34P8H10MjLHKKnhqysLWVwGxffCuTwCQGID2ah7W7hjKfJicUxH0HrVVYdOb4RdHW5dx+iWQ4XgyCmXWxDXeVmt7fCrO6HtvLkdzWXomgLf/syQRqmjsZ1DkJQ+mZVT4i2KiWXrEbgdHs0cTBJrzMlHSBqTvDwaHIFcXYwWU2mpesMY+ZJuZ7/CMYsITi7zPtZQCnmj7QXiirBBWceh
-        username: AgCTWEe/gasjBer3QMpAWL7HhZfWTCRUtTxzNILcTziCWKeE5oc/OHpO7p9C8ZNCfFHA1Q7vyOqOP6155yGvoFb57zWo/AyGnURCiO0X8mqVSH08NoCSlrQxns5jykuZgTejbQouWBEgVsef88YSZUZiLfxYyG6EzHn9dRwhjz7jOGNEnoLfNmzcUZy2w6bxxtrROE1WgU1gAbWhDECbszo6nwqOPgqreXBW6V1GpSCgZuEfZzFRAVSpR5ZfZCAXgEccuxOKDUsNOMNSwLoM75BtjqqlYYQ+iUU+l2Va59lEmaTWWfPZN0xCZ9H6h92gb2dASd1Zvc7e0AXeF6gNYZNIgdJxzxCZiGvOdHTFkDCa6ur1cRbTAGBldfyFK+KRBsy7tYc0lyrEQ1BNbGm9CGu8aQ0rxCxUgE5by77odTDOQX/drX1ycskNdxoVwWo4iQFdzd0DHVzuOax2fWOdytHUu3tsYsdR635b0JVaJGMt61tcMa3+OWFOjUJFhEW8JMw89dN3qaisAToIVP/Lvypv4z+TNdD0XZesVIVM0QMkfyGtDsxOJg5kegSYXQ/DSrBPvVyqFu1kx2mbTH6ld0pYVPIU6v+caBEpiBxglkwIVvs9Cp3665YQhV5k9DYUV8gG89BsBeepejiffkG3OhE99F6Ktk3xLTfkBNuOULqilqn9YUvyJAAGKjFfpXzz7mVGH9UgEg==
-      template:
-        metadata:
-          creationTimestamp: null
-          name: dashboard-internal-auth-secret
-          namespace: traefik
-  - apiVersion: traefik.io/v1alpha1
-    kind: Middleware
-    metadata:
-      name: dashboard-auth-internal
-    spec:
-      basicAuth:
-        secret: dashboard-internal-auth-secret
+      externalTrafficPolicy: Local
 
-service:
-  annotations:
-    external-dns.alpha.kubernetes.io/hostname: internal.traefik.home.arpa
-  spec:
-    externalTrafficPolicy: Local
-
-# We will route with Gateway API instead.
-ingressClass:
-  enabled: true
-  isDefaultClass: false
-  name: traefik-internal
-
-# Enable Gateway API Provider & Disables the KubernetesIngress provider
-# Providers tell Traefik where to find routing configuration.
-providers:
-  kubernetesCRD:
-    ingressClass: traefik-internal
-  kubernetesIngress:
+  # We will route with Gateway API instead.
+  ingressClass:
     enabled: true
-    ingressClass: traefik-internal
-  kubernetesGateway:
-    enabled: false
+    isDefaultClass: false
+    name: traefik-internal
 
-## Gateway Listeners
-#gateway:
-#  listeners:
-#    web:           # HTTP listener that matches entryPoint `web`
-#      port: 80
-#      protocol: HTTP
-#      namespacePolicy:
-#        from: All
-#
-#    websecure:         # HTTPS listener that matches entryPoint `websecure`
-#      port: 443
-#      protocol: HTTPS  # TLS terminates inside Traefik
-#      namespacePolicy:
-#        from: All
-#      mode: Terminate
-#      certificateRefs:
-#        - kind: Secret
-#          name: local-selfsigned-tls  # the Secret we created before the installation
-#          group: ""
+  # Enable Gateway API Provider & Disables the KubernetesIngress provider
+  # Providers tell Traefik where to find routing configuration.
+  providers:
+    kubernetesCRD:
+      ingressClass: traefik-internal
+    kubernetesIngress:
+      enabled: true
+      ingressClass: traefik-internal
+    kubernetesGateway:
+      enabled: false
 
-# Enable Observability
-logs:
-  general:
-    level: INFO
-  # This enables access logs, outputting them to Traefik's standard output by default. The [Access Logs Documentation](https://doc.traefik.io/traefik/observability/access-logs/) covers formatting, filtering, and output options.
-  access:
-    enabled: true
+  ## Gateway Listeners
+  #gateway:
+  #  listeners:
+  #    web:           # HTTP listener that matches entryPoint `web`
+  #      port: 80
+  #      protocol: HTTP
+  #      namespacePolicy:
+  #        from: All
+  #
+  #    websecure:         # HTTPS listener that matches entryPoint `websecure`
+  #      port: 443
+  #      protocol: HTTPS  # TLS terminates inside Traefik
+  #      namespacePolicy:
+  #        from: All
+  #      mode: Terminate
+  #      certificateRefs:
+  #        - kind: Secret
+  #          name: local-selfsigned-tls  # the Secret we created before the installation
+  #          group: ""
 
-# Enables Prometheus for Metrics
-metrics:
-  prometheus:
-    enabled: true
+  # Enable Observability
+  logs:
+    general:
+      level: INFO
+    # This enables access logs, outputting them to Traefik's standard output by default. The [Access Logs Documentation](https://doc.traefik.io/traefik/observability/access-logs/) covers formatting, filtering, and output options.
+    access:
+      enabled: true
+
+  # Enables Prometheus for Metrics
+  metrics:
+    prometheus:
+      enabled: true

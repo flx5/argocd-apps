@@ -32,7 +32,7 @@ spec:
                 external-dns.alpha.kubernetes.io/hostname: ssh.git.felix-prasse.de
           ingress:
             enabled: true
-            className: public-nginx
+            className: traefik-public
             annotations:
               cert-manager.io/cluster-issuer: letsencrypt-prod
             hosts:

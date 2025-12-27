@@ -19,16 +19,12 @@ nextcloud:
 # TODO
   # https://github.com/nextcloud/helm/pull/673#issuecomment-2763302385
   # TODO https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#proxy-request-buffering
-
+  service:
+    annotations:
+      traefik.ingress.kubernetes.io/service.sticky.cookie: "true"
 
   ingress:
     enabled: true
-    annotations:
-      nginx.ingress.kubernetes.io/affinity: cookie
-      nginx.ingress.kubernetes.io/enable-cors: "true"
-      nginx.ingress.kubernetes.io/cors-allow-headers: "X-Forwarded-For"
-      nginx.ingress.kubernetes.io/proxy-buffering: "off"
-      nginx.ingress.kubernetes.io/proxy-body-size: "4096m"
   # TODO Run this as init container: NEXTCLOUD_UPDATE=1 /entrypoint.sh /bin/sh -c 'exit 0'
   # See also: https://github.com/nextcloud/helm/pull/344...
   # TODO Maybe add some argo hooks to backup / snapshot /  migrate the database?

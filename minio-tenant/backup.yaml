@@ -174,7 +174,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: "0"
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
-  ingressClassName: internal-nginx
+  ingressClassName: traefik-internal
   tls:
     - hosts:
         - console.nue.felix-prasse.de

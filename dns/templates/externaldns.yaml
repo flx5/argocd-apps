@@ -88,7 +88,7 @@ spec:
             - --source=ingress
             - --domain-filter=felix-prasse.de
             - --provider=cloudflare
-            - --ingress-class=public-nginx
+            - --ingress-class=traefik-public
             - --source=ingress
             - --default-targets=dyndns.felix-prasse.de
             - --force-default-targets # TODO This is apparently legacy: https://github.com/kubernetes-sigs/external-dns/blob/d9a20d1f8cb70a442a3628b2b6d9b7a723852045/docs/tutorials/crd.md

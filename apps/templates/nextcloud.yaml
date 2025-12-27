@@ -27,7 +27,7 @@ spec:
         bucket: nextcloud-bkt-4f8bfd8a-f59a-4a8e-86cc-0095f4421ad1
         nextcloud:
           ingress:
-            className: public-nginx
+            className: traefik-public
             annotations:
               cert-manager.io/cluster-issuer: letsencrypt-prod
             tls:
@@ -63,7 +63,7 @@ spec:
         - value: nextcloud-bkt-16f3ce3d-5d88-473d-9205-2ef45e3792ba
           name: "bucket"
         - name: "nextcloud.ingress.className"
-          value: "internal-nginx"
+          value: "traefik-internal"
         - name: "nextcloud.nextcloud.host"
           value: "cloud.internal.home.arpa"
         - name: "postgres.version"

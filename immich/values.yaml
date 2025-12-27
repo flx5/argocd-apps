@@ -39,9 +39,7 @@ immich:
         enabled: true
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-prod
-          # proxy-body-size is set to 0 to remove the body limit on file uploads
-          nginx.ingress.kubernetes.io/proxy-body-size: "0"
-        className: public-nginx
+        className: traefik-public
         hosts:
           - host: pictures.felix-prasse.de
             paths:

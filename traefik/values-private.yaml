@@ -46,6 +46,8 @@ traefik:
       kind: Middleware
       metadata:
         name: dashboard-auth-internal
+        labels:
+          traefik.io/controller: internal
       spec:
         basicAuth:
           secret: dashboard-internal-auth-secret
@@ -67,6 +69,7 @@ traefik:
   providers:
     kubernetesCRD:
       ingressClass: traefik-internal
+      labelSelector: traefik.io/controller=internal
     kubernetesIngress:
       enabled: true
       ingressClass: traefik-internal

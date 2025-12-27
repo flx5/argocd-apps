@@ -72,6 +72,8 @@ traefik:
       kind: Middleware
       metadata:
         name: dashboard-public-auth
+        labels:
+          traefik.io/controller: public
       spec:
         basicAuth:
           secret: dashboard-public-auth-secret
@@ -80,6 +82,8 @@ traefik:
       metadata:
         name: bouncer
         namespace: traefik
+        labels:
+          traefik.io/controller: public
       spec:
         plugin:
           crowdsec-bouncer-traefik-plugin:
@@ -118,7 +122,8 @@ traefik:
   # Providers tell Traefik where to find routing configuration.
   providers:
     kubernetesCRD:
-      ingressClass: traefik-public
+      ingressClass: traefik.io/controller=public
+      labelSelector: expose=public
     kubernetesIngress:
       enabled: true
       ingressClass: traefik-public

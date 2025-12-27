@@ -30,6 +30,8 @@ traefik:
       enabled: true
       annotations:
          kubernetes.io/ingress.class: traefik-public
+      labels:
+        traefik.io/controller: public
       matchRule: Host(`public.traefik.home.arpa`)
       entryPoints:
         - websecure

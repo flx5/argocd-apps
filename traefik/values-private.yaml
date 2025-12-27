@@ -17,6 +17,8 @@ traefik:
   ingressRoute:
     dashboard:
       enabled: true
+      labels:
+        traefik.io/controller: internal
       annotations:
         kubernetes.io/ingress.class: traefik-internal
       matchRule: Host(`internal.traefik.home.arpa`)
@@ -46,8 +48,8 @@ traefik:
       kind: Middleware
       metadata:
         name: dashboard-auth-internal
-        annotations:
-          kubernetes.io/ingress.class: traefik-internal
+        labels:
+          traefik.io/controller: internal
       spec:
         basicAuth:
           secret: dashboard-internal-auth-secret
@@ -69,6 +71,8 @@ traefik:
   providers:
     kubernetesCRD:
       ingressClass: traefik-internal
+      # For some reason ingress class isn't enough. need to set explicit label to make sure each controller only reads their crds.
+      labelSelector: traefik.io/controller=internal
     kubernetesIngress:
       enabled: true
       ingressClass: traefik-internal

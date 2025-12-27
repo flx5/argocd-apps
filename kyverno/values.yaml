@@ -3,7 +3,7 @@ policy-reporter:
     enabled: true
     ingress:
       enabled: true
-      className: internal-nginx
+      className: traefik-internal
       hosts:
         - host: kyverno.home.arpa
           paths:

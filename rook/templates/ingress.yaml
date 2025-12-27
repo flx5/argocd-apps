@@ -4,7 +4,7 @@ metadata:
   name: rook-ceph-mgr-dashboard
   namespace: rook-ceph
 spec:
-  ingressClassName: "internal-nginx"
+  ingressClassName: "traefik-internal"
   rules:
     - host: rook.home.arpa
       http:

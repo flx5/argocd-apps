@@ -79,7 +79,7 @@ spec:
                 external-dns.alpha.kubernetes.io/hostname: ssh.git.home.arpa
           ingress:
             enabled: true
-            className: internal-nginx
+            className: traefik-internal
             hosts:
               - host: "git.home.arpa"
                 paths:

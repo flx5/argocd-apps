@@ -81,7 +81,7 @@ kube-prometheus-stack:
 
     ingress:
       enabled: true
-      ingressClassName: internal-nginx
+      ingressClassName: traefik-internal
       hosts:
       - monitoring.home.arpa
       path: /

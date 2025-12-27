@@ -44,6 +44,7 @@ traefik:
             creationTimestamp: null
             name: dashboard-internal-auth-secret
             namespace: traefik
+          type: kubernetes.io/basic-auth
     - apiVersion: traefik.io/v1alpha1
       kind: Middleware
       metadata:

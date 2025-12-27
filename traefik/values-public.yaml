@@ -49,7 +49,7 @@ traefik:
       spec:
         encryptedData:
           # TODO This must be kept in sync with crowdsec secret. So either use openbao or kubernetes-reflector
-          traefik: AgCdGsQVb9ysPhJS0/sXH2HgMtB6djTkFbLqc25a9z8S4svqtk/50AmtXU4EBfXqQl4AlaJoZKNz+ztiiZRwleSlqSCHDYinMAFmrcYVkw6nswLw16Uky3vCSLAfKHxgsanpxu32DdYoJhV6eK7IhoZaiJZK4CtofmzQp+67YFb7EmhdeWIMngMn5rpM93JM5nZmOla46SvaYwhpFFBmTQB/JR/YqgeHT26yoyRaSkCtPIHBxaj8NVzFCELtA4CiXm37KmPRJ7QA/ePqQZ6idtpiqjw/m/ReC+7JfxxgBQh9hMfncpnph848YyX2wBNGiazxRxlcIjJetRoh97ZygFOVu6uCHVsUcUmlSf0NIhwpX+7e7xJ5D/yfrN5z22balQaZXmJ0YF3yYvS/7OYk8BpB+05gHsZl2gP8VJOsYLmfY+qsF0OtLIr/4icW6R3MvkvHA+q81Yg28NNWD19dQkuRxGCrgnHO/sG0lcWRFB9MZetXXG5fJ+aRB5liLt4CvSG3Y8wy0pZjnaju9YWDDXfhuybpKH5UsB3lJ34prclC2O0wAn+LZGfmgEbHy2IJuHFZjV/EE+U9gI30/8sqOHWcOa7lL9qrm4LzKUk1L68+VFSDtajwddl14o7f55LPvhdOJfWS1BaRqiBEU1iF6UmzIQgb8k7IJUq3p9fZrV7VQNCyaVlngz5LpSJbHKuox9kQ4He9TmuHeIOmGLiqFe9S
+          traefik: AgA1Gsavg89i+pISZFYyEdXel3v0OL8D0c4E0q0OYRAsFUJ54MMzSJnd4myrSb0l2o3/1OhH/kwY8431wXwLxIje+y5kG39IvIVoVTc7Rz43UwtbdUy0QMnSLONmpMZCSmssxfXTkMs7h0sbYsUZ+V6jbdMQsCb7qF+4lO5/dtInEIHe2kQ+rMLyv6cU3eVld7SE7d9KkIzyEBao3R9qdjzjyNZFsX8CkXIW5TnACrY9KDzNJVyX7XQ7zfTo1WlsmRF6bmtARKoWqTMaa95J69NH5jHHgpr8i+jFhCFl//FXrrGTOfJ80qad6VMuvJPGgKcL/vumEOxYqfAnMUKkLkEG5IBE+F5N4b2SE0EOfC40raMquF3EmZXCY6LQhY6eUTO14oA9WJuXabZCy1K0PQcCmpVSDyilxC+jUK+a93XnrC9mQZyAmuXD0t0fCaPN95D4cPVeKK9WexISH+nv1re9B775q386FR7nC4jf7wqSyp2JFS6zhTuD8cJdVmuFpKDyQzMVaim2QXjpRMPd7fAY/9jaCWoZKBv+t2LPBu+H9TsZKr2qpylHuyWDrDOpdRgGEM+TQ71pSw0Rxg4wNj1NR28YB7trN1FgbCksCJFWiP5v/Hb4gCHs5MMdHhCjM0G+aGIMF99tpaYJMA1tOb7E7LV76ZFQ1WFvF6hF80EGD3cXG9Ans2lSuBuRCCARahYYIHZlH+TzkKAOwCGVGYsq
         template:
           metadata:
             creationTimestamp: null

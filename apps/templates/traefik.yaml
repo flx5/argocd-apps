@@ -23,7 +23,7 @@ spec:
     helm:
       releaseName: traefik-public
       valueFiles:
-        - ../traefik/values-public.yaml
+        - values-public.yaml
   destination:
     server: "https://kubernetes.default.svc"
     namespace: traefik
@@ -46,7 +46,7 @@ spec:
     helm:
       releaseName: traefik-private
       valueFiles:
-        - ../traefik/values-private.yaml
+        - values-private.yaml
   destination:
     server: "https://kubernetes.default.svc"
     namespace: traefik

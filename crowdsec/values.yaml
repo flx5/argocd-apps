@@ -71,15 +71,10 @@ crowdsec:
     extraVolumeMounts:
       - name: modsecurity-custom-config
         mountPath: /var/lib/crowdsec/data/crs-plugins/custom/
-      - name: modsecurity-nextcloud-config
-        mountPath: /var/lib/crowdsec/data/crs-plugins/nextcloud/
     extraVolumes:
       - name: modsecurity-custom-config
         configMap:
           name: modsecurity-config
-      - name: modsecurity-nextcloud-config
-        configMap:
-          name: modsecurity-nextcloud-config
     acquisitions:
       - source: appsec
         listen_addr: "0.0.0.0:7422"

@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: modsecurity-nextcloud-config
 data:
-  nextcloud-rule-exclusions-config.conf: |
+  nextcloud-custom-config.conf: |
     # Generic rule to disable the plugin
     #
     # Plugins are enabled by default.

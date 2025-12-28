@@ -60,6 +60,8 @@ data:
     #     setvar:'tx.nextcloud-rule-exclusions-plugin_enabled=0'"
     
     # https://help.nextcloud.com/t/modsecurity-apache-nextcloud/83987/9
+    # https://coreruleset.org/docs/4-about-plugins/4-1-plugins/#conditionally-enable-plugins-for-multi-application-environments
+    
     SecRule &TX:nextcloud-rule-exclusions-plugin_enabled "@eq 0" \
          "id:9508010,\
          phase:1,\

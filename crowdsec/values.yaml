@@ -79,6 +79,7 @@ crowdsec:
       - source: appsec
         listen_addr: "0.0.0.0:7422"
         path: /
+        log_level: debug
         appsec_configs:
           - crowdsecurity/appsec-default
           - crowdsecurity/crs
@@ -86,5 +87,6 @@ crowdsec:
           type: appsec
     env:
       # TODO Prevent downloading every time!
+      # downloadpath: /etc/crowdsec/hub/appsec-rules/crowdsecurity/crs.yaml
       - name: COLLECTIONS
         value: "crowdsecurity/appsec-virtual-patching crowdsecurity/appsec-crs crowdsecurity/appsec-crs-exclusion-plugin-nextcloud crowdsecurity/appsec-generic-rules"

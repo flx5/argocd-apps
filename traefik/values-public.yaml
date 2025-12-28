@@ -137,7 +137,7 @@ traefik:
      type: secret
    - name: public-custom-html
      mountPath: "/pages"
-     type: configmap
+     type: configMap
 
 
   service:

@@ -62,6 +62,7 @@ crowdsec:
                 cert: 60m # This is TLS client authentication
                 login_password: 60m # This includes the auto registration token as well
               ## Flush both login types if the machine has not logged in for 60 minutes or more
+  # Rules can be analyzed by running cscli alerts inspect 311 --details in the pod.
   appsec:
     enabled: true
     metrics:

@@ -73,15 +73,9 @@ data:
             "t:none,\
             setvar:'tx.nextcloud-rule-exclusions-plugin_enabled=0'"
     
-    # DAV uses XML requests for propfind requests.
-    SecRule REQUEST_FILENAME "@rx /(?:remote|public)\.php/dav/" \
-        "id:9508999,\
-        phase:2,\
-        pass,\
-        t:none,\
-        nolog,\
-        ver:'nextcloud-rule-exclusions-plugin/1.5.0',\
-        chain"
-        SecRule REQUEST_METHOD "@streq PROPFIND" \
-            "t:none,\
-            ctl:ruleRemoveById=941130"
+    SecRule REQBODY_PROCESSOR "!@rx (?:URLENCODED|MULTIPART|XML|JSON)" \
+      "id:9508033,\
+      phase:1,\
+      pass,\
+      nolog,\
+      ctl:requestBodyProcessor=RAW"

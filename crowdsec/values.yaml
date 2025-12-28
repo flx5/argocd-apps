@@ -74,11 +74,11 @@ crowdsec:
         path: /
         appsec_configs:
           - crowdsecurity/appsec-default
-          - crowdsecurity/crs
+          # TODO https://docs.crowdsec.net/docs/next/appsec/configuration
+          # Disable for now (bans for using PUT)
+          # - crowdsecurity/crs
         labels:
           type: appsec
     env:
       - name: COLLECTIONS
-        # TODO https://docs.crowdsec.net/docs/next/appsec/configuration
-        # Disable crowdsecurity/appsec-crs for now (bans for using PUT)
-        value: "crowdsecurity/appsec-virtual-patching  crowdsecurity/appsec-generic-rules"
+        value: "crowdsecurity/appsec-virtual-patching crowdsecurity/appsec-crs crowdsecurity/appsec-generic-rules"

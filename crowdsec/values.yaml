@@ -79,4 +79,5 @@ crowdsec:
           type: appsec
     env:
       - name: COLLECTIONS
-        value: "crowdsecurity/appsec-virtual-patching crowdsecurity/appsec-crs crowdsecurity/appsec-generic-rules"
+        # Disable crowdsecurity/appsec-crs for now (bans for using PUT)
+        value: "crowdsecurity/appsec-virtual-patching  crowdsecurity/appsec-generic-rules"

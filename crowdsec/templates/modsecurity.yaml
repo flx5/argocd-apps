@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: modsecurity-config
+data:
+  base-config.config: |
+    # HTTP methods that a client is allowed to use.
+    # Default: GET HEAD POST OPTIONS
+    # Example: for RESTful APIs, add the following methods: PUT PATCH DELETE
+    # Example: for WebDAV, add the following methods: CHECKOUT COPY DELETE LOCK
+    #          MERGE MKACTIVITY MKCOL MOVE PROPFIND PROPPATCH PUT UNLOCK
+    # Uncomment this rule to change the default.
+    #
+    # The HTTP PUT method is normally used to upload data that is saved on the server at a user-supplied URL.
+    # If enabled, an attacker may be able to inject arbitrary, and potentially malicious, content into the application or on to the file system of the web server.
+    # Depending on the server's configuration, this may lead to compromise of other users (by uploading
+    # client-executable scripts), compromise of the server (by uploading server-executable code), or other attacks.
+    # For this reason, the PUT method is disabled by default.
+    # GET, HEAD, POST and OPTIONS are seen as the minimal set of HTTP methods
+    # from a security perspective. For static sites, removing the POST is
+    # recommended. Add other HTTP methods as seen fit (see above).
+    #
+    SecAction \
+        "id:900200,\
+        phase:1,\
+        pass,\
+        t:none,\
+        nolog,\
+        tag:'OWASP_CRS',\
+        ver:'OWASP_CRS/4.22.0-dev',\
+        setvar:'tx.allowed_methods=GET HEAD POST OPTIONS PUT DELETE'"

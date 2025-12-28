@@ -68,17 +68,23 @@ crowdsec:
       enabled: true
       serviceMonitor:
         enabled: true
+    extraVolumeMounts:
+      - name: modsecurity-custom-config
+        mountPath: /var/lib/crowdsec/data/crs-plugins/custom/
+    extraVolumes:
+      - name: modsecurity-custom-config
+        configMap:
+          name: crowdsec-appsec-config-local
     acquisitions:
       - source: appsec
         listen_addr: "0.0.0.0:7422"
         path: /
         appsec_configs:
           - crowdsecurity/appsec-default
-          # TODO https://docs.crowdsec.net/docs/next/appsec/configuration
-          # Disable for now (bans for using PUT)
-          # - crowdsecurity/crs
+          - crowdsecurity/crs
         labels:
           type: appsec
     env:
+      # TODO Prevent downloading every time!
       - name: COLLECTIONS
-        value: "crowdsecurity/appsec-virtual-patching crowdsecurity/appsec-crs crowdsecurity/appsec-generic-rules"
+        value: "crowdsecurity/appsec-virtual-patching crowdsecurity/appsec-crs  crowdsecurity/appsec-generic-rules"

@@ -74,7 +74,7 @@ crowdsec:
     extraVolumes:
       - name: modsecurity-custom-config
         configMap:
-          name: crowdsec-appsec-config-local
+          name: modsecurity-config
     acquisitions:
       - source: appsec
         listen_addr: "0.0.0.0:7422"

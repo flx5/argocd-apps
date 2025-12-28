@@ -3,6 +3,7 @@ kind: ConfigMap
 metadata:
   name: modsecurity-config
 data:
+  # https://github.com/coreruleset/coreruleset/blob/main/crs-setup.conf.example#L462-L470
   base-config.config: |
     # HTTP methods that a client is allowed to use.
     # Default: GET HEAD POST OPTIONS

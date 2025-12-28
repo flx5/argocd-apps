@@ -4,7 +4,7 @@ metadata:
   name: modsecurity-config
 data:
   # https://github.com/coreruleset/coreruleset/blob/main/crs-setup.conf.example#L462-L470
-  base-config.conf: |
+  custom-base-config.conf: |
     # HTTP methods that a client is allowed to use.
     # Default: GET HEAD POST OPTIONS
     # Example: for RESTful APIs, add the following methods: PUT PATCH DELETE

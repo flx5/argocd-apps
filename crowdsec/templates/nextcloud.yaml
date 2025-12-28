@@ -39,6 +39,6 @@ data:
          nolog,\
          ver:'nextcloud-rule-exclusions-plugin/1.5.0',\
          chain"
-         SecRule REQUEST_HEADERS:Host "!@cloud.felix-prasse.de" \
+         SecRule REQUEST_HEADERS:Host "!@streq cloud.felix-prasse.de" \
             "t:none,\
             setvar:'tx.nextcloud-rule-exclusions-plugin_enabled=0'"

@@ -103,12 +103,6 @@ traefik:
             crowdsecAppsecBodyLimit: 10485760
             crowdsecLapiPath: "/"
             banHTMLFilePath: "/pages/ban.html"
-    - apiVersion: v1
-      kind: ConfigMap
-      metadata:
-        name: public-custom-html
-      data:
-        {{ (.Files.Glob "pages/*").AsConfig | indent 2 }}
 
   volumes:
    - name: crowdsec-lapi

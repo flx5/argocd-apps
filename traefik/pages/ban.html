@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Blocked</title>
+    <meta content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+<div style="text-align: center">
+    <h1>Sorry, you have been blocked</h1>
+    <p>You are unable to access this website.</p>
+</div>
+<hr/>
+<div style="text-align: center">
+    <h3>Technical Details</h3>
+    {{ if .ClientIp }} <p>Your IP: {{ .ClientIP }}</p> {{ end }}
+    {{ if .RemediationReason }} <p>Reason: {{ .RemediationReason }}</p>  {{ end }}
+    {{ if .TraceID }} <p>TraceId: {{ .TraceID }}</p>  {{ end }}
+</div>
+</body>
+</html>

@@ -114,6 +114,9 @@ traefik:
       spec:
         headers:
           stsSeconds: 15552000
+          customResponseHeaders:
+              x-powered-by: "" # Removes
+              Server: ""  # Removes
 
   volumes:
    - name: crowdsec-lapi

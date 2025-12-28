@@ -80,7 +80,7 @@ crowdsec:
       - source: appsec
         listen_addr: "0.0.0.0:7422"
         path: /
-        log_level: debug
+        # log_level: debug
         appsec_configs:
           - crowdsecurity/appsec-default
           - crowdsecurity/crs

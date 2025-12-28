@@ -102,11 +102,42 @@ traefik:
             crowdsecAppsecUnreachableBlock: true
             crowdsecAppsecBodyLimit: 10485760
             crowdsecLapiPath: "/"
+            banHTMLFilePath: "/pages/ban.html"
+    - apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: public-custom-html
+      data:
+        ban.html: |
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+            <title>Blocked</title>
+            <meta content="text/html; charset=utf-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            </head>
+            <body>
+            <div style="text-align: center">
+              <h1>Sorry, you have been blocked</h1>
+              <p>You are unable to access this website.</p>
+            </div>
+            <hr/>
+            <div style="text-align: center">
+              <h3>Technical Details</h3>
+              <p>Your IP: {{ .ClientIP }}</p>
+              <p>Reason: {{ .RemediationReason }}</p>
+              <p>TraceId: {{ .TraceID }}</p>
+            </div>
+            </body>
+            </html>
 
   volumes:
    - name: crowdsec-lapi
      mountPath: "/crowdsec"
      type: secret
+   - name: public-custom-html
+     mountPath: "/pages"
+     type: configmap
 
 
   service:

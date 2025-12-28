@@ -73,6 +73,7 @@ data:
             "t:none,\
             setvar:'tx.nextcloud-rule-exclusions-plugin_enabled=0'"
     
+    # Crowdsec uses Coraza: https://github.com/coreruleset/nextcloud-rule-exclusions-plugin?tab=readme-ov-file#coraza-default-body-processor
     SecRule REQBODY_PROCESSOR "!@rx (?:URLENCODED|MULTIPART|XML|JSON)" \
       "id:9508033,\
       phase:1,\

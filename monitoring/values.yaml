@@ -57,6 +57,10 @@ kube-prometheus-stack:
           gnetId: 5342
           revision: 9
           datasource: Prometheus
+        traefik:
+          gnetId: 17347
+          revision: 9
+          datasource: Prometheus
 
     admin:
       # TODO Use Vault with env.GF_SECURITY_ADMIN_PASSWORD__FILE instead of sealed secret

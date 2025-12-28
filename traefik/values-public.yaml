@@ -108,7 +108,7 @@ traefik:
    - name: crowdsec-lapi
      mountPath: "/crowdsec"
      type: secret
-   - name: public-custom-html
+   - name: traefik-public-custom-html
      mountPath: "/pages"
      type: configMap
 

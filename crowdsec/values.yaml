@@ -18,6 +18,26 @@ crowdsec:
       - name: COLLECTIONS
         value: "crowdsecurity/traefik"
   lapi:
+    replicas: 2
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: type
+                  operator: In
+                  values:
+                    - lapi
+                - key: k8s-app
+                  operator: In
+                  values:
+                    - crowdsec
+            topologyKey: "kubernetes.io/hostname"
+    persistentVolume:
+      config:
+        enabled: false
+      data:
+        enabled: false
     metrics:
       enabled: true
       serviceMonitor:

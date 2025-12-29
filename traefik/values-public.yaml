@@ -118,6 +118,16 @@ traefik:
               x-powered-by: "" # Removes
               Server: ""  # Removes
 
+  deployment:
+    additionalVolumes:
+      - name: plugins # https://github.com/traefik/traefik-helm-chart/issues/280
+        persistentVolumeClaim:
+          claimName: traefik-public-plugins
+
+  additionalVolumeMounts:
+    - name: plugins
+      mountPath: /plugins-storage
+
   volumes:
    - name: crowdsec-lapi
      mountPath: "/crowdsec"

@@ -1,7 +1,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: {{ .Release.Name }}-lapi
+  name: {{ .Release.Name }}-postgres
 spec:
   instances: 3
   imageCatalogRef:

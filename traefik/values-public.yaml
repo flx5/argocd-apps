@@ -136,6 +136,9 @@ traefik:
      mountPath: "/pages"
      type: configMap
 
+  podSecurityContext:
+    fsGroupChangePolicy: OnRootMismatch
+
   service:
     annotations:
       external-dns.alpha.kubernetes.io/hostname: public.traefik.home.arpa # TODO This is just a hack to notify external-dns of the route crd....

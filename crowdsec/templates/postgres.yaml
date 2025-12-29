@@ -1,0 +1,21 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: {{ .Release.Name }}-lapi
+spec:
+  instances: 3
+  imageCatalogRef:
+    apiGroup: postgresql.cnpg.io
+    kind: ClusterImageCatalog
+    name: postgresql
+    major: 18
+  affinity:
+    nodeSelector:
+      node-role.kubernetes.io/postgres: ""
+  bootstrap:
+    initdb:
+      database: crowdsec
+      owner: crowdsec
+  storage:
+    storageClass: local-path
+    size: 1Gi

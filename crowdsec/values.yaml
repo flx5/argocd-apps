@@ -19,6 +19,8 @@ crowdsec:
         value: "crowdsecurity/traefik"
   lapi:
     replicas: 2
+    strategy:
+      type: RollingUpdate
     affinity:
       podAntiAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
@@ -122,6 +124,8 @@ crowdsec:
   # Rules can be analyzed by running cscli alerts inspect 311 --details in the pod.
   appsec:
     enabled: true
+    strategy:
+      type: RollingUpdate
     metrics:
       enabled: true
       serviceMonitor:

@@ -126,9 +126,9 @@ traefik:
 
   # Loading the plugins from the pvc takes a bit longer, so delay probes.
   readinessProbe:
-    initialDelaySeconds: 10
+    initialDelaySeconds: 60
   livenessProbe:
-    initialDelaySeconds: 10
+    initialDelaySeconds: 60
 
   deployment:
     additionalVolumes:

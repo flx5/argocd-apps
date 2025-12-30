@@ -16,6 +16,12 @@ traefik:
     # Defines the HTTPS entry point named 'websecure'
     websecure:
       port: 443
+      http:
+        encodedCharacters:
+          # Must be allowed because files uploaded to nextcloud can have these values in them.
+          allowEncodedHash: true
+          allowEncodedPercent: true
+          allowEncodedSemicolon: true
       #nodePort: 30001
       middlewares:
         - traefik-bouncer@kubernetescrd

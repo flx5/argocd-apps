@@ -212,11 +212,6 @@ nextcloud:
             '*',
             '\\',
             '/',
-            // Forbid special characters that would be blocked by traefik https://www.reddit.com/r/selfhosted/comments/1ph9jio/traefik_v364_breaks_nextcloud_officecollabora/
-            // https://www.reddit.com/r/selfhosted/comments/1ph9jio/traefik_v364_breaks_nextcloud_officecollabora/
-            '#',
-            '%',
-            ';',
           ),
           'forbidden_filename_extensions' => 
           array (

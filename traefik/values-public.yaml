@@ -124,6 +124,12 @@ traefik:
               x-powered-by: "" # Removes
               Server: ""  # Removes
 
+  # Loading the plugins from the pvc takes a bit longer, so delay probes.
+  readinessProbe:
+    initialDelaySeconds: 10
+  livenessProbe:
+    initialDelaySeconds: 10
+
   deployment:
     additionalVolumes:
       - name: plugins # https://github.com/traefik/traefik-helm-chart/issues/280
@@ -194,7 +200,7 @@ traefik:
   # Enable Observability
   logs:
     general:
-      level: DEBUG
+      level: INFO
     # This enables access logs, outputting them to Traefik's standard output by default. The [Access Logs Documentation](https://doc.traefik.io/traefik/observability/access-logs/) covers formatting, filtering, and output options.
     access:
       enabled: true

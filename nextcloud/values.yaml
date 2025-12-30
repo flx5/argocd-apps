@@ -163,6 +163,68 @@ nextcloud:
           'dbhost' => getenv('POSTGRES_HOST'),
           'dbport' => '',
         );
+      forbidden_filenames_config.php: |
+        <?php
+        'forbidden_filename_basenames' => 
+        array (
+          // https://docs.nextcloud.com/server/stable/admin_manual/configuration_files/windows_compatible_filenames.html
+          0 => 'con',
+          1 => 'prn',
+          2 => 'aux',
+          3 => 'nul',
+          4 => 'com0',
+          5 => 'com1',
+          6 => 'com2',
+          7 => 'com3',
+          8 => 'com4',
+          9 => 'com5',
+          10 => 'com6',
+          11 => 'com7',
+          12 => 'com8',
+          13 => 'com9',
+          14 => 'com¹',
+          15 => 'com²',
+          16 => 'com³',
+          17 => 'lpt0',
+          18 => 'lpt1',
+          19 => 'lpt2',
+          20 => 'lpt3',
+          21 => 'lpt4',
+          22 => 'lpt5',
+          23 => 'lpt6',
+          24 => 'lpt7',
+          25 => 'lpt8',
+          26 => 'lpt9',
+          27 => 'lpt¹',
+          28 => 'lpt²',
+          29 => 'lpt³',
+        ),
+        'forbidden_filename_characters' => 
+        array (
+          // https://docs.nextcloud.com/server/stable/admin_manual/configuration_files/windows_compatible_filenames.html
+          '<',
+          '>',
+          ':',
+          '"',
+          '|',
+          '?',
+          '*',
+          '\\',
+          '/',
+          // Forbid special characters that would be blocked by traefik https://www.reddit.com/r/selfhosted/comments/1ph9jio/traefik_v364_breaks_nextcloud_officecollabora/
+          // https://www.reddit.com/r/selfhosted/comments/1ph9jio/traefik_v364_breaks_nextcloud_officecollabora/
+          '#',
+          '%',
+          ';',
+        ),
+        'forbidden_filename_extensions' => 
+        array (
+          // https://docs.nextcloud.com/server/stable/admin_manual/configuration_files/windows_compatible_filenames.html
+          0 => ' ',
+          1 => '.',
+          2 => '.filepart',
+          3 => '.part',
+        ),
   internalDatabase:
     enabled: false
   redis:

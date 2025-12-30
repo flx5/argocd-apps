@@ -163,7 +163,7 @@ nextcloud:
           'dbhost' => getenv('POSTGRES_HOST'),
           'dbport' => '',
         );
-      forbidden_filenames_config.php: |
+      forbidden_filenames.config.php: |
         <?php
         'forbidden_filename_basenames' => 
         array (

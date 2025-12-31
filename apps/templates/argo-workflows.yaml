@@ -16,9 +16,15 @@ spec:
     repoURL: https://argoproj.github.io/argo-helm
     targetRevision: 0.46.2
     helm:
-      values: |
+      valuesObject:
         crds:
           full: true
+        server:
+          ingress:
+            enabled: true
+            hosts:
+              - workflows.home.arpa
+            ingressClassName: traefik-internal
   destination:
     server: "https://kubernetes.default.svc"
     namespace: argo

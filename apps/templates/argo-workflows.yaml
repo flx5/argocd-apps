@@ -20,7 +20,7 @@ spec:
         crds:
           full: true
         server:
-          auhtModes:
+          authModes:
             - server
           ingress:
             enabled: true

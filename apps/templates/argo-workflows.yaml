@@ -8,6 +8,9 @@ spec:
     syncOptions:
       - ServerSideApply=true
       - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
   source:
     chart: argo-workflows
     repoURL: https://argoproj.github.io/argo-helm

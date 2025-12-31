@@ -3,6 +3,7 @@ kind: Application
 metadata:
   name: argo-workflows
 spec:
+  project: default
   syncPolicy:
     syncOptions:
       - ServerSideApply=true

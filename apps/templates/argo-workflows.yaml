@@ -1,7 +1,20 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
-  name: argo-workflow
-namespace: argo
-resources:
-  - https://github.com/argoproj/argo-workflows/releases/download/v3.7.6/install.yaml
+  name: argo-workflows
+spec:
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
+  source:
+    chart: argo-workflows
+    repoURL: https://argoproj.github.io/argo-helm
+    targetRevision: 0.46.2
+    helm:
+      values: |
+        crds:
+          full: true
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: argo

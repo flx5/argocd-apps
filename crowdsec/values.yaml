@@ -17,6 +17,8 @@ crowdsec:
     env:
       - name: COLLECTIONS
         value: "crowdsecurity/traefik"
+      - name: PARSERS
+        value: "crowdsecurity/nextcloud-whitelist"
   lapi:
     replicas: 2
     strategy:

@@ -6,6 +6,13 @@ backupNamespaces:
   - 'media'
   - 'internal'
 
+backupNamespacesOffsite:
+  - 'calibre'
+  - 'gitea'
+  - 'nextcloud'
+  - 'omada-controller'
+  - 'internal'
+
 velero:
   metrics:
     serviceMonitor:

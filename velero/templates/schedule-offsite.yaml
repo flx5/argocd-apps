@@ -29,7 +29,7 @@ spec:
     # Array of namespaces to include in the scheduled backup. If unspecified, all namespaces are included.
     # Optional.
     includedNamespaces:
-      {{- range .Values.backupNamespaces }}
+      {{- range .Values.backupNamespacesOffsite }}
       - {{ . | quote }}
       {{- end }}
     includedResources:

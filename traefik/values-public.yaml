@@ -24,7 +24,6 @@ traefik:
           allowEncodedSemicolon: true
       #nodePort: 30001
       middlewares:
-        - traefik-bouncer@kubernetescrd
         - traefik-public-hsts-header@kubernetescrd
 
   # Enables the dashboard in Secure Mode
@@ -47,21 +46,6 @@ traefik:
 
   # Creates a BasiAuth Middleware and Secret for the Dashboard Security
   extraObjects:
-    - apiVersion: bitnami.com/v1alpha1
-      kind: SealedSecret
-      metadata:
-        creationTimestamp: null
-        name: crowdsec-lapi
-        namespace: traefik
-      spec:
-        encryptedData:
-          # TODO This must be kept in sync with crowdsec secret. So either use openbao or kubernetes-reflector
-          traefik: AgA1Gsavg89i+pISZFYyEdXel3v0OL8D0c4E0q0OYRAsFUJ54MMzSJnd4myrSb0l2o3/1OhH/kwY8431wXwLxIje+y5kG39IvIVoVTc7Rz43UwtbdUy0QMnSLONmpMZCSmssxfXTkMs7h0sbYsUZ+V6jbdMQsCb7qF+4lO5/dtInEIHe2kQ+rMLyv6cU3eVld7SE7d9KkIzyEBao3R9qdjzjyNZFsX8CkXIW5TnACrY9KDzNJVyX7XQ7zfTo1WlsmRF6bmtARKoWqTMaa95J69NH5jHHgpr8i+jFhCFl//FXrrGTOfJ80qad6VMuvJPGgKcL/vumEOxYqfAnMUKkLkEG5IBE+F5N4b2SE0EOfC40raMquF3EmZXCY6LQhY6eUTO14oA9WJuXabZCy1K0PQcCmpVSDyilxC+jUK+a93XnrC9mQZyAmuXD0t0fCaPN95D4cPVeKK9WexISH+nv1re9B775q386FR7nC4jf7wqSyp2JFS6zhTuD8cJdVmuFpKDyQzMVaim2QXjpRMPd7fAY/9jaCWoZKBv+t2LPBu+H9TsZKr2qpylHuyWDrDOpdRgGEM+TQ71pSw0Rxg4wNj1NR28YB7trN1FgbCksCJFWiP5v/Hb4gCHs5MMdHhCjM0G+aGIMF99tpaYJMA1tOb7E7LV76ZFQ1WFvF6hF80EGD3cXG9Ans2lSuBuRCCARahYYIHZlH+TzkKAOwCGVGYsq
-        template:
-          metadata:
-            creationTimestamp: null
-            name: crowdsec-lapi
-            namespace: traefik
     - apiVersion: bitnami.com/v1alpha1
       kind: SealedSecret
       metadata:
@@ -90,29 +74,6 @@ traefik:
     - apiVersion: traefik.io/v1alpha1
       kind: Middleware
       metadata:
-        name: bouncer
-        namespace: traefik
-        labels:
-          traefik.io/controller: public
-      spec:
-        plugin:
-          crowdsec-bouncer-traefik-plugin:
-            enabled: true
-            crowdsecMode: stream
-            crowdsecLapiScheme: http
-            crowdsecLapiHost: crowdsec-service.crowdsec.svc.cluster.local:8080
-            crowdsecLapiKeyFile: /crowdsec/traefik
-            crowdsecAppsecEnabled: true
-            crowdsecAppsecHost: crowdsec-appsec-service.crowdsec.svc.cluster.local:7422
-            crowdsecAppsecPath: "/"
-            crowdsecAppsecFailureBlock: true
-            crowdsecAppsecUnreachableBlock: true
-            crowdsecAppsecBodyLimit: 10485760
-            crowdsecLapiPath: "/"
-            banHTMLFilePath: "/pages/ban.html"
-    - apiVersion: traefik.io/v1alpha1
-      kind: Middleware
-      metadata:
         name: public-hsts-header
         namespace: traefik
         labels:
@@ -129,24 +90,6 @@ traefik:
     initialDelaySeconds: 60
   livenessProbe:
     initialDelaySeconds: 60
-
-  deployment:
-    additionalVolumes:
-      - name: plugins # https://github.com/traefik/traefik-helm-chart/issues/280
-        persistentVolumeClaim:
-          claimName: traefik-public-plugins
-
-  additionalVolumeMounts:
-    - name: plugins
-      mountPath: /plugins-storage
-
-  volumes:
-   - name: crowdsec-lapi
-     mountPath: "/crowdsec"
-     type: secret
-   - name: traefik-public-custom-html
-     mountPath: "/pages"
-     type: configMap
 
   podSecurityContext:
     fsGroupChangePolicy: OnRootMismatch
@@ -211,9 +154,3 @@ traefik:
       enabled: true
       serviceMonitor:
         enabled: true
-
-  experimental:
-    plugins:
-      crowdsec-bouncer-traefik-plugin:
-        moduleName: "github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin"
-        version: "v1.4.5"

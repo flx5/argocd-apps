@@ -2,9 +2,6 @@ crowdsec:
   # for raw logs format: json or cri (docker|containerd)
   container_runtime: containerd
   agent:
-    isDeployment: true
-    strategy:
-      type: RollingUpdate
     metrics:
       enabled: true
       serviceMonitor:

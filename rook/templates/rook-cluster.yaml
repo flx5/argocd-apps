@@ -269,6 +269,15 @@ spec:
     osd: system-node-critical
     mgr: system-cluster-critical
     #crashcollector: rook-ceph-crashcollector-priority-class
+  cephConfig:
+    global:
+      # Avoid slow ops warnings.
+      # https://github.com/rook/rook/discussions/15403#discussioncomment-14701720
+      # https://www.unixe.de/ceph-bluestore-slow-op-error/
+      bdev_enable_discard: "true" # quote
+      bdev_async_discard_threads: "1" # quote
+      bluestore_slow_ops_warn_threshold: "10"
+      bluestore_slow_ops_warn_lifetime: "60"
   storage: # cluster level storage configuration and selection
     useAllNodes: false
     useAllDevices: false

@@ -30,6 +30,9 @@ spec:
           image: php:7.2-apache
           ports:
             - containerPort: 80
+          volumeMounts:
+            - mountPath: /var/www/html
+              name: html
       volumes:
         - name: html
           configMap:

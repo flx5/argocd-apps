@@ -4,7 +4,7 @@ metadata:
   name: upgrade-os-fake-scripts
   namespace: system-upgrade
 data:
-  index.php: |
+  daily.php: |
     <?php
     $version = date("Y.m.d");
     header("Location: /$version");
@@ -93,8 +93,8 @@ spec:
     image: alpine:3.23.3
     command: ["chroot", "/host"]
     args: ["sh", "/run/cattle-system/secrets/upgrade-os/upgrade.sh"]
-  # setting version to current date
-  version: "$(date +'%Y-%m-%d-%H%M')"
+
+  channel: http://upgrade-os-fake-channel/daily.php
 
   # mount script using secret
   secrets:

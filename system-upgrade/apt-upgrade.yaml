@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: upgrade-os
+  namespace: system-upgrade
+type: Opaque
+stringData:
+  # adding bash script
+  # here could be anything
+  # ex. adding reboot command if reboot-required
+  upgrade.sh: |
+    #!/bin/sh
+    set -e
+    export DEBIAN_FRONTEND=noninteractive
+    
+    apt-get update
+    apt-get upgrade -y
+    apt autoclean
+    
+    if [ -f /run/reboot-required ]; then
+      cat /run/reboot-required
+      reboot
+    fi
+---
+apiVersion: upgrade.cattle.io/v1
+kind: Plan
+metadata:
+  name: upgrade-os
+  namespace: system-upgrade
+spec:
+  concurrency: 1
+  cordon: true
+
+  drain:
+    deleteLocalData: true
+    ignoreDaemonSets: true
+
+  upgrade:
+    image: alpine:3.23.3
+    command: ["chroot", "/host"]
+    args: ["sh", "/run/cattle-system/secrets/upgrade-os/upgrade.sh"]
+  # setting version to current date
+  version: "$(date +'%Y-%m-%d-%H%M')"
+
+  # mount script using secret
+  secrets:
+    - name: upgrade-os
+      path: /host/run/cattle-system/secrets/upgrade-os
+
+  serviceAccountName: system-upgrade
+
+  # which nodes the plan is targeted for
+  nodeSelector:
+    matchExpressions:
+      - key: beta.kubernetes.io/os
+        operator: In
+        values:
+          - linux
+      # TODO Also match workers
+      - key: node-role.kubernetes.io/control-plane
+        operator: In
+        values:
+          - "true"

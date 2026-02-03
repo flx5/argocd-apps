@@ -24,7 +24,7 @@ spec:
     targetRevision: {{ .Values.spec.source.targetRevision }}
     helm:
       valuesObject:
-        bucketName: gitea-bkt-95187899-5958-4fb0-a6d0-dd3510efcb70
+        bucketName: gitea-bkt-662c8c76-d2c9-4b9f-8023-7cc6a26d119b
         gitea:
           service:
             ssh:

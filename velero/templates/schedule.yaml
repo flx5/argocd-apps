@@ -10,7 +10,7 @@ metadata:
 # Parameters about the scheduled backup. Required.
 spec:
   # Paused specifies whether the schedule is paused or not
-  paused: false
+  paused: true
   # SkipImmediately specifies whether to skip backup if schedule is due immediately when unpaused or created.
   # This is a one-time flag that will be automatically reset to false after being consumed.
   # When true, the controller will skip the immediate backup, set LastSkipped timestamp, and reset this to false.

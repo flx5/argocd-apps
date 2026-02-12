@@ -27,5 +27,5 @@ dependencies:
     version: 8.7.0
     repository: https://nextcloud.github.io/helm/
   - name: valkey
-    version: 0.9.2
+    version: 0.9.3
     repository: https://valkey.io/valkey-helm/

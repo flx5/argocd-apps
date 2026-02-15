@@ -40,34 +40,3 @@ spec:
   destination:
     server: "https://kubernetes.default.svc"
     namespace: nextcloud
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: nextcloud-internal
-  namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  project: default
-  syncPolicy:
-    automated:
-      selfHeal: true
-      prune: true
-  source:
-    path: nextcloud
-    repoURL: {{ .Values.spec.source.repoURL }}
-    targetRevision: {{ .Values.spec.source.targetRevision }}
-    helm:
-      parameters:
-        - value: nextcloud-bkt-16f3ce3d-5d88-473d-9205-2ef45e3792ba
-          name: "bucket"
-        - name: "nextcloud.ingress.className"
-          value: "traefik-internal"
-        - name: "nextcloud.nextcloud.host"
-          value: "cloud.internal.home.arpa"
-        - name: "postgres.version"
-          value: "18"
-  destination:
-    server: "https://kubernetes.default.svc"
-    namespace: internal

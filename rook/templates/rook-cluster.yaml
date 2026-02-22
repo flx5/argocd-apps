@@ -247,9 +247,9 @@ spec:
   #   mon:
     osd:
       limits:
-         memory: "4096Mi"
+         memory: "2048Mi"
       requests:
-         memory: "4096Mi"
+         memory: "2048Mi"
   # For OSD it also is a possible to specify requests/limits based on device class
   #   osd-hdd:
   #   osd-ssd:

@@ -12,6 +12,12 @@ spec:
   affinity:
     nodeSelector:
       node-role.kubernetes.io/postgres: ""
+  postgresql:
+    synchronous:
+      method: any
+      number: 1
+    parameters:
+      max_slot_wal_keep_size: "2GB"
   bootstrap:
     initdb:
       database: grafana

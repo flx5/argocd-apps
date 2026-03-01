@@ -4,6 +4,12 @@ metadata:
   name: pg-nextcloud
 spec:
   instances: 3
+  postgresql:
+    synchronous:
+      method: any
+      number: 1
+    parameters:
+      max_slot_wal_keep_size: "2GB"
   imageCatalogRef:
     apiGroup: postgresql.cnpg.io
     kind: ClusterImageCatalog

@@ -13,8 +13,8 @@ spec:
         size: 3
   preserveFilesystemOnDelete: true
   metadataServer:
-    activeCount: 3
-    activeStandby: true
+    activeCount: 1
+    activeStandby: false
     placement:
       podAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
@@ -44,9 +44,9 @@ spec:
               topologyKey: kubernetes.io/hostname
     resources:
       limits:
-        memory: "4096Mi"
+        memory: "6144Mi"
       requests:
-        memory: "4096Mi"
+        memory: "6144Mi"
 
 ---
 apiVersion: storage.k8s.io/v1

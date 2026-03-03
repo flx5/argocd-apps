@@ -9,6 +9,7 @@ spec:
       size: 3
   dataPools:
     - name: replicated
+      deviceClass: ssd
       replicated:
         size: 3
   preserveFilesystemOnDelete: true

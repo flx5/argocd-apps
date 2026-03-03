@@ -5,6 +5,7 @@ metadata:
   namespace: rook-ceph
 spec:
   failureDomain: host
+  deviceClass: ssd
   replicated:
     size: 3
 ---

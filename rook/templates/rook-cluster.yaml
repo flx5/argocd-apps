@@ -303,6 +303,7 @@ spec:
       - name: "kirk"
         devices: # specific devices to use for storage can be specified for each node
           - name: "/dev/ssd/ceph" # devices can be specified using full udev paths
+            deviceClass: "slowssd"
     # Whether to always schedule OSD pods on nodes declared explicitly in the "nodes" section, even if they are
     # temporarily not schedulable. If set to true, consider adding placement tolerations for unschedulable nodes.
     scheduleAlways: false

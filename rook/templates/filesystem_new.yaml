@@ -1,10 +1,12 @@
 apiVersion: ceph.rook.io/v1
 kind: CephFilesystem
 metadata:
-  name: myfs
+  name: newfs
   namespace: rook-ceph
 spec:
   metadataPool:
+    parameters:
+      pg_num: 4
     replicated:
       size: 3
   dataPools:
@@ -12,6 +14,8 @@ spec:
       deviceClass: ssd
       replicated:
         size: 3
+      parameters:
+        pg_num: 64
   preserveFilesystemOnDelete: true
   metadataServer:
     activeCount: 1
@@ -41,7 +45,7 @@ spec:
                   - key: app.kubernetes.io/part-of
                     operator: In
                     values:
-                      - myfs
+                      - newfs
               topologyKey: kubernetes.io/hostname
     resources:
       limits:
@@ -62,11 +66,11 @@ parameters:
   clusterID: rook-ceph
 
   # CephFS filesystem name into which the volume shall be created
-  fsName: myfs
+  fsName: newfs
 
   # Ceph pool into which the volume shall be created
   # Required for provisionVolume: "true"
-  pool: myfs-replicated
+  pool: newfs-replicated
 
   # The secrets contain Ceph admin credentials. These are generated automatically by the operator
   # in the same namespace as the cluster.

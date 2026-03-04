@@ -5,6 +5,7 @@ metadata:
   namespace: rook-ceph
 spec:
   metadataPool:
+    deviceClass: ssd
     replicated:
       size: 3
   dataPools:

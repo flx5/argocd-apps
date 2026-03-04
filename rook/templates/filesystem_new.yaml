@@ -5,6 +5,7 @@ metadata:
   namespace: rook-ceph
 spec:
   metadataPool:
+    deviceClass: ssd
     parameters:
       pg_num: "4"
     replicated:

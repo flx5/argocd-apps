@@ -6,7 +6,7 @@ metadata:
 spec:
   metadataPool:
     parameters:
-      pg_num: 4
+      pg_num: "4"
     replicated:
       size: 3
   dataPools:
@@ -15,7 +15,7 @@ spec:
       replicated:
         size: 3
       parameters:
-        pg_num: 64
+        pg_num: "64"
   preserveFilesystemOnDelete: true
   metadataServer:
     activeCount: 1

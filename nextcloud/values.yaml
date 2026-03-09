@@ -12,6 +12,7 @@ valkey:
     allowPrivilegeEscalation: false
 
 nextcloud:
+  replicaCount: 0
   #podAnnotations:
   #  pre.hook.backup.velero.io/command: '["./occ", "maintenance:mode", "--on"]'
   #  post.hook.backup.velero.io/command: '["./occ", "maintenance:mode", "--off"]'

@@ -25,3 +25,31 @@ spec:
     requests:
       storage: 10Gi
   storageClassName: rook-cephfs
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  finalizers:
+    - kubernetes.io/pvc-protection
+  name: nextcloud-data-new
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 600Gi
+  storageClassName: rook-newfs
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  finalizers:
+    - kubernetes.io/pvc-protection
+  name: nextcloud-app-new
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: rook-newfs

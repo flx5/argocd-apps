@@ -228,7 +228,7 @@ nextcloud:
   redis:
     enabled: false
   cronjob:
-    enabled: true
+    enabled: false
     type: cronjob # TODO Currently this means the additional job defined in cron-config is not executed.
     cronjob:
       command:

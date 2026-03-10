@@ -20,7 +20,7 @@ spec:
     spec:
       terminationGracePeriodSeconds: 1
       containers:
-        - image: alpine/psql:18.1
+        - image: alpine/psql:18.2
           env:
             - name: PGSSLCERT
               value: /secret/replication/tls.crt

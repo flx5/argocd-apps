@@ -12,7 +12,7 @@ valkey:
     allowPrivilegeEscalation: false
 
 nextcloud:
-  replicaCount: 0
+  replicaCount: 1
   #podAnnotations:
   #  pre.hook.backup.velero.io/command: '["./occ", "maintenance:mode", "--on"]'
   #  post.hook.backup.velero.io/command: '["./occ", "maintenance:mode", "--off"]'
@@ -228,7 +228,7 @@ nextcloud:
   redis:
     enabled: false
   cronjob:
-    enabled: false
+    enabled: true
     type: cronjob # TODO Currently this means the additional job defined in cron-config is not executed.
     cronjob:
       command:
@@ -248,10 +248,10 @@ nextcloud:
 
   persistence:
     enabled: true
-    existingClaim: nextcloud-app
+    existingClaim: nextcloud-app-new
     nextcloudData:
       enabled: true
-      existingClaim: nextcloud-data
+      existingClaim: nextcloud-data-new
   externalDatabase:
     enabled: true
     type: postgresql

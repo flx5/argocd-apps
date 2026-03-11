@@ -9,3 +9,15 @@ spec:
   resources:
     requests:
       storage: 3Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: omada-backup
+spec:
+  storageClassName: rook-newfs
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi

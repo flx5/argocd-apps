@@ -21,4 +21,4 @@ omada-controller-helm:
     extraVolumes:
       - name: omada-backups
         persistentVolumeClaim:
-          claimName: omada-backup-pvc
+          claimName: omada-backup

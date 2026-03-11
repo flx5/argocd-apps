@@ -14,7 +14,7 @@ valkey:
     allowPrivilegeEscalation: false
 
 gitea:
-  replicaCount: 0
+  replicaCount: 1
   podSecurityContext:
     runAsNonRoot: true
     seccompProfile:
@@ -38,7 +38,7 @@ gitea:
   persistence:
     enabled: true
     create: false
-    claimName: gitea-shared-storage
+    claimName: gitea-shared-storage2
 
   service:
     ssh:

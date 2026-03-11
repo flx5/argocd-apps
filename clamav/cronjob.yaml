@@ -19,7 +19,7 @@ spec:
             seccompProfile:
               type: RuntimeDefault
           containers:
-            - image: clamav/clamav:1.5.1_base
+            - image: clamav/clamav:1.5.2_base
               name: freshclam
               command:
                 - freshclam

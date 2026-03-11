@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: calibre-web
 spec:
   revisionHistoryLimit: 3
-  replicas: 0
+  replicas: 1
   strategy:
     type: Recreate
   selector:
@@ -88,7 +88,7 @@ spec:
       volumes:
         - name: books
           persistentVolumeClaim:
-            claimName: books2
+            claimName: books
         - name: config
           persistentVolumeClaim:
-            claimName: config2
+            claimName: config

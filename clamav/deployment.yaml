@@ -22,7 +22,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: clamav
-          image: clamav/clamav:1.5.1_base
+          image: clamav/clamav:1.5.2_base
           securityContext:
             runAsUser: 100
             runAsGroup: 100

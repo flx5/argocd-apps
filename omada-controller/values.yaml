@@ -13,7 +13,7 @@ omada-controller-helm:
 
       storageClassName: rook-newfs
     logs:
-      storageClassName: rook-newfs
+      storageClassName: local-path
     extraVolumeMounts:
       - name: omada-backups
         # Determined by omada...

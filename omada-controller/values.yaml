@@ -10,9 +10,10 @@ omada-controller-helm:
     periodSeconds: 60
   persistence:
     data:
-      storageClassName: rook-cephfs
+
+      storageClassName: rook-newfs
     logs:
-      storageClassName: rook-cephfs
+      storageClassName: rook-newfs
     extraVolumeMounts:
       - name: omada-backups
         # Determined by omada...

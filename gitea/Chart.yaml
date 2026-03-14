@@ -27,5 +27,5 @@ dependencies:
     version: 12.4.0
     repository: https://dl.gitea.com/charts/
   - name: valkey
-    version: 0.9.2
+    version: 0.9.3
     repository: https://valkey.io/valkey-helm/

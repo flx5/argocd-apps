@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: duckdns
+  name: duckdns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: duckdns
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: duckdns
+    spec:
+      containers:
+        - image: lscr.io/linuxserver/duckdns:latest
+          name: duckdns
+          resources: {}
+          env:
+            - name:  SUBDOMAINS
+              value: flx5-nue
+            - name: TOKEN
+              value: 1b748d50-8b3a-4f82-9a0e-984515cb8987

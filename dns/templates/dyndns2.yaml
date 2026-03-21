@@ -1,3 +1,18 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: duckdns
+  namespace: networking
+spec:
+  encryptedData:
+    token: AgALRRdBbtYQLhdVX9Xrsb+pfw59cIpIxsj+B4vEMouhOpTmKcuSEmEJh8jSv5N/Gk+LZFnJ4DHfT1H9XdpETW7NlJNULxPWyTKkcEKANHbDJJjC5dei+H6gMsY9BGJl1dEhe7YNa66zSkXedhdK55scsnQKnoYNiiewfXkoEZ7+AVc89UG3G+AcNd6q0yJzp65lHLkty25MHgP8JnBmQHP6nzLYFLtELMTsML5c9OKWEPYCQ7y17kCve24Dw0GjgJkW9rFV+m6mN/QWwyTBfZhVC8ryfT+Fy/AhyU/K+2u/pzhYy3/VY3h9tgZWW/w24MeYOwSVt/yj3bnDgS7fQLs0NiFIQJoqGsFiAuF3v8NSfdYRtT4pAUGbQUzZll+hKRy//DZ/p8i7CvvtnI3vYDFicQTyR0RQRiq3ht3qUVnQBu0JuKf+lKFkx0t+YBXVlV/UHIyvtec+l2Uj4udKdhXmYaIivqlpRx39/qWW/bm7Ap+BYATo33F7i50xwRYsdfDUSqY7ZaMWSzKuhdQcPMPSZWdSv7xKmiHuOaj1+xQeffCnqcYxQzAjKX5xk+Z6fk0NRRvdhjLV3xVmAI435XqCrgqxZzrsP7sgY5W+cveGYe6/dSm9x+BMCR9FM4uHdSZNN9Rw6V65UqvTAK4CSMAYaDrkdRiACgviWATkiszp3Mb+/RVaN216wAHIOVuiMyYw5lNiprO6svMlVqsVWOTIGMC2oHriJ+atJWBdQTDtaOaCFFg=
+  template:
+    metadata:
+      creationTimestamp: null
+      name: duckdns
+      namespace: networking
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -24,4 +39,7 @@ spec:
             - name:  SUBDOMAINS
               value: flx5-nue
             - name: TOKEN
-              value: 1b748d50-8b3a-4f82-9a0e-984515cb8987
+              valueFrom:
+                secretKeyRef:
+                  key: token
+                  name: duckdns

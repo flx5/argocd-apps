@@ -31,6 +31,7 @@ spec:
       labels:
         app.kubernetes.io/name: duckdns
     spec:
+      priorityClassName: base-infra
       containers:
         - image: lscr.io/linuxserver/duckdns:latest
           name: duckdns

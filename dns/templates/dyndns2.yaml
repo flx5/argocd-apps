@@ -1,3 +1,6 @@
+# This is a secondary dyndns update as a backup.
+# The primary dyndns updates are handled by OPNSense and update the DNS records at Cloudflare directly.
+# Since that failed today, add a secondary dyndns via duckdns to gain access via VPN at least.
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
 metadata:

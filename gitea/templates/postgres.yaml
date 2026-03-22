@@ -14,20 +14,8 @@ spec:
       node-role.kubernetes.io/postgres: ""
   bootstrap:
     initdb:
-      import:
-        type: microservice
-        databases:
-          - gitea
-        source:
-          externalCluster: postgres-cluster
+      database: gitea
+      owner: gitea
   storage:
     storageClass: local-path
     size: 4Gi  # Never change this. local-path does not support resizing!
-  externalClusters:
-    - name: postgres-cluster
-      connectionParameters:
-        # Use the correct IP or host name for the source database
-        host: gitea-postgresql
-        user: gitea
-        password: gitea
-        dbname: postgres

@@ -1,0 +1,15 @@
+k8s-backup:
+  prepareBackupScript: |
+    ctx.backup.exec_in_single_deployment_pod("calibre-web",
+                                           ["bash", "-o", "errexit", "-c", "for f in /config/app.db /config/gdrive.db /books/metadata.db; do sqlite3 $f \".backup $f.bak\"; done"])
+    try:
+        snapshots = ctx.backup.create_snapshots({"books": "books", "config": "config"})
+        ctx.backup.wait_for_snapshots(snapshots)
+    finally:
+        ctx.backup.exec_in_single_deployment_pod("calibre-web",
+                                             ["bash", "-c", "for f in /config/app.db.bak /config/gdrive.db.bak /books/metadata.db.bak;  do rm $f; done"])
+    
+    return snapshots
+
+  repository:
+    secret: calibre-kopia-repository

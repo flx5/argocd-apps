@@ -13,9 +13,6 @@ valkey:
 
 nextcloud:
   replicaCount: 1
-  #podAnnotations:
-  #  pre.hook.backup.velero.io/command: '["./occ", "maintenance:mode", "--on"]'
-  #  post.hook.backup.velero.io/command: '["./occ", "maintenance:mode", "--off"]'
 
 # TODO
   # https://github.com/nextcloud/helm/pull/673#issuecomment-2763302385

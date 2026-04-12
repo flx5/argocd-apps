@@ -33,18 +33,6 @@ kube-prometheus-stack:
             path: /var/lib/grafana/dashboards/default
     dashboards:
       default:
-        velero:
-          # Ref: https://grafana.com/dashboards/23838
-          gnetId: 23838
-          revision: 1
-          datasource:
-            - name: DS_PROMETHEUS
-              value: Prometheus
-        velero-exporter:
-          # Ref: https://grafana.com/dashboards/15469
-          gnetId: 15469
-          revision: 1
-          datasource: Prometheus
         ceph-cluster:
           gnetId: 2842
           revision: 18

@@ -99,7 +99,7 @@ spec:
             return snapshots
 
           repository:
-            secret: nextcloud-kopia-repository
+            secret: nextcloud-internal-kopia-repository
   destination:
     server: "https://kubernetes.default.svc"
     namespace: internal

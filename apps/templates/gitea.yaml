@@ -50,6 +50,17 @@ spec:
               - hosts:
                   - "git.felix-prasse.de"
                 secretName: gitea-cert # < cert-manager will store the created certificate in this secret.
+        k8s-backup:
+          prepareBackupScript: |
+            with ctx.backup.shutdown_deployment("gitea"):
+                snapshots = ctx.backup.create_snapshots({"data": "gitea-shared-storage2"})
+                ctx.postgres.dump_postgres("pg-gitea", scratch_volume=ctx.scratch_volume)
+                ctx.backup.wait_for_snapshots(snapshots)
+
+            return snapshots
+
+          repository:
+            secret: nextcloud-kopia-repository
   destination:
     server: "https://kubernetes.default.svc"
     namespace: gitea
@@ -100,6 +111,18 @@ spec:
             config:
               server:
                 SSH_DOMAIN: ssh.git.home.arpa
+
+        k8s-backup:
+          prepareBackupScript: |
+            with ctx.backup.shutdown_deployment("gitea-internal"):
+                snapshots = ctx.backup.create_snapshots({"data": "gitea-shared-storage2"})
+                ctx.postgres.dump_postgres("pg-gitea", scratch_volume=ctx.scratch_volume)
+                ctx.backup.wait_for_snapshots(snapshots)
+
+            return snapshots
+
+          repository:
+            secret: nextcloud-kopia-repository
 
   destination:
     server: "https://kubernetes.default.svc"

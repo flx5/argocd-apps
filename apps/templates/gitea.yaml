@@ -60,7 +60,7 @@ spec:
             return snapshots
 
           repository:
-            secret: nextcloud-kopia-repository
+            secret: gitea-kopia-repository
   destination:
     server: "https://kubernetes.default.svc"
     namespace: gitea
@@ -122,7 +122,7 @@ spec:
             return snapshots
 
           repository:
-            secret: nextcloud-kopia-repository
+            secret: gitea-internal-kopia-repository
 
   destination:
     server: "https://kubernetes.default.svc"

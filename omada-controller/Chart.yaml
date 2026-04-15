@@ -9,3 +9,6 @@ dependencies:
   - name: omada-controller-helm
     version: 1.0.1
     repository: oci://registry-1.docker.io/mbentley
+  - name: k8s-backup
+    version: 0.1.21
+    repository: https://www.felix-prasse.de/k8s-backup/

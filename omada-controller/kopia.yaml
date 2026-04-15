@@ -1,0 +1,16 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  annotations:
+    sealedsecrets.bitnami.com/cluster-wide: "true"
+  name: {{.Release.Name}}-kopia-repository
+spec:
+  encryptedData:
+    password: AgAjMgPCVsA3LwhGkkY59JA0mgnRnwbN09f37b/WP+s6Lm7Ftn4w0Z7zU96yOztHcopgZLwkIfUqGJfx5GKGIfUHBinhmfHWJ5WKSeMcXEXUSOR0qVZPlFcf/7dRGsd9gyeIkslw+6YW2Pn0L9//Qk2WTtPWz+jkqLmSGNfkWNTwfEA02mLA2BYSsHlRlF0GsnLsRx76xiZmjQ1yKR7nuQHYe2NWrgAOuddxTyBN2F7RL0v2Kco9kZ4komPyYmymhmjOeHRRqa3s8B+lxnXrRdk1563pWwhihEMgmk/lHLYYv4z//TmSzDAz+OfA7zm2AN8oKVSyF6Y4eXlZwhUR3O0VNXmDtR4fng25GZt0d0fQR/TNqjtg/ORmx84tGXDbhpmfNYAXwKk2QBHpoa3Op9UWf/3mOjMXCQaRlJpaEDcgDpd/83NDG6D3RxhZJLKBJAwIPP9E3tk8/L/wq/3y/xwsmlFt/ZccWOIpeBmkLFYCkt3Ulvpxqtr69twrCIhJXPrz7IMod8Wq1LwPzUgU9c+yBHpIEBpKfVjYoO3yVsuKcJ4U8ueSL4D4DMOCYx5Nz/DdD/3eug/lG+tnMELQWHrIIihfJDOd4yymg4aU6nk3+w9uyVYJj6o7MzXpIK1ePuWnjJc5T3O7OLDBAOgAkGQTIo/bvD1WeW2eq1a9opcse082ZFx4LF2uwK16KrceKtHu5qnUZ07q45CWP1piQCZ2Xyc=
+    url: AgBAnq5nHsefgqoajGFjT2BYlVpBuJT5qdkyMb9Xn9ODhjyVUp3JnMI6iPvm6NjDbmu+ik+OqU03d3AHVXvHs1E+11JnvMnu63IvKL6D5uJDr+mo7F2APN11mO28lGsqXlai5LbveC+apgiHizFEQF9PLav0uxXpwuoIKIMmksjw/901r21eRWY0BtnyAqkxAENhSa6Zcia470/KmfpBaO97gVmOYQzkaVJRW89iAK/u+Ut/ggA+dpDR2ZcnZlqYK8W4Me+k31R7ATK6DeUlmmO6sB4tINnOL/hqBWc4rqZD43jGklPB1mFBC+nnAuRG4X+KmC/NYj8cwfcXqj8o5YJrKL8nD5kIqcTmXABsa+JeFFXJrhmtbcQY5Njp1Yj9rBwPEEtNXCVieFdjCFmB42sAJVGAxIJ6TfpD3n7vO/QB9kBAFXhu1eFiXB+W9fY2l7OYaRMnwFJD2/M4K/I+daK3hZfzcbfaCEhmh9mRLhkxIJ3wB6G3G0lB1w7HC/3vM0pgutkgeVNfe9LvKOJ14UBy8S+z1GFBNijVuvlW3IbYkZv+rmKSkaEPDITEfWuZhlTSDYcDd6H3g+iefiDPh4sQ+xeSOnaoTVogcGc35nEu3vOqyh1llHtqs1OxsvwzWC9A4haKLkTP+jJlTTq1kRlW33cm34Oo7/L4Cjj7o/ZusFl8INNrAI4fiRyE/VB6lo4OCD6JSNYE+MRONtJsvrTAePs/P93kkdqjIDgqlI5e5KPWaN4IVZft
+  template:
+    metadata:
+      annotations:
+        sealedsecrets.bitnami.com/cluster-wide: "true"
+      name: {{.Release.Name}}-kopia-repository
+    type: Opaque

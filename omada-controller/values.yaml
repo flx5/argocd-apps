@@ -25,7 +25,7 @@ omada-controller-helm:
 
 k8s-backup:
   prepareBackupScript: |
-    snapshots = ctx.backup.create_snapshots({"autobackup": "omada-backup2"})
+    snapshots = ctx.backup.create_snapshots({"autobackup": "omada-backup"})
     ctx.backup.wait_for_snapshots(snapshots)
     return snapshots
 

@@ -4,13 +4,13 @@
     "config:recommended"
   ],
   "kubernetes": {
-    "fileMatch": [
-      "\\.yaml$"
+    "managerFilePatterns": [
+      "/\\.yaml$/"
     ]
   },
   "argocd": {
-    "fileMatch": [
-      "apps/templates/.+\\.yaml$"
+    "managerFilePatterns": [
+      "/apps/templates/.+\\.yaml$/"
     ]
   },
   "packageRules": [

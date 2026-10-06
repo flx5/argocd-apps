@@ -24,5 +24,5 @@ appVersion: "1.0"
 
 dependencies:
   - name: k8s-backup
-    version: 0.1.17
+    version: 0.1.30
     repository: https://www.felix-prasse.de/k8s-backup/

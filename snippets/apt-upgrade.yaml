@@ -90,7 +90,7 @@ spec:
     ignoreDaemonSets: true
 
   upgrade:
-    image: alpine:3.23.3
+    image: alpine:3.24.2
     command: ["chroot", "/host"]
     args: ["sh", "/run/cattle-system/secrets/upgrade-os/upgrade.sh"]
 

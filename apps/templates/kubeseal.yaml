@@ -13,8 +13,8 @@ spec:
       prune: true
   source:
     chart: sealed-secrets
-    repoURL: https://bitnami-labs.github.io/sealed-secrets
-    targetRevision: 2.18.3
+    repoURL: https://bitnami.github.io/sealed-secrets
+    targetRevision: 2.20.0
     # Kubeseal expects the chart under the name sealed-secrets-controller and in namespace kube-system
     helm:
       releaseName: sealed-secrets

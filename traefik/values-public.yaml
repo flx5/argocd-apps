@@ -5,13 +5,13 @@ traefik:
     # Defines the HTTP entry point named 'web'
     web:
       port: 80
-      #nodePort: 30000
-      # Instructs this entry point to redirect all traffic to the 'websecure' entry point
-      redirections:
-        entryPoint:
-          to: websecure
-          scheme: https
-          permanent: true
+      http:
+        # Instructs this entry point to redirect all traffic to the 'websecure' entry point
+        redirections:
+          entryPoint:
+            to: websecure
+            scheme: https
+            permanent: true
 
     # Defines the HTTPS entry point named 'websecure'
     websecure:
@@ -22,12 +22,11 @@ traefik:
           allowEncodedHash: true
           allowEncodedPercent: true
           allowEncodedSemicolon: true
+        middlewares:
+          - traefik-public-hsts-header@kubernetescrd
       transport:
         respondingTimeouts:
           readTimeout: 1h # Increase so that nextcloud clients on slow connections can upload data
-      #nodePort: 30001
-      middlewares:
-        - traefik-public-hsts-header@kubernetescrd
 
   # Enables the dashboard in Secure Mode
   api:

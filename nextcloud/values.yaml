@@ -13,6 +13,8 @@ valkey:
 
 nextcloud:
   replicaCount: 1
+  image:
+    tag: 34.0.4-apache
 
 # TODO
   # https://github.com/nextcloud/helm/pull/673#issuecomment-2763302385

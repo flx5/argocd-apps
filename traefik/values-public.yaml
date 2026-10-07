@@ -1,4 +1,7 @@
 traefik:
+  global:
+    checkNewVersion: false
+    sendAnonymousUsage: false
   # Configure Network Ports and EntryPoints
   # EntryPoints are the network listeners for incoming traffic.
   ports:

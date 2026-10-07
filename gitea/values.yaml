@@ -70,6 +70,11 @@ gitea:
             name: pg-gitea-app
             key: password
     config:
+      other:
+        SHOW_FOOTER_VERSION: false
+        SHOW_FOOTER_TEMPLATE_LOAD_TIME: false
+        SHOW_FOOTER_POWERED_BY: false
+        ENABLE_SITEMAP: false
       queue:
         TYPE: redis
         CONN_STR: "redis://gitea-valkey.gitea.svc.cluster.local:6379/0?pool_size=100&idle_timeout=180s&"

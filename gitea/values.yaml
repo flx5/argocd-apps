@@ -14,7 +14,7 @@ valkey:
     allowPrivilegeEscalation: false
 
 gitea:
-  replicaCount: 0
+  replicaCount: 1
   podSecurityContext:
     runAsNonRoot: true
     seccompProfile:

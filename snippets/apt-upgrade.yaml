@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: php
-          image: php:7.2-apache
+          image: php:8.5-apache
           ports:
             - containerPort: 80
           volumeMounts:

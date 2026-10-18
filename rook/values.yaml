@@ -10,9 +10,10 @@ rook-ceph:
       # - topology.kubernetes.io/zone
     # Customize the image tags to use rocky9 because kirk and nas don't have support for x86-64-v3
     # https://github.com/ceph/ceph-csi#alternative-images-for-older-cpus
-    cephcsi:
-      repository: quay.io/cephcsi/cephcsi
-      tag: v3.18.1-rocky9
+    # https://github.com/ceph/ceph-csi/issues/6612
+    #cephcsi:
+    #  repository: quay.io/cephcsi/cephcsi
+    #  tag: v3.18.1-rocky9
 
 
 ceph-csi-drivers:

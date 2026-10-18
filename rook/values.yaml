@@ -13,9 +13,6 @@ rook-ceph:
     cephcsi:
       repository: quay.io/cephcsi/cephcsi
       tag: v3.18.1-rocky9
-    registrar:
-      repository: registry.k8s.io/sig-storage/csi-node-driver-registrar
-      tag: v2.18.0-rocky9
 
 
 ceph-csi-drivers:

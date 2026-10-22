@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: istio
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+    - post-delete-finalizer.argocd.argoproj.io
+    - post-delete-finalizer.argocd.argoproj.io/cleanup
+spec:
+  project: default
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
+  source:
+    path: istio
+    repoURL: {{ .Values.spec.source.repoURL }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: istio-system

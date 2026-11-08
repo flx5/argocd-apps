@@ -14,6 +14,11 @@ metadata:
   name: rook-ceph
   namespace: rook-ceph # namespace:cluster
 spec:
+  security:
+    cephx:
+      daemon:
+        keyRotationPolicy: KeyGeneration
+        keyGeneration: 2
   cephVersion:
     # The container image used to launch the Ceph daemon pods (mon, mgr, osd, mds, rgw).
     # v18 is Reef, v19 is Squid

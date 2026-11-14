@@ -13,7 +13,7 @@ external-dns:
     - gateway-tcproute
     - gateway-tlsroute
     - gateway-udproute
-    -
+
 coredns:
   replicaCount: 2
   affinity:

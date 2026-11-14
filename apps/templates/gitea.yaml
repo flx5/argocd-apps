@@ -42,7 +42,8 @@ spec:
             core:
               httpRoute:
                 enabled: true
-                hostnames: git.felix-prasse.de
+                hostnames:
+                  - git.felix-prasse.de
                 tls: true
                 parentRefs:
                   - name: istio-public

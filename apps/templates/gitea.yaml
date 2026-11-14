@@ -37,7 +37,7 @@ spec:
               annotations:
                 external-dns.alpha.kubernetes.io/hostname: ssh.git.felix-prasse.de
           ingress:
-            enabled: true
+            enabled: false # todo migrate to api gateway
             className: traefik-public
             annotations:
               cert-manager.io/cluster-issuer: letsencrypt-prod

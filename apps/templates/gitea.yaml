@@ -36,20 +36,14 @@ spec:
             ssh:
               annotations:
                 external-dns.alpha.kubernetes.io/hostname: ssh.git.felix-prasse.de
-          ingress:
-            enabled: false # todo migrate to api gateway
-            className: traefik-public
-            annotations:
-              cert-manager.io/cluster-issuer: letsencrypt-prod
-            hosts:
-              - host: "git.felix-prasse.de"
-                paths:
-                  - path: /
-                    pathType: Prefix
-            tls:
-              - hosts:
-                  - "git.felix-prasse.de"
-                secretName: gitea-cert # < cert-manager will store the created certificate in this secret.
+          # TODO Migrate ssh to gateway too
+          gatewayAPI:
+            enabled: true
+            core:
+              httpRoute:
+                enabled: true
+                hostnames: git.felix-prasse.de
+                tls: true
         k8s-backup:
           prepareBackupScript: |
             with ctx.backup.shutdown_deployment("gitea"):

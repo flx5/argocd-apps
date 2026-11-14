@@ -3,6 +3,7 @@ external-dns:
     name: cloudflare
   domainFilters:
     - felix-prasse.de
+  policy: upsert-only
   env:
     - name: CF_API_TOKEN
       valueFrom:

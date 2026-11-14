@@ -1,3 +1,11 @@
+external-dns:
+  provider:
+    name: coredns
+  policy: sync
+  env:
+    - name: ETCD_URLS
+      value: http://etcd:2379
+
 coredns:
   replicaCount: 2
   affinity:

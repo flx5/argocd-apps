@@ -95,5 +95,5 @@ gitea:
         REPO_INDEXER_ENABLED: true
       server:
         #SSH_DOMAIN: ssh.git.felix-prasse.de
-        SSH_LISTEN_PORT: 2234
+        SSH_PORT: 2234
 

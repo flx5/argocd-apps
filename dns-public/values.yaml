@@ -4,9 +4,8 @@ external-dns:
   domainFilters:
     - felix-prasse.de
   policy: sync
-  extraArgs:
-    - --dry-run
   sources:
+    - service
     - gateway-httproute
   # split horizon DNS
   # Do not pick up target annotations from public instance

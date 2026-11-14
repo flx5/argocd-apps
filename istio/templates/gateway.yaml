@@ -11,6 +11,7 @@ spec:
     - type: IPAddress
       value: 192.168.2.96
   # TODO Force redirect to tls?
+  # TODO Coraza WAF
   listeners:
     - name: http
       hostname: "*.felix-prasse.de"

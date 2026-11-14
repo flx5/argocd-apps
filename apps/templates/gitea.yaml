@@ -44,6 +44,9 @@ spec:
                 enabled: true
                 hostnames: git.felix-prasse.de
                 tls: true
+                parentRefs:
+                  - name: istio-public
+                    namespace: istio-system
         k8s-backup:
           prepareBackupScript: |
             with ctx.backup.shutdown_deployment("gitea"):

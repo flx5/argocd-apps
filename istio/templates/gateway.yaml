@@ -19,7 +19,7 @@ spec:
       protocol: HTTP
       allowedRoutes:
         namespaces:
-          from: All
+          from: Same
     - name: https
       hostname: "*.felix-prasse.de"
       port: 443
@@ -37,3 +37,22 @@ spec:
       allowedRoutes:
         kinds:
           - kind: TCPRoute
+  infrastructure:
+    parametersRef:
+      group: ""
+      kind: ConfigMap
+      name: gw-options
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gw-options
+data:
+  horizontalPodAutoscaler: |
+    spec:
+      minReplicas: 1
+      maxReplicas: 1
+
+  service: |
+    spec:
+      externalTrafficPolicy: Local

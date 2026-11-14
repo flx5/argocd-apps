@@ -31,3 +31,9 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: felix-prasse-de-tls
+    - name: git-ssh
+      protocol: TCP
+      port: 2222
+      allowedRoutes:
+        kinds:
+          - kind: TCPRoute

@@ -5,7 +5,6 @@ external-dns:
     - felix-prasse.de
   policy: sync
   sources:
-    - service
     - gateway-httproute
   # split horizon DNS
   # Do not pick up target annotations from public instance

@@ -4,7 +4,7 @@ metadata:
   name: istio-public
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
-    public.external-dns.kubernetes.io/target: "dyndns.felix-prasse.de,flx5-nue.duckdns.org"
+    public.external-dns.kubernetes.io/target: "dyndns.felix-prasse.de"
 spec:
   gatewayClassName: istio
   addresses:

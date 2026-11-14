@@ -3,6 +3,10 @@ kind: Application
 metadata:
   name: gateway-api
 spec:
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
   project: default
   source:
     path: config/crd

@@ -21,12 +21,6 @@ nextcloud:
     annotations:
       traefik.ingress.kubernetes.io/service.sticky.cookie: "true"
 
-  httpRoute:
-    enabled: true
-    parentRefs:
-      - name: istio-public
-        namespace: istio-system
-
   ingress:
     enabled: false
   # TODO Run this as init container: NEXTCLOUD_UPDATE=1 /entrypoint.sh /bin/sh -c 'exit 0'

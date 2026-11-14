@@ -26,14 +26,13 @@ spec:
       valuesObject:
         bucket: nextcloud-bkt-4f8bfd8a-f59a-4a8e-86cc-0095f4421ad1
         nextcloud:
-          ingress:
-            className: traefik-public
-            annotations:
-              cert-manager.io/cluster-issuer: letsencrypt-prod
-            tls:
-              - hosts:
-                  - cloud.felix-prasse.de
-                secretName: nextcloud-cert # < cert-manager will store the created certificate in this secret.
+          httpRoute:
+            enabled: true
+            parentRefs:
+              - name: istio-public
+                namespace: istio-system
+            hostnames:
+              - cloud.felix-prasse.de
           nextcloud:
             host: "cloud.felix-prasse.de"
 
@@ -79,6 +78,7 @@ spec:
       valuesObject:
         nextcloud:
           ingress:
+            enabled: true
             className: traefik-internal
           nextcloud:
             host: cloud.internal.home.arpa

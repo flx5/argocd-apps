@@ -1,0 +1,11 @@
+external-dns:
+  provider:
+    name: cloudflare
+  domainFilters:
+    - felix-prasse.de
+  env:
+    - name: CF_API_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: cloudflare-api-key
+          key: apiKey

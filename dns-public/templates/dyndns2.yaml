@@ -6,15 +6,16 @@ kind: SealedSecret
 metadata:
   creationTimestamp: null
   name: duckdns
-  namespace: networking
+  namespace: dns-public
 spec:
   encryptedData:
-    token: AgALRRdBbtYQLhdVX9Xrsb+pfw59cIpIxsj+B4vEMouhOpTmKcuSEmEJh8jSv5N/Gk+LZFnJ4DHfT1H9XdpETW7NlJNULxPWyTKkcEKANHbDJJjC5dei+H6gMsY9BGJl1dEhe7YNa66zSkXedhdK55scsnQKnoYNiiewfXkoEZ7+AVc89UG3G+AcNd6q0yJzp65lHLkty25MHgP8JnBmQHP6nzLYFLtELMTsML5c9OKWEPYCQ7y17kCve24Dw0GjgJkW9rFV+m6mN/QWwyTBfZhVC8ryfT+Fy/AhyU/K+2u/pzhYy3/VY3h9tgZWW/w24MeYOwSVt/yj3bnDgS7fQLs0NiFIQJoqGsFiAuF3v8NSfdYRtT4pAUGbQUzZll+hKRy//DZ/p8i7CvvtnI3vYDFicQTyR0RQRiq3ht3qUVnQBu0JuKf+lKFkx0t+YBXVlV/UHIyvtec+l2Uj4udKdhXmYaIivqlpRx39/qWW/bm7Ap+BYATo33F7i50xwRYsdfDUSqY7ZaMWSzKuhdQcPMPSZWdSv7xKmiHuOaj1+xQeffCnqcYxQzAjKX5xk+Z6fk0NRRvdhjLV3xVmAI435XqCrgqxZzrsP7sgY5W+cveGYe6/dSm9x+BMCR9FM4uHdSZNN9Rw6V65UqvTAK4CSMAYaDrkdRiACgviWATkiszp3Mb+/RVaN216wAHIOVuiMyYw5lNiprO6svMlVqsVWOTIGMC2oHriJ+atJWBdQTDtaOaCFFg=
+    token: AgBqfa4hclBJfXx+hgznLlRO+oi484JLg+PF2mvpJKW2NN+7RFQe7s/tGpWsorcWNT+Gbl7a4L1zb7uhJGhX/2f6RYrpTnJzeSnnmJx/AX7XsFrAyWPPC8wVMc6dXmP3FFxCTHmlZFNS38c17DotA+vNISR3LC4+IzZLUHgJ0isitmEbj2opLJl23YpgvDzciNjNNe/k5g43p7ZIisHWE/+b8vl+U7zEahGEY+TDYoyH4f+CuvMbBlW3KvjvyoLt0g9IyQlI+cBzVJUr3gB73RYGDnzJx2623wQG5m5C3Ss19Qx13lcj1n/Z61eRvfa5jvrfE548vEaOwVJR0YCxic1IdYknfq5AhoTN093xuQOrUqSdgLIfGNyeuaEpy7fGBVCXZObdLVdfeADj5XVS9eKOPHfDevOFEHtBBo5eIHPxO8shZlE1klWp4j6OBvnuy3pOKMYaFfAnOwtvDolZHGn+82LPqJiHAMKF/FvVlsINOUUvHJD6BJBhR/yc2exorNlUcCsnxHOdOdrT6+DqW2hV74e8PKd1JF9IfxFAXF+huu+kGYynzWuIxAMeL8SA8M6WYp2VWLPOPMGOaASgGZ01P54Oe5J7gjoZSU5erAYZD5hm2Jf60G3xhYOxPdQ9yWKUWHWmpRK/cImZ4le7EvrozPhvKqEfwYu8bxvQ6QXZBKy0eXIxpOSwW2SeRezCjusROfc6YKWB2IgwnbF28bdERE5Fh/vOGz5YjxPeBhiFhdFhnSo=
   template:
     metadata:
       creationTimestamp: null
       name: duckdns
-      namespace: networking
+      namespace: dns-public
+    type: Opaque
 ---
 apiVersion: apps/v1
 kind: Deployment

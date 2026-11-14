@@ -5,6 +5,9 @@ external-dns:
   env:
     - name: ETCD_URLS
       value: http://etcd:2379
+  # split horizon DNS
+  # Do not pick up target annotations from public instance
+  annotationPrefix: local.external-dns.kubernetes.io/
 
 coredns:
   replicaCount: 2

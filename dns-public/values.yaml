@@ -4,6 +4,8 @@ external-dns:
   domainFilters:
     - felix-prasse.de
   policy: upsert-only
+  extraArgs:
+    - --dry-run
   sources:
     - gateway-httproute
   # split horizon DNS

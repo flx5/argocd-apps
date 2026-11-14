@@ -7,10 +7,7 @@ external-dns:
   sources:
     - service
     - ingress
-    - gateway-grpcroute
     - gateway-httproute
-    - gateway-tcproute
-    - gateway-tlsroute
   # split horizon DNS
   # Do not pick up target annotations from public instance
   annotationPrefix: public.external-dns.kubernetes.io/

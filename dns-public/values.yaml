@@ -3,7 +3,7 @@ external-dns:
     name: cloudflare
   domainFilters:
     - felix-prasse.de
-  policy: upsert-only
+  policy: sync
   extraArgs:
     - --dry-run
   sources:

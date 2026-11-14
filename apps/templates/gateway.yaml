@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gateway-api
+spec:
+  project: default
+  source:
+    path: config/crd
+    repoURL: 'https://github.com/kubernetes-sigs/gateway-api'
+    targetRevision: v1.6.1
+  destination:
+    namespace: default
+    server: 'https://kubernetes.default.svc'

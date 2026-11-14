@@ -350,6 +350,13 @@ spec:
   # healthChecks
   # Valid values for daemons are 'mon', 'osd', 'status'
   healthCheck:
+    muteHealthWarning:
+      AUTH_INSECURE_CLIENT_KEY_TYPE:
+        policy: mute
+      AUTH_INSECURE_KEYS_ALLOWED:
+        policy: mute
+      AUTH_INSECURE_KEYS_CREATABLE:
+        policy: mute
     daemonHealth:
       mon:
         disabled: false

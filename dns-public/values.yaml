@@ -4,6 +4,9 @@ external-dns:
   domainFilters:
     - felix-prasse.de
   policy: upsert-only
+  # split horizon DNS
+  # Do not pick up target annotations from public instance
+  annotationPrefix: public.external-dns.kubernetes.io/
   env:
     - name: CF_API_TOKEN
       valueFrom:

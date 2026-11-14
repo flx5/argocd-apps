@@ -6,6 +6,7 @@ spec:
   parentRefs:
     - name: istio-public
       namespace: istio-system
+      sectionName: https
   hostnames: ["books.felix-prasse.de"]
   rules:
     - matches:

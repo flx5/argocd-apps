@@ -48,6 +48,7 @@ spec:
                 parentRefs:
                   - name: istio-public
                     namespace: istio-system
+                    sectionName: https
         k8s-backup:
           prepareBackupScript: |
             with ctx.backup.shutdown_deployment("gitea"):

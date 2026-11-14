@@ -7,7 +7,7 @@ cert-manager:
   extraArgs:
   # Split horizon DNS: https://cert-manager.io/docs/configuration/acme/dns01/#setting-nameservers-for-dns01-self-check
   - --dns01-recursive-nameservers-only
-  - --dns01-recursive-nameservers=8.8.8.8:53,1.1.1.1:53
+  - --dns01-recursive-nameservers=ivan.ns.cloudflare.com:53,kara.ns.cloudflare.com:53
 
 trust-manager:
   secretTargets:

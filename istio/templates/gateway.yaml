@@ -7,6 +7,9 @@ metadata:
     external-dns.kubernetes.io/target: "dyndns.felix-prasse.de,flx5-nue.duckdns.org"
 spec:
   gatewayClassName: istio
+  addresses:
+    - type: IPAddress
+      value: 192.168.2.96
   # TODO Force redirect to tls?
   listeners:
     - name: http

@@ -21,8 +21,14 @@ nextcloud:
     annotations:
       traefik.ingress.kubernetes.io/service.sticky.cookie: "true"
 
-  ingress:
+  httpRoute:
     enabled: true
+    parentRefs:
+      - name: istio-public
+        namespace: istio-system
+
+  ingress:
+    enabled: false
   # TODO Run this as init container: NEXTCLOUD_UPDATE=1 /entrypoint.sh /bin/sh -c 'exit 0'
   # See also: https://github.com/nextcloud/helm/pull/344...
   # TODO Maybe add some argo hooks to backup / snapshot /  migrate the database?

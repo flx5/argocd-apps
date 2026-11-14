@@ -21,6 +21,19 @@ nextcloud:
     annotations:
       traefik.ingress.kubernetes.io/service.sticky.cookie: "true"
 
+  httpRoute:
+    rules:
+      - matches:
+          - path:
+              type: PathPrefix
+              value: "/"
+        filters:
+          - type: ResponseHeaderModifier
+            responseHeaderModifier:
+              add:
+              - name: Strict-Transport-Security
+                value: max-age=63072000; includeSubDomains; preload
+
   ingress:
     enabled: false
   # TODO Run this as init container: NEXTCLOUD_UPDATE=1 /entrypoint.sh /bin/sh -c 'exit 0'

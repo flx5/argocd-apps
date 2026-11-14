@@ -4,6 +4,14 @@ external-dns:
   domainFilters:
     - felix-prasse.de
   policy: upsert-only
+  sources:
+    - service
+    - ingress
+    - gateway-grpcroute
+    - gateway-httproute
+    - gateway-tcproute
+    - gateway-tlsroute
+    - gateway-udproute
   # split horizon DNS
   # Do not pick up target annotations from public instance
   annotationPrefix: public.external-dns.kubernetes.io/

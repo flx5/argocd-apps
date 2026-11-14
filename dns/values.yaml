@@ -5,7 +5,15 @@ external-dns:
   env:
     - name: ETCD_URLS
       value: http://etcd:2379
-
+  sources:
+    - service
+    - ingress
+    - gateway-grpcroute
+    - gateway-httproute
+    - gateway-tcproute
+    - gateway-tlsroute
+    - gateway-udproute
+    -
 coredns:
   replicaCount: 2
   affinity:

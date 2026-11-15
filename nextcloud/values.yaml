@@ -129,13 +129,11 @@ nextcloud:
       imaginary.config.php: true
     phpConfigs:
       remoteip.ini: |-
-        <IfModule mod_remoteip.c>
-            # The header containing the client IP chain
-            RemoteIPHeader X-Forwarded-For
+        # The header containing the client IP chain
+        RemoteIPHeader X-Forwarded-For
 
-            # Trust only your actual internal proxy subnets
-            RemoteIPInternalProxy 10.0.0.0/8
-        </IfModule>
+        # Trust only your actual internal proxy subnets
+        RemoteIPInternalProxy 10.0.0.0/8
     configs:
       # TODO config.php is currently writeable. Is this supposed to be this way?
       proxy.config.php: |-

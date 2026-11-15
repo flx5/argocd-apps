@@ -11,3 +11,8 @@ spec:
       allowedRoutes:
         namespaces:
           from: All
+  infrastructure:
+    parametersRef:
+      group: ""
+      kind: ConfigMap
+      name: gw-options

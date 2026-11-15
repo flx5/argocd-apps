@@ -42,17 +42,3 @@ spec:
       group: ""
       kind: ConfigMap
       name: gw-options
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: gw-options
-data:
-  horizontalPodAutoscaler: |
-    spec:
-      minReplicas: 1
-      maxReplicas: 1
-
-  service: |
-    spec:
-      externalTrafficPolicy: Local

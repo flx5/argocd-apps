@@ -60,7 +60,7 @@ traefik:
 
   service:
     annotations:
-      external-dns.alpha.kubernetes.io/hostname: internal.traefik.home.arpa
+      external-dns.kubernetes.io/hostname: internal.traefik.home.arpa
     spec:
       externalTrafficPolicy: Local
 

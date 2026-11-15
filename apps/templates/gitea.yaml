@@ -32,10 +32,6 @@ spec:
       valuesObject:
         bucketName: gitea-bkt-662c8c76-d2c9-4b9f-8023-7cc6a26d119b
         gitea:
-          service:
-            ssh:
-              annotations:
-                external-dns.alpha.kubernetes.io/hostname: ssh.git.felix-prasse.de
           # TODO Migrate ssh to gateway too
           gatewayAPI:
             enabled: true
@@ -97,7 +93,7 @@ spec:
           service:
             ssh:
               annotations:
-                external-dns.alpha.kubernetes.io/hostname: ssh.git.home.arpa
+                external-dns.kubernetes.io/hostname: ssh.git.home.arpa
           ingress:
             enabled: true
             className: traefik-internal

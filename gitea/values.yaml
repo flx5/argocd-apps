@@ -94,6 +94,5 @@ gitea:
         ISSUE_INDEXER_TYPE: bleve
         REPO_INDEXER_ENABLED: true
       server:
-        #SSH_DOMAIN: ssh.git.felix-prasse.de
         SSH_PORT: 2234
 

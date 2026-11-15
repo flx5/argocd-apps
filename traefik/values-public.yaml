@@ -115,7 +115,7 @@ traefik:
     fsGroup: 65532
   service:
     annotations:
-      external-dns.alpha.kubernetes.io/hostname: public.traefik.home.arpa # TODO This is just a hack to notify external-dns of the route crd....
+      external-dns.kubernetes.io/hostname: public.traefik.home.arpa # TODO This is just a hack to notify external-dns of the route crd....
       kube-vip.io/loadbalancerIPs: 192.168.2.96
 
     spec:

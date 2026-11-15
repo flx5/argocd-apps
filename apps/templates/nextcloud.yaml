@@ -4,6 +4,7 @@ metadata:
   name: nextcloud
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
+    istio.io/dataplane-mode: ambient
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application

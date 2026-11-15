@@ -128,15 +128,9 @@ nextcloud:
     defaultConfigs:
       imaginary.config.php: true
     phpConfigs:
-      remoteip.ini: |-
-        # The header containing the client IP chain
-        RemoteIPHeader X-Forwarded-For
-
-        # Trust only your actual internal proxy subnets
-        RemoteIPInternalProxy 10.0.0.0/8
-        
+      remoteip.ini: |-       
         # Add the client ip (%a) to default log format
-        LogFormat "%h %a %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" combined
+        LogFormat "%h \"%{X-Forwarded-For}i\" %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" combined
     configs:
       # TODO config.php is currently writeable. Is this supposed to be this way?
       proxy.config.php: |-

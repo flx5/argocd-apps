@@ -127,10 +127,6 @@ nextcloud:
         emptyDir: {}
     defaultConfigs:
       imaginary.config.php: true
-    phpConfigs:
-      # Add the client ip (%a) to default log format
-      remoteip.ini: |-       
-        LogFormat "%h %a \"%{X-Forwarded-For}i\" %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"" combined
     configs:
       # TODO config.php is currently writeable. Is this supposed to be this way?
       proxy.config.php: |-
